@@ -11,6 +11,7 @@ describe Author do
   it { should respond_to(:login)}
   it { should respond_to(:bio)}
   it { should respond_to(:password_digest) }
+  it { should respond_to(:remember_token) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   
@@ -122,6 +123,12 @@ describe Author do
   describe "when bio is too long" do
     before { @author.bio = "a" * 141 }
     it { should_not be_valid }
+  end
+  
+  #remember_token
+  describe "remember token" do
+    before { @author.save }
+    its(:remember_token) { should_not be_blank }
   end
  
 end
