@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+
+
 describe Author do
   before do 
     @author = Author.new(name: "Arnold", login: "arni",
@@ -14,6 +16,7 @@ describe Author do
   it { should respond_to(:remember_token) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
+  it { should respond_to(:posts) }
   
   it { should be_valid }
   # name
@@ -129,6 +132,22 @@ describe Author do
   describe "remember token" do
     before { @author.save }
     its(:remember_token) { should_not be_blank }
+  end
+
+
+  #post
+  describe "post associations" do
+    before { @author.save }
+    let!(:older_post) do
+      FactoryGirl.create(:post, author: @author, created_at: 1.day.ago )
+    end
+    let!(:newer_post) do
+      FactoryGirl.create(:post, author: @author, created_at: 1.hour.ago )
+    end
+    
+    it "should have the right microposts in the right order " do
+      expect(@author.posts.to_a).to eq [newer_post, older_post]
+    end
   end
  
 end

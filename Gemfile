@@ -63,8 +63,8 @@ group :development do
 end
 group :development, :test do
   
-  gem 'rspec-rails', '2.13.1'
-  gem 'minitest' 
+  gem "rspec-rails", '~> 2.14.0.rc1'
+  gem 'minitest'
  
 
    # Guard

@@ -1,5 +1,6 @@
 class Author < ActiveRecord::Base
   before_create :create_remember_token
+  has_many :posts
   has_secure_password
   validates :name, presence: true, length: { maximum: 24,
                                             minimum: 4 }
