@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 ruby '2.0.0'
 
 gem 'bcrypt-ruby', '3.1.2'
@@ -48,7 +48,7 @@ group :test do
   gem "pry"
   
   gem 'selenium-webdriver', '2.35.1'
-  gem 'factory_girl_rails'
+  
   
 end
 
@@ -62,6 +62,9 @@ group :development do
   gem 'childprocess', '0.3.6'
 end
 group :development, :test do
+  #factory girl
+  gem 'sqlite3'
+  gem 'factory_girl_rails'
   
   gem "rspec-rails", '~> 2.14.0.rc1'
   gem 'minitest'

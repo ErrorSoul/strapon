@@ -8,6 +8,17 @@ FactoryGirl.define do
      bio      "This is my bio"
     password "foobar"
     password_confirmation "foobar"
+
+    factory :author_with_posts do
+      login "artur"
+      transient do 
+        
+        posts_count 5
+      end	
+      after(:create) do |author, evaluator|
+        create_list(:post, evaluator.posts_count, author: author)
+      end	
+  end
   end
 
 

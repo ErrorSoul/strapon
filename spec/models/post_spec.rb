@@ -27,7 +27,7 @@ describe Post do
     it { should_not be_valid }
   end
 
-  describe "with blank title" do
+  describe "with blank text" do
     before { @post.text = " " }
     it { should_not be_valid }
   end

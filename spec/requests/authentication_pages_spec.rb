@@ -20,12 +20,12 @@ describe "Authentication" do
       end
 
        describe "submitting to the post update action" do
-        before { patch posts_path(my_post) } 
+        before { patch post_path(my_post) } 
         specify {expect(response).to redirect_to(admin_path)}
       end
 
       describe "submitting to the post delete action" do
-        before { delete posts_path(my_post) } 
+        before { delete post_path(my_post) } 
         specify {expect(response).to redirect_to(admin_path)}
       end
     end

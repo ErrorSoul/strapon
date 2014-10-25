@@ -1,0 +1,32 @@
+
+
+
+angular.module('admin').config [
+
+  '$httpProvider'
+  '$routeProvider'
+  '$locationProvider'
+  '$provide'
+  ($httpProvider, $routeProvider, $locationProvider, $provide) ->
+  
+    authToken = $("meta[name=csrf-token]").attr("content")
+    $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
+  
+    $routeProvider
+      .when '/login',
+        templateUrl: "<%= asset_path('login.html') %>"
+        controller: 'LoginCtrl'
+
+      .when '/dashboard',
+    
+        templateUrl: "<%= asset_path('dash.html') %>"
+        controller: 'DashboardCtrl'
+
+      .when '/posts/new',
+        templateUrl: "<%= asset_path('post_detail.html') %>"
+        controller: "PostNewCtrl"
+
+      .when '/posts/:id',
+        templateUrl: "<%= asset_path('post_detail.html') %>"
+        controller: "PostDetailCtrl"
+  ]
