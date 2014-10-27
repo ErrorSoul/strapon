@@ -1,0 +1,183 @@
+.row
+  %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+    .container-fluid
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.fa.fa-user.fa-border.fa-2x
+          
+        %a#menu-toggle.navbar-brand{:href => "#"}
+          %i.fa.fa-arrows-alt.fa-2x
+      / Collect the nav links, forms, and other content for toggling
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          
+         
+        
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-user.fa-border.fa-2x
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-power-off.fa-border.fa-2x
+          
+ 
+
+
+
+%section#wrapper
+  %aside#sidebar-wrapper
+    %ul.list-group
+      %li.list-group-item
+        %a{:href => "#menu-toggle"}
+          %i.fa.fa-user.fa-border.fa-2x
+  
+      %li.list-group-item
+        %a{:href => "#"}
+          %i.fa.fa-power-off.fa-border.fa-2x
+  #page-content-wrapper
+    .container-fluid
+      #property-listings
+        .row
+          .col-md-12
+            %h1.center-block(style="text-align:center") All Posts
+            %hr
+          .posts
+
+            
+            .post-listing{"ng-repeat" => "post in posts"} 
+        
+             
+              .col-md-6
+        
+                .brdr.bgc-fff.pad-10.box-shad.btm-mrg-20.property-listing
+                  .media
+                    %span.glyphicon.glyphicon-remove-sign.close-button.pull-right(ng-really-message="Вы уверены?" ng-really-click="delete($index)")
+                    %a.pull-left{:href => "#", :target => "_parent"}
+                      %img.img-responsive{:alt => "image", :src => "https://pp.vk.me/c622717/v622717047/5125/KncdwOuCex4.jpg"}
+                    
+                  .clearfix.visible-md
+                  .media-body.fnt-smaller
+                    %a{:href => "#", :target => "_parent"}
+                    %h4.media-heading
+                      %a{:href => "#", :target => "_parent"}
+                        {{post.title}}
+                        
+                        %small.pull-right {{post.created_at| date : 'medium'}}
+                    %ul.list-inline.mrg-0.btm-mrg-10.clr-535353
+                      %li {{post.created_at| date : 'medium'}}
+                      
+                    %p.hidden-xs{"ng-bind-html"=> 'post.text|limitTo:200'}
+                    
+                    %span.fnt-smaller.fnt-lighter.fnt-arial
+                      Courtesy of HS Fox & Roach-Chestnut Hill
+                      Evergreen
+        
+          .col-md-6
+            .brdr.bgc-fff.pad-10.box-shad.btm-mrg-20.property-listing
+              .media
+                %a.pull-left{:href => "#", :target => "_parent"}
+                  %img.img-responsive{:alt => "image", :src => "http://images.prd.mris.com/image/V2/1/zMjCkcFeFDXDAP8xDhbD9ZmrVL7oGkBvSnh2bDBZ6UB5UHXa3_g8c6XYhRY_OxgGaMBMehiTWXDSLzBMaIzRhA.jpg"}/
+              .clearfix.visible-md
+              .media-body.fnt-smaller
+                %a{:href => "#", :target => "_parent"}
+                %h4.media-heading
+                  %a{:href => "#", :target => "_parent"}
+                  $1,975,000
+                  %small.pull-right 218 Lynnebrook Ln
+                %ul.list-inline.mrg-0.btm-mrg-10.clr-535353
+                  %li 6,959 SqFt
+                  %li{:style => "list-style: none"} |
+                  %li 6 Beds
+                  %li{:style => "list-style: none"} |
+                  %li 5 Baths
+                %p.hidden-xs
+                  Impressively positioned
+                  overlooking 3.5 captivating acres, designated
+                  as "significant" by the chestnut hill
+                  historical s...
+                %span.fnt-smaller.fnt-lighter.fnt-arial Courtesy of HS Fox & Roach-Blue Bell
+
+
+          .col-md-6.col-sm-6
+        
+            .brdr.bgc-fff.pad-10.box-shad.btm-mrg-20.property-listing
+              .media
+                %a.pull-left{:href => "#", :target => "_parent"}
+                  %img.img-responsive{:alt => "image", :src => "http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"}/
+              .clearfix.visible-sm
+              .media-body.fnt-smaller
+                %a{:href => "#", :target => "_parent"}
+                %h4.media-heading
+                  %a{:href => "#", :target => "_parent"}
+                    $1,975,000
+                    %small.pull-right 609 W Gravers Ln
+                %ul.list-inline.mrg-0.btm-mrg-10.clr-535353
+                  %li 4,820 SqFt
+                  %li{:style => "list-style: none"} |
+                  %li 5 Beds
+                  %li{:style => "list-style: none"} |
+                  %li 5 Baths
+                %p.hidden-xs
+                  Situated between fairmount
+                  park and the prestigious philadelphia cricket
+                  club, this beautiful 2+ acre property is truly
+                  \...
+                %span.fnt-smaller.fnt-lighter.fnt-arial
+                  Courtesy of HS Fox & Roach-Chestnut Hill
+                  Evergreen
+        
+          .col-md-6.col-sm-6
+            .brdr.bgc-fff.pad-10.box-shad.btm-mrg-20.property-listing
+              .media
+                %a.pull-left{:href => "#", :target => "_parent"}
+                  %img.img-responsive{:alt => "image", :src => "http://images.prd.mris.com/image/V2/1/zMjCkcFeFDXDAP8xDhbD9ZmrVL7oGkBvSnh2bDBZ6UB5UHXa3_g8c6XYhRY_OxgGaMBMehiTWXDSLzBMaIzRhA.jpg"}/
+              .clearfix.visible-sm
+              .media-body.fnt-smaller
+                %a{:href => "#", :target => "_parent"}
+                %h4.media-heading
+                  %a{:href => "#", :target => "_parent"}
+                  $1,975,000
+                  %small.pull-right 218 Lynnebrook Ln
+                %ul.list-inline.mrg-0.btm-mrg-10.clr-535353
+                  %li 6,959 SqFt
+                  %li{:style => "list-style: none"} |
+                  %li 6 Beds
+                  %li{:style => "list-style: none"} |
+                  %li 5 Baths
+                %p.hidden-xs
+                  Impressively positioned
+                  overlooking 3.5 captivating acres, designated
+                  as "significant" by the chestnut hill
+                  historical s...
+                %span.fnt-smaller.fnt-lighter.fnt-arial Courtesy of HS Fox & Roach-Blue Bell
+        / End Listing
+        / Begin Listing: 209 CHESTNUT HILL AVE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>$("#menu-toggle").click(function(e) {e.preventDefault();$("#wrapper").toggleClass("toggled");});
+</script>

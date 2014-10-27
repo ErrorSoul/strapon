@@ -3,12 +3,21 @@
 @import url(//fonts.googleapis.com/css?family=Philosopher&subset=latin,cyrillic);
 
 @import url(//fonts.googleapis.com/css?family=Oswald);
-$pink-color: #f1f;
+
 $font-size-base: 16px;
 $font-family-sans-serif: 'Philosopher', sans-serif;
-$btn-info-bg: $pink-color;
+
 $border-gray: 35px solid gray;
 $size: 480px;
 
 
 $thumbnail-padding: 10px;
+
+
+/* colors */
+
+$pink-color: #f1f;
+
+$btn-info-bg: $pink-color;
+
+$yellowgreen: yellowgreen;
