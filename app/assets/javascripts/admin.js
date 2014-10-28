@@ -19,7 +19,8 @@
 //= require modules
 //= require admin_routes
 
-
+//= require directives/navBar
+//= require directives/showMessage
 //= require controllers/LoginCtrl
 //= require controllers/DashboardCtrl
 
@@ -27,5 +28,7 @@
 
 //= require services/sessionStorage
 //= require services/post
+
+
 //= require TweenLite
 //= require cloud

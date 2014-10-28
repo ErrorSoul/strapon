@@ -52,7 +52,7 @@ describe SessionsController do
     it "return false status of authorized" do 
       #pry.binding
       delete :destroy, id: 1 
-      expected_json = { authorized: "false" }.to_json
+      expected_json = { author: nil, authorized: "false" }.to_json
             expect(response.body).to eq expected_json
     end
     

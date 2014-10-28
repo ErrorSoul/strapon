@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   private
   def signed_and_set_post
     signed_in_user
-    set_post
+    set_post if current_user 
   end
 
   def post_params

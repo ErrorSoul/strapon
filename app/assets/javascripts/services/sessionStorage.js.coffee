@@ -32,7 +32,7 @@ angular.module("admin").service('sessionStorage', ["$http",'$cookieStore', class
           .error((error) -> console.log(error))
 
   logout: (callback) ->
-    @$http.delete('/sessions', id: 1).success(callback)
+    @$http.delete('/sessions/1').success(callback)
           .error((error) -> console.log(error))
 
   updateUser: (newUser, status) =>

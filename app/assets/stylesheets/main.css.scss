@@ -286,9 +286,7 @@ a {
 
 @media only screen and (min-width: 992px) {
     #property-listings .property-listing img {
-        max-width: 200px;
-        padding-bottom: 15px;
-        
+        max-width: 280px;
     }
 }
 
@@ -350,3 +348,11 @@ a {
   right: 0;
   zoom: 1;
   }
+
+.media  a {
+color:  rgb(120, 155, 48);
+&:hover{
+  color: red;
+  }
+  }
+

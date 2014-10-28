@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    render json: {authorized: 'false'}
+    render json: {author: nil, authorized: 'false'}
   end
 
  private 
