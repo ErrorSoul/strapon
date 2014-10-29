@@ -8,3 +8,6 @@ angular.module('admin').directive('myMessage',["$timeout", ($timeout) ->
         scope.showMessage = () ->
           scope.message isnt undefined and scope.message.length >0 ])
 
+
+
+

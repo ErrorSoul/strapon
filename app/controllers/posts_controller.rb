@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   respond_to :json
   before_action :signed_in_user, only: [:create]
-
+  
+  before_action :message_dict, only: [:update, :create ]
   before_action :signed_and_set_post, only: [:edit, :update, :destroy]
   
   def index
@@ -16,7 +17,14 @@ class PostsController < ApplicationController
   
 
   def update
+    if @post.update_attributes(post_params)
+     check_asset
+     render json: @message
+    else
+      render json: {errors: @post.errors.full_messages}
+    end
   end
+
   def show
   end
   def new
@@ -47,5 +55,10 @@ class PostsController < ApplicationController
       @message = {message: "Your text saved"}
   end
 
-  
+   def check_asset
+      if @post.asset.filename
+        @message[:url] = @post.asset.url
+        
+      end
+   end
 end

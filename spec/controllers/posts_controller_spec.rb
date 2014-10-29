@@ -5,6 +5,7 @@ describe PostsController do
   let!(:author) {FactoryGirl.create(:author_with_posts)}
   let! (:posts) {author.posts}
   let! (:post_id_1) { posts.first}
+  let! (:file) {fixture_file_upload("dream.jpg", 'image/jpeg') }
  
   before { sign_in author, no_capybara: true }
   after (:all) do
@@ -47,4 +48,29 @@ describe PostsController do
     end
   end
 
+
+  describe "update method" do
+    it "should update post"  do 
+      
+     
+      patch :update, id: post_id_1.id, post: {title: "XXX", text:"FFFF"}
+
+      expected_json = {message: "Your text saved"}.to_json
+      
+      expect(response.body).to eq expected_json
+    end
+
+
+    it 'should update post with image' do
+      
+     
+      patch :update, id: post_id_1.id, post: {asset: file }
+      asset_url = Post.first.asset.url
+      expected_json = {message: "Your text saved", url: asset_url}.to_json
+      
+      
+      expect(response.body).to eq expected_json
+    
+    end
+  end
 end

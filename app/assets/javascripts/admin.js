@@ -25,11 +25,12 @@
 //= require directives/sectionBar
 //= require controllers/LoginCtrl
 //= require controllers/DashboardCtrl
-
+//= require controllers/PostDetailCtrl
 
 
 //= require services/sessionStorage
 //= require services/post
+//= require services/fileUpload
 
 
 //= require TweenLite
