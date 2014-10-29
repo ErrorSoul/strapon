@@ -2,55 +2,45 @@
 
 
 %nav-bar
-%section#wrapper(ng-class="{'toggled':sTab === true}")
-  %aside#sidebar-wrapper
-    %ul.list-group
-      %li.list-group-item
-        %a{:href => "#menu-toggle"}
-          %i.fa.fa-user.fa-border.fa-2x
-  
-      %li.list-group-item
-        %a{:href => "#"}
-          %i.fa.fa-power-off.fa-border.fa-2x
-  #page-content-wrapper
-    .container-fluid
-      #property-listings
-        .row
-          .col-md-12
-            %h1.center-block(style="text-align:center") All Posts
-            %hr
-        .row
-          .posts
+.row
+  %section#wrapper(ng-class="{'toggled':sTab === true}")
+    %section-bar
+    #page-content-wrapper
+      .container-fluid
+        #property-listings
+          .row
+            .col-md-12
+              %h2.all-posts.center-block(style="text-align:center") All Posts
+              %hr
+          .row
+            .posts
 
             
-            .post-listing{"ng-repeat" => "post in posts"} 
+              .post-listing{"ng-repeat" => "post in posts"} 
         
              
               
-              .col-sm-12
+                .col-sm-12
         
-                .brdr.bgc-fff.pad-10.box-shad.btm-mrg-20.property-listing
-                  .media
-                    %a.pull-left{:href => "#", :target => "_parent"}
-                      %img.img-responsive{:alt => "image", :src => "http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"}/
-                    .clearfix.visible-sm
-                    .media-body.fnt-smaller
-                      %a{:href => "#", :target => "_parent"}
-                      %h4.media-heading
-                        %a{:href => "#", :target => "_parent"}
-                          {{post.title}}
-                          %small.pull-right 609 W Gravers Ln
-                      %ul.list-inline.mrg-0.btm-mrg-10.clr-535353
-                        %li 4,820 SqFt
-                        %li{:style => "list-style: none"} |
-                        %li 5 Beds
-                        %li{:style => "list-style: none"} |
-                        %li 5 Baths
-                      %p.hidden-xs
-                        {{post.text|limitTo:400}}
-                      %span.fnt-smaller.fnt-lighter.fnt-arial
-                        Courtesy of HS Fox & Roach-Chestnut Hill
-                        Evergreen
+                  .brdr.bgc-fff.pad-10.box-shad.btm-mrg-20.property-listing.thumbnail
+                    .media
+                      %a.pull-left(href='#/posts/{{post.id}}')
+                        %img.img-responsive{:alt => "image", :src => "http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"}/
+                      .clearfix.visible-sm
+                      .media-body.fnt-smaller
+                        %a(href='#/posts/{{post.id}}')
+                        %h4.media-heading
+                          %a(href='#/posts/{{post.id}}')
+                            {{post.title}}
+                          %small.pull-right(ng-really-message="Вы уверены,что хотите удалить пост {{$index}}?" ng-really-click="delete($index)") 
+                            %i.fa.fa-close.fa-3x
+                        %p.list-inline.mrg-0.btm-mrg-10.clr-535353
+                          {{post.created_at|date:'medium'}}
+                          
+                        %p.hidden-xs{"ng-bind-html" => "post.text|limitTo:400"}
+                          
+                        %span.fnt-smaller.fnt-lighter.fnt-arial
+                          Strapon
         
 
 

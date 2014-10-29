@@ -43,5 +43,7 @@ angular.module("admin").service('sessionStorage', ["$http",'$cookieStore', class
     @setUser(user)
     @setAuth(status)
 
+
+
   
  ])

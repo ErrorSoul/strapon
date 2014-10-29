@@ -26,6 +26,8 @@ class PostsController < ApplicationController
   end
   
   def destroy
+    @post.destroy
+    render json: {message: "Your post deleted"}
   end
   private
   def signed_and_set_post

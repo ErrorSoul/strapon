@@ -21,6 +21,8 @@
 
 //= require directives/navBar
 //= require directives/showMessage
+//= require directives/ngReallyClick
+//= require directives/sectionBar
 //= require controllers/LoginCtrl
 //= require controllers/DashboardCtrl
 

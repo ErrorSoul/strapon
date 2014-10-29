@@ -30,4 +30,21 @@ describe PostsController do
     end
   end
 
+  describe 'delete method' do
+    it "should delete post" do 
+      
+      delete :destroy, id: post_id_1.id 
+
+      expected_json = {message: "Your post deleted"}.to_json
+      expect(response.body).to eq expected_json
+      #pry.binding
+      get :index
+      new_posts = posts.dup
+      new_posts.delete(post_id_1)
+      expected_json ={posts: new_posts }.to_json
+      expect(response.body).to eq expected_json
+      
+    end
+  end
+
 end

@@ -8,7 +8,7 @@ angular.module("admin").controller "DashboardCtrl", ["$scope", '$location', "ses
           
     )
 
-
+  $scope.isDashboard = true
   $scope.delete = (idx) ->
     post_to_delete = $scope.posts[idx]
     Post.remove({id: post_to_delete.id}, (data) ->
