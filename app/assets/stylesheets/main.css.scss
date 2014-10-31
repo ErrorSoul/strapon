@@ -92,6 +92,7 @@ color: #fff;
 background-color: #f4ad49;
 border-bottom:2px solid #c38a3a;
 font-family: "Oswald";
+
 }
 
 .btn-sunny:hover, .btn-sky.active:focus, .btn-sunny:focus {
@@ -99,6 +100,7 @@ color: #fff;
 background-color: #f5b75f;
 border-bottom:2px solid #c4924c;
 outline: none;
+
 }
 
 
@@ -107,6 +109,7 @@ color: #fff;
 background-color: #d69840;
 border-top:2px solid #ab7a33;
 margin-top: 2px;
+
 }
 
 .btn{
@@ -127,7 +130,13 @@ border-bottom:2px solid #af4451;
 .has-success {
     border-color: rgb(106, 205, 106);
 }
-
+.btn:disabled {
+  color: red;
+  box-shadow: 0 0 15px #ffffff;
+  .fa {
+    color: red;
+    }
+  }
 
 #wrapper {
     padding-left: 0;
@@ -362,3 +371,30 @@ color:  rgb(120, 155, 48);
 .all-posts {
   margin-top: -10px;
   }
+
+
+.pop-window{
+ position: absolute;
+ 
+ z-index: 2;
+ height: 150px;
+ width: 300px;
+ background-color: #eaeaea;
+  }
+/* pop-animate */
+
+.pop-animate {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  line-height:20px;
+  opacity:1;
+  padding:10px;
+  border: 1px solid #dddddd;
+  background:white;
+}
+
+.pop-animate.ng-hide {
+  line-height:0;
+  opacity:0;
+  padding:0 10px;
+}

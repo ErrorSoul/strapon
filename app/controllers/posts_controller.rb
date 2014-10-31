@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   respond_to :json
-  before_action :signed_in_user, only: [:create]
+  before_action :signed_in_user, only: [:create,:index]
   
   before_action :message_dict, only: [:update, :create ]
   before_action :signed_and_set_post, only: [:edit, :update, :destroy]

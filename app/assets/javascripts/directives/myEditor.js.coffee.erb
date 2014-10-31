@@ -1,0 +1,70 @@
+angular.module('admin').directive('myEditor',['fileUpload',"$timeout", ( fileUpload, $timeout) ->
+  restrict: 'E'
+  templateUrl: "<%= asset_path('post_dir.html') %>"
+  link:  (scope, element, attr) ->
+        scope.input_check = true
+        scope.flag = {}
+        scope.flag.x = true
+        
+        f = () ->
+          scope.input_check = false
+          scope.message = ""
+        
+          
+          
+        foo = () ->
+          $timeout(f, 0)
+        
+        scope.doc = (id) ->
+            document.getElementById(id)  
+        scope.update = () ->
+          
+    
+          scope.post.title = scope.doc('title').innerHTML 
+          scope.post.text = scope.doc('text').innerHTML
+          scope.post.asset = scope.doc('asset').files[0]
+          scope.uploadFileToUrl(scope.post, (data) ->
+            console.log(data, 'DaTA')
+            scope.message = data.message or data.errors
+            if data.url
+              scope.post.asset.url = data.url
+              scope.asset_url = data.url
+              
+            )
+          scope.input_check = true
+
+
+        
+          
+        
+          
+            
+
+         Extension = ->
+            @parent = true
+            @button = document.getElementById("formedium")
+            @button.className = "medium-editor-action"
+            @button.innerText = "IMG"
+            return
+
+            #this.button.onclick = this.onClick.bind(this);
+          Extension::getButton = ->
+            @button
+
+
+            
+          
+
+        
+        
+        
+          
+          
+        scope.editor = new MediumEditor('.editable',
+          buttons: ['bold', 'italic', 'underline', 'anchor', 'header1', 'header2', 'quote','extension'],
+          extensions:
+          
+            extension: new Extension()) 
+        angular.element('.editable').on('input', foo)
+        angular.element('#asset').bind('change', foo)
+     ])

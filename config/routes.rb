@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+  get '/t' => 'admins#index'
   get '/admin' => 'admins#index'
   resources :posts
   resources :sessions, only: [:create, :destroy]

@@ -23,9 +23,12 @@
 //= require directives/showMessage
 //= require directives/ngReallyClick
 //= require directives/sectionBar
+//= require directives/myEditor
+//= require directives/popWindow
 //= require controllers/LoginCtrl
 //= require controllers/DashboardCtrl
 //= require controllers/PostDetailCtrl
+
 
 
 //= require services/sessionStorage

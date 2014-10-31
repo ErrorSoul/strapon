@@ -1,0 +1,37 @@
+.row
+  .col-md-12
+    %form#form.form-input.col-md-11{"ng-submit" => "form.$valid && update()", :novalidate => true, :name => "form", 'enctype'=>'multipart/form-data', "method" => "PATCH"}
+      
+      
+      //%button(ng-click='showPopover()' type='button')
+      
+      %h2#title.editable.all-posts.center-block(style="text-align:center" ng-bind-html="post.title"  )
+        {{post.title}}
+      %hr
+          
+      %label.btn(for='asset' style="color: yellowgreen; background-color: white")
+        //.col-md-3.glyphicon.glyphicon-cloud-download
+        %i.fa.fa-download.fa-2x
+        ЗАГРУЗИТЬ
+         
+
+      %input#asset{  'ng-model' => 'post.asset','name' => 'post.asset','type' => 'file', 'style' => "visibility: hidden" }
+
+      .image
+        %img.img-thumbnail(ng-src="{{post.asset.url}}" ng-show="asset_url")
+      .text  
+        %p#text.editable{ "ng-bind-html"=>"post.text", "placeholder"=> 'Набирай текст'}
+          {{post.text}}
+
+
+
+
+      %button.btn.btn-sunny{:type => "submit", "ng-disabled"=>"input_check" }
+        %i.fa.fa-floppy-o.fa-2x
+        //%span.glyphicon.glyphicon-floppy-saved
+        SAVE 
+
+      
+
+      %button#formedium(ng-click='showPopover()')
+      %pop-window

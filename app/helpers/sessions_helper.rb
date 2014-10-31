@@ -36,7 +36,7 @@ module SessionsHelper
 
    
   def signed_in_user
-    redirect_to admin_url unless signed_in?
+    redirect_to "/t" unless signed_in?
   end
 
 end

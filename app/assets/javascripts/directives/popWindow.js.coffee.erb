@@ -1,0 +1,88 @@
+angular.module('admin').directive('popWindow',['$http',"$timeout", ($http, $timeout) ->
+  restrict: 'E'
+  templateUrl: "<%= asset_path('popWindow.html') %>"
+  link:  (scope, element, attr) ->
+    scope.showPopover = () ->
+      saveSelection = ->
+        	  if window.getSelection
+              sel = window.getSelection()
+              if sel.getRangeAt and sel.rangeCount
+                ranges = []
+                i = 0
+                len = sel.rangeCount
+
+                while i < len
+                  ranges.push sel.getRangeAt(i)
+                  ++i
+                return ranges
+            else return document.selection.createRange()  if document.selection and document.selection.createRange
+            null
+      scope.savedSel = saveSelection()
+      console.log(scope.savedSel, "SAVESEL")
+      myWidth = window.innerWidth
+      myHeight = window.innerHeight
+      myScroll = window.pageYOffset
+      myScrollWidth = 0
+      myScrollHeight = 0
+      rect = window.getSelection()
+      range = rect.getRangeAt(0)
+      scope.range = range
+      boundary = range.getBoundingClientRect()
+      console.log(boundary.top.toString() + 'px')
+      popover = document.getElementById('pop-id')
+      if myHeight and window.scrollMaxY
+        myScrollWidth = document.body.scrollWidth
+    		myScrollHeight = window.innerHeight + window.scrollMaxY
+     
+      
+      popover.style.left = ((myWidth / 2)-(popover.offsetWidth / 2))+"px"
+      popover.style.top = ((myHeight / 2)-(popover.offsetHeight / 2)+myScroll)+"px"
+      scope.flag = !scope.flag
+
+    scope.x = () ->
+      fd = new FormData()
+      scope.photo = {}
+      scope.photo.asset = scope.doc('photo').files[0]
+      fd.append('photo[asset]', scope.photo.asset)
+      ozc =
+        transformRequest: angular.identity
+        headers: {'Content-Type': undefined}
+          
+      callbacka = (data) ->
+        scope.photo.asset.url = data.url
+        console.log(data, "DATA")
+        console.log(scope.photo.asset.url, "SCOPE>PHOTO>ASSET>URL")
+      $http.post('/photos', fd, ozc).success(callbacka)
+        .error(callbacka).then((x) ->
+          
+          scope.flag = true
+          
+          
+
+          restoreSelection = (savedSel) ->
+            if savedSel
+              if window.getSelection
+                sel = window.getSelection()
+                sel.removeAllRanges()
+                i = 0
+                len = savedSel.length
+
+                while i < len
+                  sel.addRange savedSel[i]
+                  ++i
+              else savedSel.select()  if document.selection and savedSel.select
+            return
+        
+  
+            # There's actually no need to save and restore the selection here. This is just an example.
+            
+          myHTML = "<img class=\'img-thumbnail\' src=#{scope.photo.asset.url}>"
+          console.log(myHTML, "MYHTML" )
+          console.log("#{scope.photo.asset.url}", "dfdf")
+          
+          restoreSelection scope.savedSel
+          document.execCommand "insertHTML", false, myHTML)
+          
+            
+    
+    ])
