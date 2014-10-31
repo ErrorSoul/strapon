@@ -25,9 +25,11 @@
 //= require directives/sectionBar
 //= require directives/myEditor
 //= require directives/popWindow
+
 //= require controllers/LoginCtrl
 //= require controllers/DashboardCtrl
 //= require controllers/PostDetailCtrl
+//= require controllers/PostNewCtrl
 
 
 

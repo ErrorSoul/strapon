@@ -31,6 +31,13 @@ class PostsController < ApplicationController
   end
 
   def create 
+    @post = current_user.posts.build(post_params)
+    if @post.save 
+      check_asset
+      render json: @message 
+    else
+      render json: {errors: @post.errors.full_messages }
+    end
   end
   
   def destroy
