@@ -1,4 +1,7 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :photo do
+    
+  end
+
 
   sequence(:title) { |n| "Example title #{n}" }
   sequence(:text)  { |n| Faker::Lorem.sentence(4, false, 2)}
