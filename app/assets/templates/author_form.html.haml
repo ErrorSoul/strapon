@@ -1,0 +1,43 @@
+
+.col-md-8.col-md-offset-2
+  %form.form-horizontal{:role => "form", :novalidate=>true, :name => "form", "ng-submit" => "form.$valid && login(user)"}
+    .form-group
+      .col-md-5
+        %img.img-thumbnail{:alt => "140x140", "data-holder-rendered" => "true", "data-src" => "holder.js/140x140", :src => "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+", :style => "width: 140px; height: 140px;"}/
+      .col-md-4
+        %label.btn(for='asset' style="color: yellowgreen; background-color: white")
+         
+          %i.fa.fa-download.fa-2x
+          ЗАГРУЗИТЬ
+         
+
+        %input#asset{  'ng-model' => 'post.asset','name' => 'post.asset','type' => 'file', 'style' => "visibility: hidden" }
+        
+    .form-group
+      %label.col-sm-2.control-label{:for => "inputLogin"} Логин
+      .col-sm-10
+        %input#inputLogin.form-control{:placeholder => "Для входа" }
+
+    .form-group
+      %label.col-sm-2.control-label{:for => "inputName"} Имя
+      .col-sm-10
+        %input#inputLogin.form-control{:placeholder => "Будет на сайте", :type => "login"}
+
+    .form-group
+      %label.col-sm-2.control-label{:for => "inputBio"} Bio
+      .col-sm-10
+        %textarea#inputLogin.form-control{:placeholder => "Bio", :type => "text", :rows => "3"}
+    //password
+    .form-group
+      %label.col-sm-2.control-label{:for => "inputPassword"} Password
+      .col-sm-10
+        %input#inputPassword.form-control{:placeholder => "Password", :type => "password"}
+    //password-confirmation
+    .form-group
+      %label.col-sm-2.control-label{:for => "inputPassword2"} Password2
+      .col-sm-10
+        %input#inputPassword.form-control{:placeholder => "Password2", :type => "password"}
+    
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        %button.btn.btn-sunny{:type => "submit"} Sign in

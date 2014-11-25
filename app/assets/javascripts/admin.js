@@ -19,12 +19,7 @@
 //= require modules
 //= require admin_routes
 
-//= require directives/navBar
-//= require directives/showMessage
-//= require directives/ngReallyClick
-//= require directives/sectionBar
-//= require directives/myEditor
-//= require directives/popWindow
+//=require_tree ./directives
 
 //= require controllers/LoginCtrl
 //= require controllers/DashboardCtrl

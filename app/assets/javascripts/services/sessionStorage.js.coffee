@@ -23,6 +23,8 @@ angular.module("admin").service('sessionStorage', ["$http",'$cookieStore', class
       @_user = {}
       @_user.id = user.id
       @_user.name = user.name
+      @_user.login = user.login
+      @_user.bio = user.bio
     else 
       @_user = user
     @$cookieStore.put('token', @_user)

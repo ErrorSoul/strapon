@@ -29,4 +29,33 @@ angular.module('admin').config [
       .when '/posts/:id',
         templateUrl: "<%= asset_path('post_detail.html') %>"
         controller: "PostDetailCtrl"
+
+      .when '/author',
+        templateUrl: "<%= asset_path('author.html') %>"
+        #controller: "AuthorCtrl"
+        controller: "PostDetailCtrl"
   ]
+
+
+
+
+
+
+
+angular.module("admin").run [
+  "$rootScope"
+  "$location"
+  "sessionStorage"
+  ($rootScope, $location, sessionStorage) ->
+    $rootScope.$on "$routeChangeStart", (event, nextState) ->
+      console.log "change state"
+      console.log nextState, "fffffnextfff"
+      if sessionStorage.authorized()
+        event.preventDefault()
+      else
+        $location.path "/login"
+      return
+
+]
+
+
