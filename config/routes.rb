@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
   root 'main_pages#intro'
+  get '/index' => 'main_pages#index'
   get '/t' => 'admins#index'
   get '/admin' => 'admins#index'
   resources :posts
