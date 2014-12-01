@@ -1,10 +1,12 @@
 
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 .intro-body {
     background-color: teal;
 }
 
-
+/* cloud animation */
 .bg {
   background: asset-url("bg/ground.png") no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -12,6 +14,7 @@
   -o-background-size: cover;
   background-size: cover;
   overflow: hidden;
+  font-family: "Bender";
   }
 
 .cloud {
@@ -24,9 +27,9 @@
 .x1 {
    top: 7%;
    left: 2%;
-  -webkit-animation: moveclouds 40s linear infinite;
-  -moz-animation: moveclouds 40s linear infinite;
-  -o-animation: moveclouds 40s linear infinite;
+  -webkit-animation: moveclouds 105s linear infinite;
+  -moz-animation: moveclouds 105s linear infinite;
+  -o-animation: moveclouds 105s linear infinite;
 }
 .x2 {
   top: 19%;
@@ -39,9 +42,9 @@
 .x3 {
   top: 35%;
   left: 5%;
-  -webkit-animation: moveclouds 95s linear infinite;
-  -moz-animation: moveclouds 95s linear infinite;
-  -o-animation: moveclouds 95s linear infinite;
+  -webkit-animation: moveclouds 89s linear infinite;
+  -moz-animation: moveclouds 89s linear infinite;
+  -o-animation: moveclouds 89s linear infinite;
 }
 
 .x4 {
@@ -50,6 +53,21 @@
   -webkit-animation: moveclouds 85s linear infinite;
   -moz-animation: moveclouds 85s linear infinite;
   -o-animation: moveclouds 85s linear infinite;
+}
+
+.x5 {
+  left: 70%;
+  
+  -webkit-animation: moveclouds 185s linear infinite;
+  -moz-animation: moveclouds 185s linear infinite;
+  -o-animation: moveclouds 185s linear infinite;
+}
+.x6 {
+  top: 14%;
+  left: 50%;
+  -webkit-animation: moveclouds 95s linear infinite;
+  -moz-animation: moveclouds 95s linear infinite;
+  -o-animation: moveclouds 95s linear infinite;
 }
 
   @-webkit-keyframes moveclouds {
@@ -64,3 +82,9 @@
 	0% {margin-left: 1000px;}
 	100% {margin-left: -1000px;}
           }
+
+
+/* grid system */
+
+
+

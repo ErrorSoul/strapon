@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get '/index' => 'main_pages#index'
   get '/t' => 'admins#index'
   get '/admin' => 'admins#index'
-  resources :posts
-  resources :sessions, only: [:create, :destroy]
+  resources :posts, defaults: { format: 'json' }
+  resources :sessions, only: [:create, :destroy], defaults: { format: 'json' }
   resources :authors, only: :update 
   resources :photos, only: :create
 

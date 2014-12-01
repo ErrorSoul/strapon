@@ -17,8 +17,10 @@ gem 'haml'
 gem 'carrierwave', '0.8.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
-gem 'bootstrap-sass'
 
+#suka suka suka
+gem 'bootstrap-sass', '3.2.0.2'
+gem 'font-awesome-sass', '~> 4.2.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

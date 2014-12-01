@@ -1,7 +1,26 @@
-%body.bg
-  .container-fluid
+%body.bg(ng-app="post")
+  .container-fluid(ng-controller="MountCtrl")
     = image_tag("bg/cloud1.png", class: "cloud img-responsive col-xs-1 x1")
     = image_tag("bg/cloud2.png", class: "cloud img-responsive col-xs-3 x2")
     = image_tag("bg/cloud3.png", class: "cloud img-responsive col-xs-2 x3")
     = image_tag("bg/cloud1.png", class: "cloud img-responsive col-xs-1 x4")
+    = image_tag("bg/cloud2.png", class: "cloud img-responsive col-xs-4 x5")
+    = image_tag("bg/cloud3.png", class: "cloud img-responsive col-xs-2 x6")
+    
+    .col-xs-12.container
+      .controls
+        %label Filter:
+        %button.filter{"data-filter" => "all"} All
+        %button.filter{"data-filter" => ".category-1"} Category 1
+        %button.filter.active{"data-filter" => ".category-2"} Category 2
+        %label Sort:
+        %button.sort{"data-sort" => "myorder:asc"} Asc
+        %button.sort{"data-sort" => "myorder:desc"} Desc
+        %label Change Layout:
+        %button#ChangeLayout Grid
+      .mix.item(ng-repeat="post in posts")
+        %p {{post.title}}
+        {{post.id}}
+
+    
     

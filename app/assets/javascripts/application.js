@@ -13,7 +13,13 @@
 //= require jquery
 //= require jquery-ui/effect-blind
 //= require jquery_ujs
-//= jquery.easing
+//= require jquery.easing
+//= require  jquery.mixitup
+
+
+//= require ang_resourses/angular
+//= require main_module
+//= require controllers/MountCtrl
 
 //= require_tree ./main_page
 

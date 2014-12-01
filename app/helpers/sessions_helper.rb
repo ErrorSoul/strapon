@@ -1,5 +1,5 @@
 module SessionsHelper
-  
+  require 'pry'
   
 
   def sign_in(user)
@@ -36,7 +36,10 @@ module SessionsHelper
 
    
   def signed_in_user
-    redirect_to admin_path unless signed_in?
+     
+    
+    redirect_to root_path unless signed_in?
+    	
   end
 
 end

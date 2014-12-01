@@ -25,7 +25,8 @@
                   .brdr.bgc-fff.pad-10.box-shad.btm-mrg-20.property-listing.thumbnail
                     .media
                       %a.pull-left(href='#/posts/{{post.id}}')
-                        %img.img-responsive{:alt => "image", :src => "http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"}/
+                        //%img.img-responsive{:alt => "image", :src => "http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"}/
+                        %img.img-responsive(alt="{{post.title}}" src="{{post.asset.url}}")
                       .clearfix.visible-sm
                       .media-body.fnt-smaller
                         %a(href='#/posts/{{post.id}}')
