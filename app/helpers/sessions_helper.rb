@@ -1,5 +1,5 @@
 module SessionsHelper
-  require 'pry'
+  
   
 
   def sign_in(user)
