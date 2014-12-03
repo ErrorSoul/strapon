@@ -7,20 +7,25 @@
     = image_tag("bg/cloud2.png", class: "cloud img-responsive col-xs-4 x5")
     = image_tag("bg/cloud3.png", class: "cloud img-responsive col-xs-2 x6")
     
-    .col-xs-12.container
-      .controls
-        %label Filter:
-        %button.filter{"data-filter" => "all"} All
-        %button.filter{"data-filter" => ".category-1"} Category 1
-        %button.filter.active{"data-filter" => ".category-2"} Category 2
-        %label Sort:
-        %button.sort{"data-sort" => "myorder:asc"} Asc
-        %button.sort{"data-sort" => "myorder:desc"} Desc
-        %label Change Layout:
-        %button#ChangeLayout Grid
-      .mix.item(ng-repeat="post in posts")
+   
+    .controls
+      %label Filter:
+      %button.filter{"data-filter" => "all"} All
+      %button.filter{"data-filter" => ".category-1"} Category 1
+      %button.filter.active{"data-filter" => ".category-2"} Category 2
+      %button.filter{"data-filter" => ".category-3"} Category 3
+      %label Sort:
+      %button.sort{"data-sort" => "myorder:asc"} Asc
+      %button.sort{"data-sort" => "myorder:desc"} Desc
+      %label Change Layout:
+      %button#ChangeLayout List
+    #Container.col-xs-12
+      .mix(ng-repeat="post in posts" class="{{isClass(post)}} " data-myorder="{{post.id}}" )
         %p {{post.title}}
-        {{post.id}}
+        
+        
+        
+        %img.img-responsive(src="{{post.asset.url}}")
 
     
     

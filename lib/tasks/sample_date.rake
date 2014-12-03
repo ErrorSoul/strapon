@@ -31,12 +31,13 @@ def make_posts
   authors = Author.all.limit(3)
   authors.each do |author|
     
-    12.times do
+    12.times do |n|
       title = Faker::Lorem.sentence(Random.rand(1..4), false, 2)
       text = Faker::Lorem.paragraphs(Random.rand(2..6))
       text.map { |x| x + "\n"}
       text = text.join("")
-      author.posts.create!(title: title, text: text)
+      asset = File.open(File.join("app", ActionController::Base.helpers.asset_path("assets/images/pictures/#{n + 1 }.jpg")))
+      author.posts.create!(title: title, text: text, asset: asset)
     end
   end
     
