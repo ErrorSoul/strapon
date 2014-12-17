@@ -1,4 +1,29 @@
-angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', ($scope, $http, $timeout) ->
+angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$window", ($scope, $http, $timeout, $window) ->
+  
+  $scope.tab = 1
+  $scope.pusher = 0
+  $scope.list_flag = false
+  $scope.hide_flag = false
+  $scope.changeList = ->
+    $scope.list_flag  = !$scope.list_flag
+  $scope.isList = ->
+    return "list" if $scope.list_flag is true
+  $scope.getCat = (ind) ->
+    return ".category-#{ind}"
+
+  $scope.newIsClass = (ind) ->
+    return "Cont#{ind}"
+  $scope.checkHide = ->
+    $scope.hide_flag = !$scope.hide_flag
+    console.log("SCOPE>HIDEFLAG", $scope.hide_flag)
+  $scope.isHide= (ind)  ->
+    if ind % 2 is 0
+      if $scope.hide_flag is true
+        return true
+  
+  $scope.getPat = (ind) ->
+    return "category-#{ind}"
+
   $scope.isClass = (post) ->
     if post.id % 2 is 0
       return "category-1"
@@ -8,98 +33,52 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', ($s
     foo($scope)
   extra = ->
     console.log($scope.posts, "NEWPOSTS")
+
+  $scope.getTab = ->
+    return $scope.tab
+
+  $scope.addTab = ->
+    $scope.tab = ($scope.tab + 1) % 6
+    $timeout(foo1, 0)
+    
+    
     
   #$scope.posts = [1..10]
   #$timeout(bar, 5000)
   #console.log($scope.posts, "POSTS")
   #$timeout(extra, 6000)
   #angular.element('#Container').mixItUp()
-  
+  $scope.getClass = (ind) ->
+    if $scope.tab is ind
+      if $scope.tab is 2
+        return "Xara"
+      else
+        return "Container"
+    else
+      return "Another"
+  group_by_six = (posts) ->
+    sliceLen = 6
+    p = []
+ 
+    for i in [0...posts.length] by sliceLen
+      slice = posts[i...i+sliceLen]
+      p.push(slice)
+    return p 
   z = () ->
-    angular.element("#Container").mixItUp()
+    angular.element("#Xara").mixItUp()
   callback = (data)->
     console.log(data)
-
-  foo1 = (scope) ->
   
+
  
-    $ ->
-      layout = "grid" # Store the current layout as a variable
-      $container = $("#Container") # Cache the MixItUp container
-      $changeLayout = $("#ChangeLayout") # Cache the changeLayout button
-      
-      # Instantiate MixItUp with some custom options:
-      $container.mixItUp
-        animation:
-          animateChangeLayout: true # Animate the positions of targets as the layout changes
-          animateResizeTargets: true # Animate the width/height of targets as the layout changes
-          effects: "fade rotateX(-40deg) translateZ(-100px)"
-
-        layout:
-          containerClass: "grid" # Add the class 'list' to the container on load
-
-      
-      # MixItUp does not provide a default "change layout" button, so we need to make our own and bind it with a click handler:
-      $changeLayout.on "click", ->
-        
-        # If the current layout is a list, change to grid:
-        if layout is "list"
-          layout = "grid"
-          $changeLayout.text "List" # Update the button text
-          $container.mixItUp "changeLayout",
-            containerClass: layout # change the container class to "grid"
-
-        
-        # Else if the current layout is a grid, change to list:  
-        else
-          layout = "list"
-          $changeLayout.text "Grid" # Update the button text
-          $container.mixItUp "changeLayout",
-            containerClass: layout # Change the container class to 'list'
-
-        return
-
-      return
-
-    return
-  foo = () ->
-    $("#Container").mixItUp callbacks:
-      onMixLoad: ->
-        console.log "MixItUp ready!"
-        $scope.posts = [
-          1
-          2
-          3
-          4
-          5
-          6
-          7
-          8
-          9
-        ]
-        console.log "this is scope posts" + $scope.posts
-        return
-
-      onMixFail: ->
-        console.log "No elements found matching"
-        $scope.posts = [
-          1
-          2
-          3
-          4
-          5
-          6
-          7
-          8
-          9
-        ]
-        return
   $http.get("/main_posts").success((data) ->
-    $scope.posts = data.posts
-    $timeout(foo1,2000)
+    console.log("GROUP_BY_SIX", group_by_six(data.posts))
+    $scope.posts = group_by_six(data.posts)
+    
     #angular.element("#Container").mixItUp() 
 
-    
+    #$timeout(foo1,0)
+
     console.log(data)).error(callback)
           
           

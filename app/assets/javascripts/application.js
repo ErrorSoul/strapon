@@ -18,8 +18,10 @@
 
 
 //= require ang_resourses/angular
+//= require ang_resourses/angular-animate
 //= require main_module
 //= require controllers/MountCtrl
+
 
 //= require_tree ./main_page
 
