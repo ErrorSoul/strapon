@@ -36,8 +36,8 @@ $( document ).ready(function() {
     var start = $("#start");
     $(".intro-body").on("click", function (){
 		
-	$(location).attr('pathname', "/index#");
-	return;
+	window.location.href = "/index";
+	
 
     });
     /*var window = $(window);

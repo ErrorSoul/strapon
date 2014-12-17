@@ -202,8 +202,6 @@
 
 
 
-
-
 /* Common style */
 .grid figure {
 	
@@ -211,6 +209,7 @@
 	text-align: center;
 	cursor: pointer;
 }
+
 
 .grid figure img {
 	position: relative;
@@ -322,8 +321,11 @@ figure.effect-lily p {
 	transition: opacity 0.2s, transform 0.35s;
 }
 
+
+
 figure.effect-lily:hover img,
-figure.effect-lily:hover p {
+figure.effect-lily:hover p,
+ {
 	opacity: 1;
 }
 

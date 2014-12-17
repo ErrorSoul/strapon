@@ -30,15 +30,19 @@
           .container-main(class="{{isList()}}")
            
             //.grid.mix(ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" )
+            
             .grid.mix(ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" ng-hide="isHide($index)")
               %figure.effect-lily
-                %img.image(ng-if="post.asset.url" src="{{post.asset.url }}")
+                
+                %img.image(ng-if="post.asset.url" src="{{post.asset.url }}")       
+                
                 %figcaption
                   %h2
                     Nice
                     %span Lily
                   %p {{post.title}}
-                  %a{:href => "#"} View more
+                  %a{:href => "/root/1"} View more
+                
      
 
     

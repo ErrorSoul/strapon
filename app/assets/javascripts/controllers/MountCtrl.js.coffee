@@ -39,7 +39,7 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
 
   $scope.addTab = ->
     $scope.tab = ($scope.tab + 1) % 6
-    $timeout(foo1, 0)
+  
     
     
     
@@ -72,8 +72,11 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
 
  
   $http.get("/main_posts").success((data) ->
-    console.log("GROUP_BY_SIX", group_by_six(data.posts))
-    $scope.posts = group_by_six(data.posts)
+    delay_posts =  ->
+      
+      console.log("GROUP_BY_SIX", group_by_six(data.posts))
+      $scope.posts = group_by_six(data.posts)
+    $timeout(delay_posts, 1000)
     
     #angular.element("#Container").mixItUp() 
 
