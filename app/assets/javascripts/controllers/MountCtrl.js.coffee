@@ -20,7 +20,10 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
     if ind % 2 is 0
       if $scope.hide_flag is true
         return true
-  
+
+
+  $scope.change = ->
+    $scope.p = $scope.posts[$scope.tab]
   $scope.getPat = (ind) ->
     return "category-#{ind}"
 
@@ -39,6 +42,7 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
 
   $scope.addTab = ->
     $scope.tab = ($scope.tab + 1) % 6
+    $scope.change()
   
     
     
@@ -76,6 +80,7 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
       
       console.log("GROUP_BY_SIX", group_by_six(data.posts))
       $scope.posts = group_by_six(data.posts)
+      $scope.p = $scope.posts[0]
     $timeout(delay_posts, 1000)
     
     #angular.element("#Container").mixItUp() 
@@ -93,4 +98,13 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
   ]
 
 
-
+`angular.module("post").directive('forceAnimationScope', function()
+	{
+	  return {
+      restrict: 'A',
+      link: function(scope, element, attributes) {
+        element.data('$$ngAnimateKey', attributes.forceAnimationScope);
+      }
+	  };
+	});`
+	

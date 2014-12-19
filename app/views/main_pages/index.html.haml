@@ -23,15 +23,14 @@
       %label Change Layout:
       %button#ChangeLayout(ng-click="changeList()") List
     .col-xs-12
-      .row(ng-repeat="p in posts" )
-        .col-xs-12(ng-show="$index == tab" id="{{newIsClass($index)}}")      
-          %h2
-            {{$index}}
-          .container-main(class="{{isList()}}")
+      .row
+        .col-xs-12      
+          
+          .container-main(class="{{isList()}}" )
            
             //.grid.mix(ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" )
             
-            .grid.mix(ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" ng-hide="isHide($index)")
+            .mix.grid.anima(  ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" ng-hide="isHide($index)")
               %figure.effect-lily
                 
                 %img.image(ng-if="post.asset.url" src="{{post.asset.url }}")       
