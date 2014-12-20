@@ -8,20 +8,21 @@
     = image_tag("bg/cloud3.png", class: "cloud img-responsive col-xs-2 x6")
     
    
-    .controls
+    .col-xs-12
       %label Filter:
-      %button.filter{"data-filter" => "all", "ng-click"=>"ad()"} All
-      %button.filter{"data-filter" => ".category-1", "ng-click" =>"checkHide()" } Category 1
-      %button.filter.active{"data-filter" => ".category-2"} Category 2
-      %button.filter{"data-filter" => ".category-3"} Category 3
+      .col-xs-1
+        %button.btn-sky.btn.filter{"data-filter" => "all", "ng-click"=>"ad()"} All
+      %button.btn-sky.btn.filter{"data-filter" => ".category-1", "ng-click" =>"checkHide()" } Category 1
+      %button.btn-sky.btn.filter.active{"data-filter" => ".category-2"} Category 2
+      %button.btn-sky.btn.filter{"data-filter" => ".category-3"} Category 3
       %label Sort:
-      %button.sort{"data-sort" => "myorder:asc"} Asc
-      %button.sort{"data-sort" => "myorder:desc"} Desc
-      %button(ng-click="addTab()") Add Tab
-      %button
+      %button.btn-sky.btn.sort{"data-sort" => "myorder:asc"} Asc
+      %button.btn-sky.btn.sort{"data-sort" => "myorder:desc"} Desc
+      %button.btn-sky.btn(ng-click="addTab()") Add Tab
+      %button.btn-sky.btn
         {{tab}}
       %label Change Layout:
-      %button#ChangeLayout(ng-click="changeList()") List
+      %button.btn-sky.btn#ChangeLayout(ng-click="changeList()") List
     .col-xs-12
       .row
         .col-xs-12      
@@ -30,7 +31,7 @@
            
             //.grid.mix(ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" )
             
-            .mix.grid.anima(  ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" ng-hide="isHide($index)")
+            .mix.grid.anima.square(  ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" ng-hide="isHide($index)")
               %figure.effect-lily
                 
                 %img.image(ng-if="post.asset.url" src="{{post.asset.url }}")       
@@ -40,7 +41,7 @@
                     Nice
                     %span Lily
                   %p {{post.title}}
-                  %a{:href => "/root/1"} View more
+                  %a{:href => "/posts/{{post.id}}"} View more
                 
      
 

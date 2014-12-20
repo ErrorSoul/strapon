@@ -16,7 +16,7 @@
 //= require jquery.easing
 //= require  jquery.mixitup
 
-
+//= require bootstrap-sprockets
 //= require ang_resourses/angular
 //= require ang_resourses/angular-animate
 //= require main_module
