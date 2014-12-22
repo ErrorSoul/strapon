@@ -10,7 +10,8 @@ ruby '2.0.0'
 gem 'bcrypt-ruby', '3.1.2'
 
 
-
+#puma 
+gem 'puma'
 
 gem 'haml'
 

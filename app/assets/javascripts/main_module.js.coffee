@@ -1,1 +1,1 @@
-angular.module( 'post',[]);
+angular.module( 'post',['ngAnimate']);

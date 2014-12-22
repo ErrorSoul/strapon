@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   root 'main_pages#intro'
   get '/index' => 'main_pages#index'
-  get '/t' => 'admins#index'
+  get '/main_posts' => 'main_pages#posts'
+ 
   get '/admin' => 'admins#index'
-  resources :posts, defaults: { format: 'json' }
-  resources :sessions, only: [:create, :destroy], defaults: { format: 'json' }
+  resources :posts
+  resources :sessions, only: [:create, :destroy]
   resources :authors, only: :update 
   resources :photos, only: :create
 

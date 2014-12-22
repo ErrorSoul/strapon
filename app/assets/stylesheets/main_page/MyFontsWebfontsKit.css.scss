@@ -42,7 +42,7 @@
 
 
 /* @import must be at top of file, otherwise CSS will not work */
-@import url("//hello.myfonts.net/count/2cb87b");
+/*@import url("//hello.myfonts.net/count/2cb87b");*/
 
   
 @font-face {font-family: 'Bender';font-weight: normal;font-style: normal;src: url(font-path('webfonts/2CB87B_0_0.eot'));src: url(font-path('webfonts/2CB87B_0_0.eot?#iefix')) format('embedded-opentype'),url(font-path('webfonts/2CB87B_0_0.woff2')) format('woff2'),url(font-path('webfonts/2CB87B_0_0.woff')) format('woff'),url(font-path('webfonts/2CB87B_0_0.ttf')) format('truetype');}
@@ -54,13 +54,13 @@
 @font-face {font-family: 'Bender-LightItalic';src: url('webfonts/2CB87B_2_0.eot');src: url('webfonts/2CB87B_2_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2CB87B_2_0.woff2') format('woff2'),url('webfonts/2CB87B_2_0.woff') format('woff'),url('webfonts/2CB87B_2_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Bender-Bold';src: url('webfonts/2CB87B_3_0.eot');src: url('webfonts/2CB87B_3_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2CB87B_3_0.woff2') format('woff2'),url('webfonts/2CB87B_3_0.woff') format('woff'),url('webfonts/2CB87B_3_0.ttf') format('truetype');}
+@font-face {font-family: 'Bender-Bold';src: url(font-path('webfonts/2CB87B_3_0.eot'));src: url(font-path('webfonts/2CB87B_3_0.eot?#iefix')) format('embedded-opentype'),url(font-path('webfonts/2CB87B_3_0.woff2')) format('woff2'),url(font-path('webfonts/2CB87B_3_0.woff')) format('woff'),url(font-path('webfonts/2CB87B_3_0.ttf')) format('truetype');}
  
   
 @font-face {font-family: 'Bender';src: url('webfonts/2CB87B_4_0.eot');src: url('webfonts/2CB87B_4_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2CB87B_4_0.woff2') format('woff2'),url('webfonts/2CB87B_4_0.woff') format('woff'),url('webfonts/2CB87B_4_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Bender-Black';src: url('webfonts/2CB87B_5_0.eot');src: url('webfonts/2CB87B_5_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2CB87B_5_0.woff2') format('woff2'),url('webfonts/2CB87B_5_0.woff') format('woff'),url('webfonts/2CB87B_5_0.ttf') format('truetype');}
+@font-face {font-family: 'Bender-Black';src: url(font-path('webfonts/2CB87B_5_0.eot'));src: url(font-path('webfonts/2CB87B_5_0.eot?#iefix')) format('embedded-opentype'),url(font-path('webfonts/2CB87B_5_0.woff2')) format('woff2'),url(font-path('webfonts/2CB87B_5_0.woff')) format('woff'),url(font-path('webfonts/2CB87B_5_0.ttf')) format('truetype');}
  
   
 @font-face {font-family: 'Bender-BlackItalic';src: url('webfonts/2CB87B_6_0.eot');src: url('webfonts/2CB87B_6_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2CB87B_6_0.woff2') format('woff2'),url('webfonts/2CB87B_6_0.woff') format('woff'),url('webfonts/2CB87B_6_0.ttf') format('truetype');}

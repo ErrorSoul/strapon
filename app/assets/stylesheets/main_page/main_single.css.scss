@@ -1,6 +1,8 @@
-
+@import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+//@import "component";
 
 .intro-body {
     background-color: teal;
@@ -13,8 +15,11 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  overflow: hidden;
-  font-family: "Bender";
+  overflow-x: hidden;
+  font-family: "Bender"
+  
+  
+  
   }
 
 .cloud {
@@ -57,6 +62,7 @@
 
 .x5 {
   left: 70%;
+  z-index: -3;
   
   -webkit-animation: moveclouds 185s linear infinite;
   -moz-animation: moveclouds 185s linear infinite;
@@ -85,6 +91,564 @@
 
 
 /* grid system */
+.container-fluid{
+    height:100vh;
+    
+}
+.container-main{
+   
+    
+    margin-top: 15%;
+    height:100vh;
+    //height: 60%;
+    //border: 1px red solid;
+}
+.container-main.list {
+ 
+}
 
+@keyframes my_animation {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+/*
+  Unfortunately each browser vendor requires
+  its own definition of keyframe animation code...
+*/
+@-webkit-keyframes my_animation {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+.container-main .mix{
+	//display: none;
+        display: inline-block;
+	position: relative;
+        //border: 2px yellowgreen dashed;
+	width: 30%;
+	height: 30%;
+	margin: 2% 1.5%;
+	overflow: hidden;
+	z-index: 3;
+	border-style: solid;
+	border-width: 8px 8px 8px 8px;
+	border: 5px solid white;
+	/*-moz-border-image: asset-url("a62072504be6a00cfe01191825510664.jpg") 28 18 18 20 repeat;
+	-webkit-border-image: asset-url("a62072504be6a00cfe01191825510664.jpg") 28 18 18 20 repeat;
+	-o-border-image: asset-url("a62072504be6a00cfe01191825510664.jpg") 28 18 18 20 repeat;
+	border-image: asset-url("a62072504be6a00cfe01191825510664.jpg") 8 8 8 8 repeat;*/
+	
+	
+	
+}
+
+.container-main img  {
+    height: 100%;
+    width: 100%;
+   
+}
+
+.mix {
+    p{
+	color: white;
+	position: absolute;
+	width: 80%;
+        font-size: 16px;
+	font-weight: bold;
+    }
+      //border: 10px solid green;
+}
+
+.container-main.list {
+  color: red;
+  font-size:3em;
+   opacity: 1;
+    
+    height: 300px;
+  
+  }
+
+.container-main.list .mix{
+  width: 100%;
+  height: auto;
+  img {
+    width: 50%;
+    height: auto;
+    }
+  &:hover {
+    background: white;
+    }
+}
+
+.container-main.list .mix:before{
+  padding-top: 40px;
+}
+
+
+@media all and (max-device-width: 580px){
+  .container-main .mix,
+  .container .gap{
+    width: 85%;
+  }
+}
+
+@media all and (max-width: 768px){
+  .container-main .mix,
+  .container .gap{
+    width: 45%;
+  }
+}
+
+@media all and (max-width: 650px){
+   .container-main .mix,
+  .container .gap {
+    width: 90%;
+  }
+}
+
+
+
+/* Common style */
+.grid figure {
+	
+	background: yellowgreen;
+	text-align: center;
+	cursor: pointer;
+}
+
+
+.grid figure img {
+	position: relative;
+	display: block;
+	//min-height: 100%;
+	//max-width: 100%;
+	opacity: 0.8;
+	
+}
+
+
+.grid figure figcaption {
+	padding: 2em;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1.25em;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+	pointer-events: none;
+}
+
+.grid figure figcaption,
+.grid figure figcaption > a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Anchor will cover the whole item by default */
+.grid figure figcaption > a {
+	z-index: 1000;
+	text-indent: 200%;
+	white-space: nowrap;
+	font-size: 0;
+	opacity: 0;
+}
+
+.grid figure h2 {
+	word-spacing: -0.15em;
+	font-weight: 300;
+}
+
+.grid figure h2 span {
+	font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+	margin: 0;
+}
+
+.grid figure p {
+	letter-spacing: 1px;
+	font-size: 68.5%;
+}
+
+/* Individual effects */
+
+/*---------------*/
+/***** Lily *****/
+/*---------------*/
+
+figure.effect-lily img {
+        position: relative;
+	max-width: none;
+	width: -webkit-calc(100% + 50px);
+	width: calc(100% + 50px);
+	opacity: 0.7;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: translate3d(-40px,0, 0);
+	transform: translate3d(-40px,0,0);
+}
+
+figure.effect-lily figcaption {
+	text-align: left;
+}
+
+figure.effect-lily figcaption > div {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 2em;
+	width: 100%;
+	height: 50%;
+}
+
+figure.effect-lily h2,
+figure.effect-lily p {
+	-webkit-transform: translate3d(0,40px,0);
+	transform: translate3d(0,40px,0);
+}
+
+figure.effect-lily h2 {
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+}
+
+figure.effect-lily p {
+	color: rgba(255,255,255,0.8);
+	opacity: 0;
+	-webkit-transition: opacity 0.2s, -webkit-transform 0.35s;
+	transition: opacity 0.2s, transform 0.35s;
+}
+
+
+
+figure.effect-lily:hover img,
+figure.effect-lily:hover p,
+ {
+	opacity: 1;
+}
+
+figure.effect-lily:hover img,
+figure.effect-lily:hover h2,
+figure.effect-lily:hover p {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+figure.effect-lily:hover p {
+	-webkit-transition-delay: 0.05s;
+	transition-delay: 0.05s;
+	-webkit-transition-duration: 0.35s;
+	transition-duration: 0.35s;
+}
+
+
+
+
+/* angularjs animation */
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+ -webkit-transition: all 900ms cubic-bezier(0.000, 0.495, 0.950, 0.190); 
+   -moz-transition: all 900ms cubic-bezier(0.000, 0.495, 0.950, 0.190); 
+     -o-transition: all 900ms cubic-bezier(0.000, 0.495, 0.950, 0.190); 
+        transition: all 900ms cubic-bezier(0.000, 0.495, 0.950, 0.190);
+
+       
+}
+
+.animate-repeat.ng-enter,
+.animate-repeat.ng-move {
+  opacity: 0;
+ 
+  
+}
+
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity: 1;
+  
+}
+
+
+.anima.ng-move,
+.anima.ng-enter,
+.anima.ng-leave { 
+    -webkit-transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    left: 1000px;
+} 
+ 
+.anima.ng-move,
+.anima.ng-enter,
+.anima.ng-leave.ng-leave-active {
+    -webkit-transform: rotateX(-90deg) rotateZ(-90deg);
+    -moz-transform: rotateX(90deg) rotateZ(90deg);
+    -ms-transform: rotateX(90deg) rotateZ(90deg);
+    -o-transform: rotateX(90deg) rotateZ(90deg);
+    transform: rotateX(90deg) rotateZ(90deg);
+    opacity: 0;
+    
+}        
+ 
+.anima.ng-move.ng-move-active,
+.anima.ng-enter.ng-enter-active,
+.anima.ng-leave {
+    -webkit-transform: rotateX(0deg) rotateZ(0deg);
+    -moz-transform: rotateX(0deg) rotateZ(0deg);
+    -ms-transform: rotateX(0deg) rotateZ(0deg);
+    -o-transform: rotateX(0deg) rotateZ(0deg);
+    transform: rotateX(0deg) rotateZ(0deg);
+    opacity: 1;
+    height: 30%;
+    left: 0px;
+    
+}
+
+
+.square {
+  
+  transition: 0.4s all ease-out;
+}
+
+.square.cool {
+  box-shadow: 0 0 10px 3px green;
+  background-color: lightgreen;
+}
+
+.square.ng-hide-add, .square.ng-hide-remove
+{
+  display: block !important; 
+}
+
+.square.ng-hide-remove, .square.ng-hide-add.ng-hide-add-active{
+ 
+	opacity: 0;
+	height: 0px;
+}
+
+.square.ng-hide-remove.ng-hide-remove-active, .square.ng-hide-add{
+ 
+	opacity: 1;
+	height: 10px;
+}
+
+
+.animate-repeat {
+  position: relative;
+}
+
+.animate-repeat.ng-move, .animate-repeat.ng-enter {
+  transition: all linear 0.1s;
+}
+
+.animate-repeat.ng-move, .animate-repeat.ng-enter {
+  left: -1000px;
+}
+
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  left: 0px;
+}
+
+.animate-repeat.ng-enter-stagger {
+  transition-delay: 0.1s;
+  transition-duration: 0;
+}
+
+
+
+#sidebar {
+    z-index: 1;
+    height: 100px;
+    
+    
+}
+.cola {
+    
+ 
+    position: fixed;
+    //position: absolute;
+    left: 0;
+    width: 17%;
+    top: 10%;
+}
+.t {
+    left: 0
+}
+#content.x {
+    left: 0;
+    
+    
+}
+#content {
+    z-index: 10;
+     position: absolute;
+     
+     
+     -webkit-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 300ms linear all;
+    left: 17%;
+    //background: white;
+    //background: rgb(168, 190, 124);
+    background: $greenlime;
+    width: 100%;
+    height: auto;
+}
+
+#wrapper {
+    height: 100vh;
+}
+
+.bender {
+    font-family: "Bender-Black";
+}
+
+
+.affix-top {
+    position: fixed;
+}
+
+.xxx {
+    height: 200px;
+    width: 100%;
+    
+}
+
+.backg {
+    background: $carrot;
+    overflow-x: hidden;
+    color: white;
+    //font-size: 16px;
+    font-family: "Bender-Bold";
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
+    
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+
+.img-thumbnail {
+    border-radius: 50px;
+    margin-top: 1%;
+    margin-bottom: 2%;
+
+}
+
+#text{
+    margin-bottom: 10%;
+    h3, h4, a {
+	color: teal;
+    }
+}
+
+
+.btn:hover, .btn:focus {
+  color: white;
+  text-decoration: none;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  
+    outline:0px !important;
+    -webkit-appearance:none;
+}  
+
+
+
+button:focus,
+button:active,
+button:hover,
+
+{
+ outline:0px !important;
+    -webkit-appearance:none;
+    
+
+}
+
+.btn-8:focus, 
+.btn-8:active, 
+.btn-8:hover {
+    
+    outline:0px !important;
+    -webkit-appearance:none;
+}
+
+
+.btn-sky {
+color: #fff;
+background-color: #0bacd3;
+border-bottom:2px solid #098aa9;
+}
+
+.btn-sky:hover,.btn-sky.active:focus, .btn-sky:focus, .open>.dropdown-toggle.btn-sky {
+color: #fff;
+background-color: #29b6d8;
+border-bottom:2px solid #2192ad;
+outline: none;
+}
+
+.btn-sky:active, .btn-sky.active {
+color: #fff;
+background-color: #0a97b9;
+border-top:2px solid #087994;
+outline-offset: none;
+margin-top: 2px;
+}
+
+.image-zone {
+    position: absolute;
+    width: 25%;
+}
+
+.link-zone {
+    left: 35%;
+    width: 65%;
+    position: absolute;
+}
+
+.list-group-item {
+    
+    
+    height: 100px;
+}
+
+.ttt {
+    z-index: 2;
+}
+
+.err {
+    z-index: 12;
+}
+
+
+
+.inline,
+.img-responsive
+{
+    display: inline-block;
+}
+              
 
 

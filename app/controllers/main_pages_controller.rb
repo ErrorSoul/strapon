@@ -5,4 +5,9 @@ class MainPagesController < ApplicationController
   
   def index
   end
+
+  def posts
+    @posts = Post.all
+    render json: {posts: @posts}
+  end
 end

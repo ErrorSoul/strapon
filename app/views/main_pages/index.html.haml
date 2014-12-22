@@ -1,4 +1,4 @@
-%body.bg(ng-app="post")
+%body.bg
   .container-fluid(ng-controller="MountCtrl")
     = image_tag("bg/cloud1.png", class: "cloud img-responsive col-xs-1 x1")
     = image_tag("bg/cloud2.png", class: "cloud img-responsive col-xs-3 x2")
@@ -7,20 +7,43 @@
     = image_tag("bg/cloud2.png", class: "cloud img-responsive col-xs-4 x5")
     = image_tag("bg/cloud3.png", class: "cloud img-responsive col-xs-2 x6")
     
-    .col-xs-12.container
-      .controls
-        %label Filter:
-        %button.filter{"data-filter" => "all"} All
-        %button.filter{"data-filter" => ".category-1"} Category 1
-        %button.filter.active{"data-filter" => ".category-2"} Category 2
-        %label Sort:
-        %button.sort{"data-sort" => "myorder:asc"} Asc
-        %button.sort{"data-sort" => "myorder:desc"} Desc
-        %label Change Layout:
-        %button#ChangeLayout Grid
-      .mix.item(ng-repeat="post in posts")
-        %p {{post.title}}
-        {{post.id}}
+   
+    .col-xs-12
+      %label Filter:
+      .col-xs-1
+        %button.btn-sky.btn.filter{"data-filter" => "all", "ng-click"=>"ad()"} All
+      %button.btn-sky.btn.filter{"data-filter" => ".category-1", "ng-click" =>"checkHide()" } Category 1
+      %button.btn-sky.btn.filter.active{"data-filter" => ".category-2"} Category 2
+      %button.btn-sky.btn.filter{"data-filter" => ".category-3"} Category 3
+      %label Sort:
+      %button.btn-sky.btn.sort{"data-sort" => "myorder:asc"} Asc
+      %button.btn-sky.btn.sort{"data-sort" => "myorder:desc"} Desc
+      %button.btn-sky.btn(ng-click="addTab()") Add Tab
+      %button.btn-sky.btn
+        {{tab}}
+      %label Change Layout:
+      %button.btn-sky.btn#ChangeLayout(ng-click="changeList()") List
+    .col-xs-12
+      .row
+        .col-xs-12      
+          
+          .container-main(class="{{isList()}}" )
+           
+            //.grid.mix(ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" )
+            
+            .mix.grid.anima.square(  ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" ng-hide="isHide($index)")
+              %figure.effect-lily
+                
+                %img.image(ng-if="post.asset.url" src="{{post.asset.url }}")       
+                
+                %figcaption
+                  %h2
+                    Nice
+                    %span Lily
+                  %p {{post.title}}
+                  %a{:href => "/posts/{{post.id}}"} View more
+                
+     
 
     
     

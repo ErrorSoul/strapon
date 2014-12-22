@@ -28,16 +28,6 @@ function startPos(element) {
     element.offset({left: -2000});
 }
 $( document ).ready(function() {
-    
-    /*$("#toggle").on("click", function (){
-       
-		
-	$("#content").toggleClass('x');
-         console.log("SDIDIDI");
-	
-
-    });*/
-
     var eH = 200/915;
     var eW = 844/1280;
     var sH = 99/915;
@@ -46,8 +36,8 @@ $( document ).ready(function() {
     var start = $("#start");
     $(".intro-body").on("click", function (){
 		
-	window.location.href = "/index";
-	
+	$(location).attr('pathname', "/index#");
+	return;
 
     });
     /*var window = $(window);
@@ -102,9 +92,4 @@ $( document ).ready(function() {
     
 });
 
-
-$('#trig').on('click', function () {
-    $('#colMain').toggleClass('col-xs-12 col-xs-9');
-    $('#colPush').toggleClass('col-xs-0 col-xs-3');
-});
 
