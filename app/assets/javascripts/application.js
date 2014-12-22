@@ -21,7 +21,7 @@
 //= require ang_resourses/angular-animate
 //= require main_module
 //= require controllers/MountCtrl
-
+//= require controllers/MainPostDetailCtrl
 
 //= require_tree ./main_page
 

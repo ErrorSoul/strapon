@@ -29,14 +29,14 @@ function startPos(element) {
 }
 $( document ).ready(function() {
     
-    $("#toggle").on("click", function (){
+    /*$("#toggle").on("click", function (){
        
 		
 	$("#content").toggleClass('x');
          console.log("SDIDIDI");
 	
 
-    });
+    });*/
 
     var eH = 200/915;
     var eW = 844/1280;
