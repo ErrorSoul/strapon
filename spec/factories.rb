@@ -63,9 +63,9 @@ FactoryGirl.define do
     name "MyString"
     text "MyText"
      post 
-    path "MyString"
-    child 1
-    class_num 1
+    path nil
+    child nil
+    class_num nil
   end
 end
 

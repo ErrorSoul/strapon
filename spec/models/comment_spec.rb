@@ -38,13 +38,20 @@ describe Comment do
 
   describe "path order" do
     let!(:post){FactoryGirl.create(:post)}
-    let!(:comment_child_1){FactoryGirl.create(:comment, post: post,path: "1.2")}
-    let!(:comment_main){FactoryGirl.create(:comment, post: post, path: "1")}
+    let!(:comment_main){FactoryGirl.create(:comment, post: post, commentable: post)}
+    let!(:comment_child_1){FactoryGirl.create(:comment, post: post, commentable: comment_main)}
     
-    let!(:comment_child_2){FactoryGirl.create(:comment, post: post,path: "1.3")}
+    
+    let!(:comment_child_2){FactoryGirl.create(:comment, post: post,commentable: comment_main)}
     
     it "should have the right comments in the right order" do
+      #pry.binding
       expect(Comment.all).to eq [comment_main, comment_child_1, comment_child_2]
+    end
+
+    it "should post child eq to 2" do
+      comment_main.reload
+      expect(comment_main.child).to eq 2
     end
   end
 end

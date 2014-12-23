@@ -11,7 +11,7 @@ class Comment < ActiveRecord::Base
   
   def create_path
     puts "FFFFFF"
-    @parent = Comment.find(self.commentable_id)
+    @parent = self.commentable_type.constantize.find(self.commentable_id)
     self.path = convert_path(@parent.path, @parent.child)
     self.class_num = self.path.split(".").length 
   end
@@ -25,7 +25,12 @@ class Comment < ActiveRecord::Base
   end
   
   def add_child
-    @parent.update_column(:child, (convert_child(@parent.child + 1)))
+    
+    @parent.update_column(:child, convert_child(@parent.child) + 1)
+    
+
+    puts @parent
+    puts convert_child(@parent.child) + 1
   end
   
   def convert_path(parent_path, child)
