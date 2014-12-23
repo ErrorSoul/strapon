@@ -77,6 +77,8 @@ group :development, :test do
  
 
    # Guard
+  
+  gem 'guard', '= 2.8'
   gem 'guard-jasmine'
   gem "guard-bundler", ">= 1.0.0"
   gem "guard-rails", ">= 0.4.0"

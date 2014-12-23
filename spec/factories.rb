@@ -1,4 +1,11 @@
-FactoryGirl.define do  factory :photo do
+FactoryGirl.define do  
+
+
+ 
+  
+
+  
+  factory :photo do
     
   end
 
@@ -42,15 +49,24 @@ FactoryGirl.define do  factory :photo do
   end
   
 
-  factory :post do
-   
-    title 
-    text
-    author
+  factory :post do |e|
+     title
+     text
+     author 
   end
 
   factory :post_with_asset, parent: :post do |x|
     x.asset   { File.new("#{Rails.root}/spec/fixtures/dream.jpg") } end
+
+
+ factory :comment do
+    name "MyString"
+    text "MyText"
+     post 
+    path "MyString"
+    child 1
+    class_num 1
+  end
 end
 
 
