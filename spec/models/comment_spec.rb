@@ -8,6 +8,7 @@ describe Comment do
                            post_id: 1,
                            path: "1.2",
                            class_num: 1,
+                           commentable: nil,
                            child: nil )
   end
   after(:all) do
@@ -17,7 +18,7 @@ describe Comment do
   subject{@comment}
 
   describe "clue model" do
-    %i(name text post_id path class_num child).each do |i|
+    %i(name text post_id path class_num child commentable).each do |i|
       it {should respond_to(i)}
     end
     it {should be_valid}
@@ -25,7 +26,7 @@ describe Comment do
 
 
   describe "when attr not present" do 
-    %i(name text post_id path class_num).each do |x|
+    %i(name text post_id ).each do |x|
     describe "#{x} is nil" do
         before {@comment.send("#{x}=", nil)}
         it { should be_invalid}

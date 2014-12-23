@@ -14,6 +14,7 @@ describe Post do
   it { should respond_to(:author_id) }
   it { should respond_to(:text)}
   it { should respond_to(:author) }
+  it { should respond_to(:comments)}
   its(:author) { should eq author }
 
   it { should be_valid }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223093320) do
+ActiveRecord::Schema.define(version: 20141223180005) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -34,8 +34,11 @@ ActiveRecord::Schema.define(version: 20141223093320) do
     t.integer  "class_num"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
 
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["path"], name: "index_comments_on_path"
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
 
@@ -52,6 +55,8 @@ ActiveRecord::Schema.define(version: 20141223093320) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "asset"
+    t.integer  "child"
+    t.string   "path"
   end
 
   add_index "posts", ["author_id", "created_at"], name: "index_posts_on_author_id_and_created_at"
