@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223180005) do
+ActiveRecord::Schema.define(version: 20141224160915) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20141223180005) do
     t.text     "text"
     t.integer  "post_id"
     t.string   "path"
-    t.integer  "child"
+    t.integer  "child",            default: 0
     t.integer  "class_num"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20141223180005) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "asset"
-    t.integer  "child"
+    t.integer  "child",      default: 0
     t.string   "path"
   end
 

@@ -62,10 +62,9 @@ FactoryGirl.define do
  factory :comment do
     name "MyString"
     text "MyText"
-     post 
-    path nil
-    child nil
-    class_num nil
+     post
+    child 0
+   
   end
 end
 
