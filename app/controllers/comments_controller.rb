@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     #@comment = commentable_type.constantize.find(commentable)
     @comment = Comment.new(comment_params)
     if @comment.save
-      render json: {message: "Your comment saved"}
+      render json: {message: "Your comment saved", comment: @comment}
     else
       render json: {message: "Fucking error!"}
     end

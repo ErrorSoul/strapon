@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :authors, only: :update 
   resources :photos, only: :create
-  resources :comments, only: [:create, :show], default: :json
+  resources :comments, only: [:create, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

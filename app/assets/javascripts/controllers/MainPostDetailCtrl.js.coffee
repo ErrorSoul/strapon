@@ -27,9 +27,11 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$loca
     
   $scope.callbacka = (data) ->
     $scope.message = data.message
+    $scope.comment = data.comment
+    
     console.log("data", data)
     
-  $scope.send = (comment, n_id, post_id)   ->
+  $scope.send = (comment, n_id, post_id, ind)   ->
     console.log("comment", comment)
     console.log("n_id", n_id)
     console.log("post_id", post_id)
@@ -39,7 +41,10 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$loca
     comment.commentable_type = "Comment"
     console.log("comment", comment)
     #Comment.create({comment: comment}, {}, $scope.callbacka, $scope.callbacka)
-    commentUpload.createComment(comment, $scope.callbacka)
+    commentUpload.createComment(comment, $scope.callbacka).$promise.then((response)->
+      $scope.arr.splice(ind, 1)
+      $scope.arr.splice(ind, 0, $scope.comment) )
+      #$scope.arr[ind] = $scope.comment)
   $scope.arr = ({id: c, offset: 0} for c in [1..10]) 
 
   $scope.add = (ind, n_id) ->

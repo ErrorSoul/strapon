@@ -12,7 +12,7 @@ describe CommentsController do
                               commentable_id: poster.id, commentable_type: poster.class.name, post_id: poster.id}
       
       
-      expected_json = {message: "Your comment saved"}.to_json
+      expected_json = {message: "Your comment saved", comment: Comment.last}.to_json
       expect(response.body).to eq expected_json
     end 
 
@@ -52,7 +52,7 @@ describe CommentsController do
       post :create, comment: {name: comment.name, text: comment.text, commentable_id: comment.id, commentable_type: comment.class.name, post_id: poster.id}
       
       
-      expected_json = {message: "Your comment saved"}.to_json
+      expected_json = {message: "Your comment saved", comment: Comment.last}.to_json
       expect(response.body).to eq expected_json
     end
 
