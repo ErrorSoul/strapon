@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  
+  respond_to :json
   def create
-    #pry.binding
+     #ry.binding
     #@comment = commentable_type.constantize.find(commentable)
     @comment = Comment.new(comment_params)
     if @comment.save
@@ -12,6 +12,13 @@ class CommentsController < ApplicationController
     
   end
 
+
+  def show 
+    
+    @comments = Comment.where('post_id = ?', params[:id])
+    render json: {comments: @comments}
+  end
+  
   private
 
   def comment_params

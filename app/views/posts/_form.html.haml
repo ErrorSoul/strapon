@@ -2,14 +2,16 @@
 
 .col-xs-10.col-xs-offset-1
   .col-xs-8
-    %form
+    %form{"accept-charset" => "UTF-8", :role => "form", "ng-submit" => "form.$valid && send(comment, num.id, id)", :novalidate => true, :name => "form"}
       .form-group
         %label{:for => "exampleInputName"} Name
-        %input#exampleInputEmail1.form-control{:placeholder => "Enter name", :type => "string"}
+        %input#exampleInputEmail1.form-control{:placeholder => "Enter name", :type => "string", "ng-model" => "comment.name"}
       .form-group
-        %label{:for => "exampleInputText"} Text
-        %textarea#exampleInputText.form-control{:placeholder => "Enter text", :type => "text"}
-      .form-group
-        %label{:for => "exampleInputPassword1"} Password
-        %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}
+        %label(for="exampleInputText") Text
+        %textarea#exampleInputText.form-control{:placeholder => "Enter text", :type => "text", "ng-model" => "comment.text"}
+     
+
+      
+      %p {{$index}}
+      %h1 {{message}}
       %button.btn.btn-default{:type => "submit"} Submit

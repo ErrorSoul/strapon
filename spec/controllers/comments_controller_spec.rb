@@ -132,7 +132,13 @@ describe CommentsController do
       end
     end
 
-
+    describe "show method" do
+      it "should return all comments for this post" do
+        
+        get :show, id: poster.id 
+        expect(poster.comments.count).to eq(1)
+      end
+    end
 
   end
 end

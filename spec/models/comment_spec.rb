@@ -17,7 +17,7 @@ describe Comment do
 
   subject{@comment}
 
-  describe "clue model" do
+  describe "comment model" do
     %i(name text post_id path class_num child commentable).each do |i|
       it {should respond_to(i)}
     end

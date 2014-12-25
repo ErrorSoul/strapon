@@ -19,9 +19,14 @@
 //= require bootstrap-sprockets
 //= require ang_resourses/angular
 //= require ang_resourses/angular-animate
+//= require ang_resourses/angular-route
+//= require ang_resourses/angular-resource
 //= require main_module
 //= require controllers/MountCtrl
 //= require controllers/MainPostDetailCtrl
+
+//= require services/comment
+//= require services/commentUpload
 
 //= require_tree ./main_page
 
