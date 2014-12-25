@@ -46,7 +46,10 @@
             .col-xs-9.col-xs-offset-1
               %img.img-thumbnail(src="#{@post.asset.url}")
             #text.col-xs-9.col-xs-offset-1= @post.text.html_safe
-          = render :partial => "form"
+          //= render :partial => "form"
+          .col-xs-12
+            %button.btn(ng-click="add(0, {id: id, type: 'Post'})")
+              Reply
           .col-xs-12
             .media.col-xs-offset-1
               %a.media-left{:href => "#"}
@@ -59,16 +62,18 @@
                 %li.media(class="col-xs-offset-{{num.class_num}}" ng-repeat="num in arr" ng-class="isRedClass(num)")
                   %div(ng-if="num.red")
                     = render :partial => "form"
-                  %button(ng-if="num.red" ng-click="but()" ng-hide="b")
+                  
                   %div(ng-if="!num.red")
-                    %a.media-left.col-xs-4{:href => "#"}
-                      %img{:alt => "...", :src => "http://placehold.it/64x64"}
+                    %a.media-left.col-xs-2{:href => "#"}
+                      %img{:alt => "...", :src => "http://placehold.it/128x128"}
                     .media-body.col-xs-8
+                      %p INdex {{$index}}
                       %h4.media-heading {{num.name}}
                       %p Num.id {{num.id}}
                       %p PATH {{num.path}}
-                      %p Expedita doloremque nulla non nemo ea quas. Ea suscipit voluptate cumque delectus quae neque architecto. Fuga itaque iusto qui.Et saepe et qui.
-                      %button.btn(ng-click="add($index, num.id)")
+                      %p {{num.text}}
+                      //%p Expedita doloremque nulla non nemo ea quas. Ea suscipit voluptate cumque delectus quae neque architecto. Fuga itaque iusto qui.Et saepe et qui.
+                      %button.btn(ng-click="add($index, {id: num.id, type: 'Comment'})")
                         Reply
                 
 

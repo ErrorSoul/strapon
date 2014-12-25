@@ -13,6 +13,7 @@ class Comment < ActiveRecord::Base
     
     @parent = self.commentable_type.constantize.find(self.commentable_id)
     puts @parent.class.name, "PARENT_CLASS"
+    
     self.path = convert_path(@parent.path, @parent.child)
     self.class_num = self.path.split(".").length 
   end
@@ -26,7 +27,7 @@ class Comment < ActiveRecord::Base
   end
   
   def convert_path(parent_path, child)
-    
+    puts "parent_path", parent_path
     if parent_path.nil?
       first_part = ""
     else
