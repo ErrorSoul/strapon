@@ -59,7 +59,7 @@
                 %p= @post.author.bio
             .col-xs-12   
               %ul.media-list.col-xs-offset-1
-                %li.media(class="col-xs-offset-{{num.class_num}}" ng-repeat="num in arr" ng-class="isRedClass(num)")
+                %li.media( class="col-xs-offset-{{num.class_num}}" ng-repeat="num in arr|limitTo:DF" ng-cloak ng-class="isRedClass(num)")
                   %div(ng-if="num.red")
                     = render :partial => "form"
                   
@@ -67,6 +67,12 @@
                     %a.media-left.col-xs-2{:href => "#"}
                       %img{:alt => "...", :src => "http://placehold.it/128x128"}
                     .media-body.col-xs-8
+                      %h6 
+                        LENA {{lena}}
+                      %button.btn(ng-click="add_limit()")
+                        add limit
+                      %button.btn(ng-show="dara" ng-click="merge()")
+                        Push me!
                       %p INdex {{$index}}
                       %h4.media-heading {{num.name}}
                       %p Num.id {{num.id}}

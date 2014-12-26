@@ -1,11 +1,28 @@
-angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$location", "$window", "Comment", "commentUpload",($scope,  $log, $location, $window, Comment, commentUpload) ->
+angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http", "$location", "$window", "$timeout", "Comment", "commentUpload",($scope,  $log, $http, $location, $window, $timeout, Comment, commentUpload) ->
  
   $scope.id = $window.location.href.split("/").pop()
   console.log($scope.id, "SCOPEID")
-  Comment.show({id: $scope.id}, (data) ->
-    $scope.arr = data.comments
-    console.log('data', data.comments))
-
+  $scope.arr = []
+  $scope.b = 0
+  $scope.DF= 50
+  $scope.add_limit = ->
+    $scope.DF += 50
+  $scope.aran = ->
+    if $scope.b < 800
+      
+      $scope.b += 101
+      Array::push.apply $scope.arr, $scope.mock_arr[$scope.b..$scope.b + 100]
+      $timeout($scope.aran, 10)
+  $scope.r = () ->
+    Comment.show({id: $scope.id}, (data) ->
+      $scope.date = Date.now()
+      console.log("date", $scope.date)
+      $scope.mock_arr = data.comments
+      $scope.arr = data.comments
+      #scope.aran()
+      $timeout($scope.checkNew, 5000)
+      console.log('data', data.comments))
+  $timeout($scope.r, 0)
   console.log($window.location.href, "location")
   $scope.flag = true
   $scope.isClass = ->
@@ -51,7 +68,7 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$loca
         # => ind is your ind, (ind-1) is your parent ind
         $scope.arr[ind - 1].p = false )
       #$scope.arr[ind] = $scope.comment)
-  $scope.arr = ({id: c, offset: 0} for c in [1..10]) 
+  #$scope.arr = ({id: c, offset: 0} for c in [1..10]) 
   $scope.converter = (ind,n) ->
     if ind is 0 and n.type is "Post"
       console.log("INDEX IS 0 AND TYPE IS POST")
@@ -108,13 +125,33 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$loca
       console.log("SCOPE.ARRAY[ind]>P is ", $scope.arr[ind].p)
       
       
-       
+  
+  $scope.checkNew = ->
+    console.log("YYYYYYYYYY")
+    $http.get("/comments/#{$scope.id}").success((data) ->
+      $scope.new_arr = data.comments
+      $scope.lena = $scope.new_arr.length - $scope.arr.length
+      $scope.dara = true if $scope.lena > 0
+      $timeout($scope.checkNew, 5000))
+        .error((error) ->
+          console.log(error))  
   $scope.add = (ind, n) ->
     #toggle_moggle(ind,n)
     $scope.toggle_without_eval(ind, n)
     
-   
-   
+  $scope.arra = [1..1000]
+  $scope.merge = ->
+    console.log("URBECH")
+    a = new JS.Set($scope.new_arr)
+    b = new JS.Set( $scope.arr)
+
+    a.difference(b)
+    $scope.diff = $scope.new_arr - $scope.arr
+    console.log($scope.diff, "DIFF")
+    #$scope.arr = $scope.new_arr
+    if $scope.diff > 0
+      console.log($scope.diff, "DIFF")
+      $scope.arr.splice(2, 0, item ) for item in $scope.diff
         
   ]
 
