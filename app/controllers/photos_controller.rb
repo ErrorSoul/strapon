@@ -1,5 +1,14 @@
 class PhotosController < ApplicationController
   respond_to :json
+
+  
+  def show
+    
+    @comments = Comment.where('created_at > ?', Time.at((params[:id]).to_i/1000))
+    render json: { comments: @comments }
+  end
+
+
   def create
     @photo = Photo.new(photo_params)
     if @photo.save 

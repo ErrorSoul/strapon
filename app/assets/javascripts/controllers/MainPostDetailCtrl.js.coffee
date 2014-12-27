@@ -3,6 +3,8 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.id = $window.location.href.split("/").pop()
   console.log($scope.id, "SCOPEID")
   $scope.arr = []
+  $scope.container = []
+  $scope.count = 0
   $scope.b = 0
   $scope.DF= 50
   $scope.add_limit = ->
@@ -17,10 +19,13 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     Comment.show({id: $scope.id}, (data) ->
       $scope.date = Date.now()
       console.log("date", $scope.date)
-      $scope.mock_arr = data.comments
-      $scope.arr = data.comments
+      #$scope.mock_arr = data.comments
+      $scope.mock_arr = [1..1000]
+      $scope.komments = data.comments
+      #$scope.arr = data.comments
+      $scope.arr = $scope.mock_arr
       #scope.aran()
-      $timeout($scope.checkNew, 5000)
+      $timeout($scope.checkNew, 10000)
       console.log('data', data.comments))
   $timeout($scope.r, 0)
   console.log($window.location.href, "location")
@@ -60,6 +65,10 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       
       $scope.arr.splice(ind, 1)
       $scope.arr.splice(ind, 0, $scope.coma)
+      $scope.container.push $scope.coma
+      #$scope.date = Date.now()
+      
+      $scope.count -= 1
       if n.type is "Post"
         $scope.p = false
       else
@@ -112,9 +121,11 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     dict = {"Post": {flag: $scope.p}, "Comment": {flag: tara }}
     console.log("DICTIONARY", dict)
     if dict[n.type].flag is false or dict[n.type].flag is undefined
+       $scope.count += 1
        $scope.arr.splice(inx , 0, {date: Date.now(), red: true, offset: 1, id: n.id, type: n.type})
        console.log("ARRAY AFTER ADD",$scope.arr )
     else
+       $scope.count -= 1
        $scope.arr.splice(inx, 1)
        console.log("ARRAY AFTER CUT",$scope.arr )
     if n.type is "Post"
@@ -124,24 +135,90 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       $scope.arr[ind].p = !$scope.arr[ind].p
       console.log("SCOPE.ARRAY[ind]>P is ", $scope.arr[ind].p)
       
-      
-  
+  cmp = (a, b) -> if a > b then 1 else if a < b then -1 else 0
+ 
+  Array::sortBy = (key) ->
+    @sort (a, b) ->
+      [av, bv] = [a[key], b[key]]
+      #[av, bv] = [av.toLowerCase(), bv.toLowerCase()] if options.lower
+      cmp av, bv    
+  check_helper = (comments) ->
+    console.log("CHECK HELPER START")
+    console.log("CHECK HELPER COMMENTS", comments)
+   
+    count = 0
+    console.log("COUNT 0" , count )
+    
+    $scope.new_arr = []
+    e = []
+    sorted_x = (x,y) ->
+      return x.path > y.path
+    #d = $scope.arr.sort()
+    #d = $scope.arr.sort((x,y) -> return x.path > y.path)
+    d = $scope.arr.sortBy("path")
+    for zar in d
+      e.push zar.path
+    
+    console.log(d, "FFF")
+    console.log($scope.mock_arr, "MOCK")
+    console.log(e, "E CONT")
+    for comment in comments
+      console.log("COMMENT", comment)
+      console.log("COMMENT.PATH", comment.path)
+      console.log("FIND INDEX", $scope.binaryS(d, comment.path))
+      if $scope.binaryS(d, comment.path) is -1
+        count += 1
+        console.log("COUNT CURRENT" , count )
+        $scope.new_arr.push comment
+    console.log("LENA" , $scope.lena )
+    $scope.lena = count
+    console.log("LENA" , $scope.lena )
+    return count
   $scope.checkNew = ->
     console.log("YYYYYYYYYY")
-    $http.get("/comments/#{$scope.id}").success((data) ->
-      $scope.new_arr = data.comments
-      $scope.lena = $scope.new_arr.length - $scope.arr.length
+    $http.get("/photos/#{$scope.date}").success((data) ->
+      #$scope.new_arr = data.comments
+      check_helper(data.comments)
+      console.log("current Date", $scope.date)
+      #$scope.lena = data.comments.length
       $scope.dara = true if $scope.lena > 0
-      $timeout($scope.checkNew, 5000))
+      console.log("length", $scope.lena)
+      $timeout($scope.checkNew, 10000))
         .error((error) ->
-          console.log(error))  
+          console.log(error)) 
+    #$http.get("/comments/#{$scope.id}").success((data) ->
+    #  $scope.new_arr = data.comments
+    #  $scope.lena = $scope.new_arr.length - ($scope.arr.length - $scope.count)
+    #  $scope.dara = true if $scope.lena > 0
+    #  $timeout($scope.checkNew, 5000))
+    #    .error((error) ->
+    #      console.log(error))  
   $scope.add = (ind, n) ->
     #toggle_moggle(ind,n)
     $scope.toggle_without_eval(ind, n)
     
   $scope.arra = [1..1000]
+
+  $scope.binaryS = (arr, searchElement) ->
+    console.log("SEARCH ELEMENT IS", searchElement)
+    "use strict"
+    minIndex = 0
+    maxIndex = arr.length - 1
+    
+    while minIndex <= maxIndex
+      currentIndex = (minIndex + maxIndex) / 2 | 0
+      currentElement = arr[currentIndex].path
+      if currentElement < searchElement
+        minIndex = currentIndex + 1
+      else if currentElement > searchElement
+        maxIndex = currentIndex - 1
+      else
+        return currentIndex
+    -1
+  
   $scope.merge = ->
     console.log("URBECH")
+    $scope.date = Date.now()
     a = new JS.Set($scope.new_arr)
     b = new JS.Set( $scope.arr)
 
@@ -152,7 +229,11 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     if $scope.diff > 0
       console.log($scope.diff, "DIFF")
       $scope.arr.splice(2, 0, item ) for item in $scope.diff
-        
+
+
+  $scope.ch = () ->
+    console.log("CHANGE---           CHange")
+    $scope.arr = $scope.komments
   ]
 
 

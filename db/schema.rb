@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141224160915) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "authors", force: true do |t|
     t.string   "name"
     t.string   "login"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20141224160915) do
     t.string   "remember_token"
   end
 
-  add_index "authors", ["remember_token"], name: "index_authors_on_remember_token"
+  add_index "authors", ["remember_token"], name: "index_authors_on_remember_token", using: :btree
 
   create_table "comments", force: true do |t|
     t.string   "name"
@@ -38,9 +41,9 @@ ActiveRecord::Schema.define(version: 20141224160915) do
     t.string   "commentable_type"
   end
 
-  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
-  add_index "comments", ["path"], name: "index_comments_on_path"
-  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+  add_index "comments", ["path"], name: "index_comments_on_path", using: :btree
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.string   "asset"
@@ -59,6 +62,6 @@ ActiveRecord::Schema.define(version: 20141224160915) do
     t.string   "path"
   end
 
-  add_index "posts", ["author_id", "created_at"], name: "index_posts_on_author_id_and_created_at"
+  add_index "posts", ["author_id", "created_at"], name: "index_posts_on_author_id_and_created_at", using: :btree
 
 end

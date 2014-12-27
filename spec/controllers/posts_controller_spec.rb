@@ -16,7 +16,7 @@ describe PostsController do
   describe "index method" do
     it "should return posts" do
       #pry.binding
-      get :index 
+      get :index, format: :json
       expected_json = { posts: posts}.to_json
       expect(response.body).to eq expected_json
     end
@@ -56,7 +56,7 @@ describe PostsController do
       expected_json = {message: "Your post deleted"}.to_json
       expect(response.body).to eq expected_json
       #pry.binding
-      get :index
+      get :index, format: :json
       new_posts = posts.dup
       new_posts.delete(post_id_1)
       expected_json ={posts: new_posts }.to_json

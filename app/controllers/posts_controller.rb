@@ -7,7 +7,11 @@ class PostsController < ApplicationController
   
   def index
     @posts = current_user.posts.all
-    render json: {posts: @posts}
+    respond_to do |format|
+      format.html {redirect_to index_path}
+      format.json  { render json: {posts: @posts} }
+    end
+    
   end
 
   def edit 
