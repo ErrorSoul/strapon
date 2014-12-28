@@ -6,6 +6,7 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.container = []
   #$scope.count = 0
   $scope.b = 0
+  commentTools.init()
   $scope.tool = commentTools
   #$scope.add_limit = ->
   #  $scope.DF += 50
@@ -77,80 +78,26 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.toggle_without_eval = (ind, n) ->
     $scope.tool.toggle_service(ind,n)
       
-  cmp = (a, b) -> if a > b then 1 else if a < b then -1 else 0
- 
-  Array::sortBy = (key) ->
-    @sort (a, b) ->
-      [av, bv] = [a[key], b[key]]
-      #[av, bv] = [av.toLowerCase(), bv.toLowerCase()] if options.lower
-      cmp av, bv    
-  check_helper = (comments) ->
-    console.log("CHECK HELPER START")
-    console.log("CHECK HELPER COMMENTS", comments)
-   
-    count = 0
-    console.log("COUNT 0" , count )
     
-    $scope.new_arr = []
-    e = []
-    sorted_x = (x,y) ->
-      return x.path > y.path
-    #d = $scope.tool.arr.sort()
-    #d = $scope.tool.arr.sort((x,y) -> return x.path > y.path)
-    mock_arr = $scope.tool.arr.slice(0)
-    d = mock_arr.sortBy("path")
-    
-    for zar in d
-      e.push zar.path
-    
-    console.log(d, "FFF")
-    console.log($scope.mock_arr, "MOCK")
-    console.log(e, "E CONT")
-    for comment in comments
-      console.log("COMMENT", comment)
-      console.log("COMMENT.PATH", comment.path)
-      console.log("FIND INDEX", $scope.binaryS(d, comment.path))
-      if $scope.binaryS(d, comment.path) is -1
-        count += 1
-        console.log("COUNT CURRENT" , count )
-        $scope.new_arr.push comment
-    console.log("LENA" , $scope.lena )
-    $scope.lena = count
-    
-    console.log("LENA" , $scope.lena )
-    return count
+  
   $scope.checkNew = ->
-    console.log("YYYYYYYYYY")
     $http.get("/photos/#{$scope.date}").success((data) ->
-      #$scope.new_arr = data.comments
-      check_helper(data.comments)
-      console.log("current Date", $scope.date)
-      #$scope.lena = data.comments.length
+      $scope.lena = $scope.tool.check_helper(data.comments)
       $scope.dara = true if $scope.lena > 0
-      console.log("length", $scope.lena)
       $timeout($scope.checkNew, 10000))
         .error((error) ->
           console.log(error)) 
-    #$http.get("/comments/#{$scope.id}").success((data) ->
-    #  $scope.new_arr = data.comments
-    #  $scope.lena = $scope.new_arr.length - ($scope.tool.arr.length - $scope.count)
-    #  $scope.dara = true if $scope.lena > 0
-    #  $timeout($scope.checkNew, 5000))
-    #    .error((error) ->
-    #      console.log(error))  
-  $scope.add = (ind, n) ->
-    #toggle_moggle(ind,n)
-    $scope.toggle_without_eval(ind, n)
     
-  
+  $scope.add = (ind, n) ->
+    $scope.toggle_without_eval(ind, n)
 
-  
-  
   $scope.merge = ->
     mock_arr = $scope.tool.arr.slice(0)
     #don't clear new_arr
     # because new_arr respawn periodic
-    for comment in $scope.new_arr
+    console.log($scope.tool.new_arr, "NEW NEW ARRR")
+    for comment in $scope.tool.new_arr
+      
       mock_arr.push comment
     mock_arr.sortBy("path")
     $scope.tool.arr = mock_arr

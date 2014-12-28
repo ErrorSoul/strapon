@@ -11,7 +11,7 @@ angular.module("post").service('commentTools', ["$http","$window","commentUpload
     @flag = true
 
   init: () ->
-    @scope_id = $window.location.href.split("/").pop()
+    @scope_id = @window.location.href.split("/").pop()
     @container = []
     @count = 0
     @b = 0
@@ -19,6 +19,13 @@ angular.module("post").service('commentTools', ["$http","$window","commentUpload
     @p = false
     @arr = []
     @flag = true
+    cmp = (a, b) -> if a > b then 1 else if a < b then -1 else 0
+ 
+    Array::sortBy = (key) ->
+      @sort (a, b) ->
+        [av, bv] = [a[key], b[key]]
+        #[av, bv] = [av.toLowerCase(), bv.toLowerCase()] if options.lower
+        cmp av, bv  
 
   add_limit: () ->
     @DF += 50
@@ -77,6 +84,20 @@ angular.module("post").service('commentTools', ["$http","$window","commentUpload
     else
       @arr[ind].p = !@arr[ind].p
       console.log("SCOPE.ARRAY[ind]>P is ", @arr[ind].p)
+  check_helper: (comments) =>
+    #add new comments to new_arr
+    # return count of new comments
+    console.log("CHECK HELPER START")
+    console.log("CHECK HELPER COMMENTS", comments)
+    count = 0
+    @new_arr = []
+    mock_arr = @arr.slice(0)
+    sorted_mock = mock_arr.sortBy("path")
+    for comment in comments
+      if @binary_search(sorted_mock, comment.path) is -1
+        count += 1
+        @new_arr.push comment
+    return count
 
   binary_search: (arr, searchElement) ->
     console.log("SEARCH ELEMENT IS", searchElement)

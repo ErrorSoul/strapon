@@ -4,8 +4,10 @@ describe "MainPostDetailCtrl", ->
     @$httpBackend = _$httpBackend_
     
     @scope = $rootScope.$new()
+    
     @ctrl = $controller('MainPostDetailCtrl', $scope: @scope)
     @service = $injector.get("Comment")
+    @scope.converter = @scope.tool.converter
     @post = ({title: "Title 1", text: "Text 1", id: 1, type: "Post", path: "0"})
     @comment = {id: 2, type: "Comment", path: "1"}
     ))
@@ -14,6 +16,8 @@ describe "MainPostDetailCtrl", ->
 
   
   describe "MainPostDetailCtrl", ->
+    
+       
     describe "converter", ->
       it "should return 0 when type is Post", ->
         expect(@scope.converter(0, @post)).toEqual(0)
@@ -159,7 +163,7 @@ describe "MainPostDetailCtrl", ->
             expect(@scope.tool.arr[0].p).toEqual(true)
       
 
-      describe "response method with Post", -> 
+     describe "response method with Post", -> 
         beforeEach ->
           @scope.tool.arr = []
           #@scope.tool.arr[0].p = false
@@ -174,12 +178,82 @@ describe "MainPostDetailCtrl", ->
           
       
         
+    
+        
+         
           
-            
+              
+    describe "check_helper", ->
+       beforeEach ->
+         num_array = [1..10]
+         @scope.tool.arr = ({name: n, path: "1." + n.toString()} for n in [1..10])
+         @new_comments = ({name: n, path: "1.1." + n.toString() } for n in [1..3])
+         console.log("NEW COMM", @new_comments) 
+       it  "new_arr should contain new_comments", ->
+         @scope.tool.check_helper(@new_comments)
+         expect(@scope.tool.new_arr).toEqual(@new_comments)
+
+       it  "count should equal 3", ->
+         
+         expect(@scope.tool.check_helper(@new_comments)).toEqual(3)
+
+       
+           
+
+       it "new_arr to equal only new_comments", ->
+         @dup = @new_comments.slice(0)
+         @new_comments.push {name: 3, path: "1.4"}
+         console.log("NEW COMM COMMSS", @new_comments)
+         @scope.tool.check_helper(@new_comments) 
+         expect(@new_comments.length).toEqual(4)
+         expect(@scope.tool.new_arr).toEqual(@dup)
+
+
+
 
         
         
-      
+    describe "merge", ->
+      beforeEach ->
+        num_array = [1..10]
+        @scope.tool.arr = ({name: n, path: "1." + n.toString()} for n in [1..10])
+        @new_comments = ({name: n, path: "1.1." + n.toString() } for n in [1..3])
+        @mock_arr = @scope.tool.arr.slice(0)
+        console.log(@mock_arr, "MOCK AEERRRR")
+        @scope.tool.check_helper(@new_comments)
+        @scope.merge()
+        
+      it "should lena equal 0", ->
+        
+        expect(@scope.tool.new_arr).toEqual(@new_comments)
+        expect(@scope.lena).toEqual(0)
+
+      it "lena = 5 after should lena equal 0 ", ->
+        @scope.lena = 5
+        expect(@scope.tool.new_arr).toEqual(@new_comments)
+        @scope.merge()
+        expect(@scope.lena).toEqual(0)
+      it "afterddddd should lena equal 0 ", ->
+          
+          expect(@scope.tool.new_arr).toEqual(@new_comments)
+          expect(@scope.lena).toEqual(0)
+
+      it "should update scope.date", ->
+          
+          expect(@scope.tool.new_arr).toEqual(@new_comments)
+          expect(@scope.date).not.toEqual(@date)
+
+      it "after merge arr length should eq length (old arr + new comments )", ->
+          
+          expect(@scope.tool.arr.length).toEqual(13)
+
+      it "after merge arr should eq old arr + new comments ", ->
+          @mock_arr = @mock_arr.concat @new_comments
+          
+          @mock_arr.sortBy('path')
+          
+          expect(@scope.tool.arr).toEqual(@mock_arr)
+  
   
 
  
