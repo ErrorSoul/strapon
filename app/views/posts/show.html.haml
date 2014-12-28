@@ -48,7 +48,7 @@
             #text.col-xs-9.col-xs-offset-1= @post.text.html_safe
           //= render :partial => "form"
           .col-xs-12
-            %button.btn(ng-click="add(0, {id: id, type: 'Post'})")
+            %button.btn(ng-click="add(0, {id: id, type: 'Post', path: '0' })")
               Reply
           .col-xs-12
             .media.col-xs-offset-1
@@ -59,7 +59,7 @@
                 %p= @post.author.bio
             .col-xs-12   
               %ul.media-list.col-xs-offset-1
-                %li.media( class="col-xs-offset-{{num.class_num}}" ng-repeat="num in arr|limitTo:DF " ng-cloak ng-class="isRedClass(num)")
+                %li.media.anima( class="col-xs-offset-{{num.class_num}}" ng-repeat="num in tool.arr|limitTo: tool.DF " ng-cloak ng-class="isRedClass(num)")
                   %div(ng-if="num.red")
                     = render :partial => "form"
                   
@@ -70,20 +70,22 @@
                       %h6 
                         LENA {{lena}}
                       %h6 
-                        COUNT {{count}}
-                      %button.btn(ng-click="add_limit()")
+                        COUNT {{tool.count}}
+                      %button.btn(ng-click="tool.add_limit()")
                         add limit
                       %button.btn(ng-show="dara" ng-click="merge()")
                         Push me!
                       %button.btn( ng-click="ch()")
-                        Push me AGain!
+                        Change array!
+                      %button.btn( ng-click="dup()")
+                        Duplicate array!
                       %p INdex {{$index}}
                       %h4.media-heading {{num.name}}
                       %p Num.id {{num.id}}
                       %p PATH {{num.path}}
                       %p {{num.text}}
                       //%p Expedita doloremque nulla non nemo ea quas. Ea suscipit voluptate cumque delectus quae neque architecto. Fuga itaque iusto qui.Et saepe et qui.
-                      %button.btn(ng-click="add($index, {id: num.id, type: 'Comment'})")
+                      %button.btn(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path })")
                         Reply
                 
 

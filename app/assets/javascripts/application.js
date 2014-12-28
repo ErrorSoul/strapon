@@ -19,7 +19,7 @@
 //= require bootstrap-sprockets
 //= require ang_resourses/angular
 //= require ang_resourses/angular-animate
-
+//= require ang_resourses/angular-route
 //= require ang_resourses/angular-resource
 //= require ang_resourses/angular-mocks
 //= require main_module
@@ -28,6 +28,7 @@
 
 //= require services/comment
 //= require services/commentUpload
+//= require services/commentTools
 
 //= require_tree ./main_page
 
