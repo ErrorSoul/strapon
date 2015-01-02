@@ -41,15 +41,13 @@
               
           .col-xs-12.ttt
             
-            %p= "#{@post.id}"
+            
             %h1.bender.col-xs-8.col-xs-offset-2= @post.title.html_safe
             .col-xs-9.col-xs-offset-1
               %img.img-thumbnail(src="#{@post.asset.url}")
             #text.col-xs-9.col-xs-offset-1= @post.text.html_safe
           //= render :partial => "form"
-          .col-xs-12
-            %button.btn(ng-click="add(0, {id: id, type: 'Post', path: '0' })")
-              Reply
+         
           .col-xs-12
             .media.col-xs-offset-1
               %a.media-left{:href => "#"}
@@ -57,37 +55,45 @@
               .media-body
                 %h4.media-heading= @post.author.name
                 %p= @post.author.bio
-            .col-xs-12   
-              %ul.media-list.col-xs-offset-1
-                %li.media.anima( class="col-xs-offset-{{num.class_num}}" ng-repeat="num in tool.arr|limitTo: tool.DF " ng-cloak ng-class="isRedClass(num)")
-                  %div(ng-if="num.red")
-                    = render :partial => "form"
-                  
-                  %div(ng-if="!num.red")
-                    %a.media-left.col-xs-2{:href => "#"}
-                      %img{:alt => "...", :src => "http://placehold.it/128x128"}
-                    .media-body.col-xs-8
-                      %h6 
-                        LENA {{lena}}
-                      %h6 
-                        COUNT {{tool.count}}
-                      %button.btn(ng-click="tool.add_limit()")
-                        add limit
-                      %button.btn(ng-show="dara" ng-click="merge()")
-                        Push me!
-                      %button.btn( ng-click="ch()")
-                        Change array!
-                      %button.btn( ng-click="dup()")
-                        Duplicate array!
-                      %p INdex {{$index}}
-                      %h4.media-heading {{num.name}}
-                      %p Num.id {{num.id}}
-                      %p PATH {{num.path}}
-                      %p {{num.text}}
-                      //%p Expedita doloremque nulla non nemo ea quas. Ea suscipit voluptate cumque delectus quae neque architecto. Fuga itaque iusto qui.Et saepe et qui.
-                      %button.btn(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path })")
-                        Reply
-                
+         
+          .col-xs-12
+            .col-xs-11.col-xs-offset-1
+              .panel.panel-default
+                .panel-body
+                  %h1 Heading 1
+              %button.btn.btn-info(ng-click="add(0, {id: id, type: 'Post', path: '0' })") Info
+              .media.anima.main-media( class="col-xs-offset-{{num.class_num}}" ng-repeat="num in tool.arr|limitTo: tool.DF " ng-cloak ng-class="isRedClass(num)")
+                %div(ng-if="num.red")
+                  = render :partial => "form"
+                .media(ng-if="!num.red")
+                  %a.pull-left{:href => "#"}
+                    %img.media-object{:alt => "Media Object", :src => "http://placehold.it/64x64"}
+                  .media-body
+                    %h4.media-heading Media heading
+                    
+                    .col-md-10.comment-text
+                      {{num.text}}
+                    .col-md-12
+                      .btn-group
+                        %button.btn(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path })") Middle
+              .media
+                %a.pull-left{:href => "#"}
+                  %img.media-object{:alt => "Media Object", :src => "http://placehold.it/64x64"}
+                .media-body
+                  %h4.media-heading Media heading
+                  This is some sample text. This is some sample text.
+                  This is some sample text. This is some sample text.
+                  This is some sample text. This is some sample text.
+                  This is some sample text. This is some sample text.
+              .media
+                %a.pull-left{:href => "#"}
+                  %img.media-object{:alt => "Media Object", :src => "http://placehold.it/64x64"}
+                .media-body
+                  %h4.media-heading Media heading
+                  This is some sample text. This is some sample text.
+                  This is some sample text. This is some sample text.
+                  This is some sample text. This is some sample text.
+                  This is some sample text. This is some sample text.  
 
 
 

@@ -1,16 +1,11 @@
 angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http", "$location", "$window", "$timeout", "Comment", "commentUpload", 'commentTools',($scope,  $log, $http, $location, $window, $timeout, Comment, commentUpload, commentTools) ->
  
   $scope.id = $window.location.href.split("/").pop()
-  console.log($scope.id, "SCOPEID")
-  #$scope.arr = []
-  $scope.container = []
-  #$scope.count = 0
+  ################################
+  console.log($window.location.href, "location")
   $scope.b = 0
   commentTools.init()
   $scope.tool = commentTools
-  #$scope.add_limit = ->
-  #  $scope.DF += 50
-
   $scope.add_limit = commentTools.add_limit
   $scope.binaryS = commentTools.binary_search
 
@@ -23,8 +18,7 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       $timeout($scope.checkNew, 10000)
       console.log('data', data.comments))
   $timeout($scope.take_comments, 0)
-  ################################
-  console.log($window.location.href, "location")
+  
 
   $scope.flag = true
   $scope.isClass = ->
@@ -47,18 +41,13 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     commentTools.coma = data.comment
     console.log("data", data)
 
-  
-    
-      
+        
   $scope.send = (comment, n, post_id, ind)   ->
     commentTools.send(comment, n, post_id, ind,
                       $scope.callbacka, $scope.tool)
     
   
-  #$scope.converter = commentTools.converter
-
-
-  #with eval
+   #with eval
   toggle_moggle = (ind, n) ->
     inx = $scope.converter(ind, n)
     dict = {"Post": {flag: "$scope.p"}, "Comment": {flag: "$scope.tool.arr[ind].p"}}
@@ -83,8 +72,8 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.checkNew = ->
     $http.get("/photos/#{$scope.date}").success((data) ->
       $scope.lena = $scope.tool.check_helper(data.comments)
-      $scope.dara = true if $scope.lena > 0
-      $timeout($scope.checkNew, 10000))
+      $scope.dara = true if $scope.lena > 0)
+      #$timeout($scope.checkNew, 10000))
         .error((error) ->
           console.log(error)) 
     
@@ -97,7 +86,6 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     # because new_arr respawn periodic
     console.log($scope.tool.new_arr, "NEW NEW ARRR")
     for comment in $scope.tool.new_arr
-      
       mock_arr.push comment
     mock_arr.sortBy("path")
     $scope.tool.arr = mock_arr
