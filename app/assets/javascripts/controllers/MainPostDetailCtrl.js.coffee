@@ -35,7 +35,11 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       return "red"
     else
       return "blue"
-    
+  $scope.get_offset = (num) ->
+    if num >= 5
+      return 4
+    else
+      return num - 1
   $scope.callbacka = (data) ->
     $scope.message = data.message
     commentTools.coma = data.comment

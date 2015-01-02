@@ -35,7 +35,7 @@
         #content.x(ng-class="isClass()")
           #tar.col-xs-12
             .err(data-spy="affix" data-offset-top="50")
-              %button#toggle.btn.btn-8.btn-8f(ng-click="changeClass()" )
+              %button#toggle.btn.btn-sky(ng-click="changeClass()" )
                 Push me!
           
               
@@ -49,52 +49,44 @@
           //= render :partial => "form"
          
           .col-xs-12
-            .media.col-xs-offset-1
-              %a.media-left{:href => "#"}
-                %img{:alt => "...", :src => "http://placehold.it/64x64"}
-              .media-body
-                %h4.media-heading= @post.author.name
-                %p= @post.author.bio
-         
-          .col-xs-12
             .col-xs-11.col-xs-offset-1
-              .panel.panel-default
-                .panel-body
-                  %h1 Heading 1
-              %button.btn.btn-info(ng-click="add(0, {id: id, type: 'Post', path: '0' })") Info
-              .media.anima.main-media( class="col-xs-offset-{{num.class_num}}" ng-repeat="num in tool.arr|limitTo: tool.DF " ng-cloak ng-class="isRedClass(num)")
+              .media
+                %a.pull-left{:href => "#"}
+                  %img{:alt => "...", :src => "http://placehold.it/128x128"}
+                .media-body
+                  %h4.media-heading= @post.author.name
+                  %p= @post.author.bio
+         
+          .col-xs-12.comments-panel
+            .col-xs-11.col-xs-offset-1
+              .bs-example
+                .panel.panel-default
+                  .panel-body Комментарии
+                  .panel-footer.clearfix
+                    .pull-left
+                      %button.btn.btn-fresh{:type => "button"}
+                        Messages
+                        %span.badge {{lena}}
+                    .pull-right
+                      
+                      %button.btn.btn-fresh(ng-click="add(0, {id: id, type: 'Post', path: '0' })") Reply
+                      
+                      %button.btn.btn-fresh(ng-click="add(0, {id: id, type: 'Post', path: '0' })") Info
+              
+              .media.animate-repeat.main-media( class="col-xs-offset-{{get_offset(num.class_num)}}" ng-repeat="num in tool.arr|limitTo: tool.DF " ng-cloak ng-class="isRedClass(num)")
                 %div(ng-if="num.red")
                   = render :partial => "form"
                 .media(ng-if="!num.red")
                   %a.pull-left{:href => "#"}
                     %img.media-object{:alt => "Media Object", :src => "http://placehold.it/64x64"}
                   .media-body
-                    %h4.media-heading Media heading
+                    %h4.media-heading.text-center 
+                      Media heading
+                      %small.pull-right Secondary text
                     
-                    .col-md-10.comment-text
+                    .col-md-12.center-block.comment-text
                       {{num.text}}
                     .col-md-12
                       .btn-group
-                        %button.btn(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path })") Middle
-              .media
-                %a.pull-left{:href => "#"}
-                  %img.media-object{:alt => "Media Object", :src => "http://placehold.it/64x64"}
-                .media-body
-                  %h4.media-heading Media heading
-                  This is some sample text. This is some sample text.
-                  This is some sample text. This is some sample text.
-                  This is some sample text. This is some sample text.
-                  This is some sample text. This is some sample text.
-              .media
-                %a.pull-left{:href => "#"}
-                  %img.media-object{:alt => "Media Object", :src => "http://placehold.it/64x64"}
-                .media-body
-                  %h4.media-heading Media heading
-                  This is some sample text. This is some sample text.
-                  This is some sample text. This is some sample text.
-                  This is some sample text. This is some sample text.
-                  This is some sample text. This is some sample text.  
-
-
-
-
+                        %button.btn.btn-fresh(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path })") Reply
+             
