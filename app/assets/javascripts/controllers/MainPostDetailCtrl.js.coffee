@@ -18,8 +18,30 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       $timeout($scope.checkNew, 10000)
       console.log('data', data.comments))
   $timeout($scope.take_comments, 0)
-  
 
+  $scope.show  = ->
+    $timeout ->
+      $window.alert "hi!"
+      return
+    console.log($scope.my_answer, "MY ANSWER")
+  
+  $scope.twitter = () ->
+    window.$windowScope = $scope
+    #$window.open("/auth/twitter", "NAME", "width=420,height=230")
+    child = window.open("/auth/twitter", "Aвторизация", "width=400, height=800")
+    checkChild = ->
+      console.log('checkchild')
+      console.log("child", child)
+      if child.closed
+        window.alert("Child window closed")
+        clearInterval timer
+      return
+    timer = setInterval(checkChild, 500)
+
+    
+
+    console.log($scope.my_answer, "MY ANSWER")
+    
   $scope.flag = true
   $scope.isClass = ->
     if $scope.flag is true

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'user_sessions/create'
+
+  get 'user_sessions/destroy'
+
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
   root 'main_pages#intro'
@@ -6,6 +10,7 @@ Rails.application.routes.draw do
   get '/main_posts' => 'main_pages#posts'
  
   get '/admin' => 'admins#index'
+  get "/auth/:provider/callback" => "user_sessions#create"
   resources :posts
   resources :sessions, only: [:create, :destroy]
   resources :authors, only: :update 

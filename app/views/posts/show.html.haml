@@ -34,8 +34,8 @@
              
         #content.x(ng-class="isClass()")
           #tar.col-xs-12
-            .err(data-spy="affix" data-offset-top="50")
-              %button#toggle.btn.btn-sky(ng-click="changeClass()" )
+            .err(data-spy="affix" data-offset-top="40")
+              %button#toggle.btn(ng-click="changeClass()" )
                 Push me!
           
               
@@ -71,7 +71,8 @@
                       
                       %button.btn.btn-fresh(ng-click="add(0, {id: id, type: 'Post', path: '0' })") Reply
                       
-                      %button.btn.btn-fresh(ng-click="add(0, {id: id, type: 'Post', path: '0' })") Info
+                      %button.btn.btn-fresh(ng-click="twitter()") Info
+                      %button(ng-click="show()") FFFF
               
               .media.animate-repeat.main-media( class="col-xs-offset-{{get_offset(num.class_num)}}" ng-repeat="num in tool.arr|limitTo: tool.DF " ng-cloak ng-class="isRedClass(num)")
                 %div(ng-if="num.red")
@@ -80,11 +81,13 @@
                   %a.pull-left{:href => "#"}
                     %img.media-object{:alt => "Media Object", :src => "http://placehold.it/64x64"}
                   .media-body
+                    #user_nav
+                      = link_to "Sign in with Twitter", "/auth/twitter", :ra_ra_ra_id => "HER"
                     %h4.media-heading.text-center 
                       Media heading
-                      %small.pull-right Secondary text
+                      %small.pull-right {{num.created_at| date:'yyyy-MM-dd HH:mm:ss Z'}}
                     
-                    .col-md-12.center-block.comment-text
+                    .col-md-10.center-block.comment-text
                       {{num.text}}
                     .col-md-12
                       .btn-group

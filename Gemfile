@@ -15,6 +15,7 @@ gem 'puma'
 
 gem 'haml'
 
+gem 'omniauth-twitter'
 gem 'carrierwave', '0.8.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
