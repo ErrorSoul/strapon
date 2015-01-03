@@ -34,7 +34,10 @@ module SessionsHelper
     @current_user ||= Author.find_by(remember_token: remember_token)
   end
 
-   
+  def current_guess
+    @current_guess ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
   def signed_in_user
      
     

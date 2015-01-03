@@ -8,7 +8,7 @@ describe CommentsController do
   describe 'create method' do
     it "should create new comment for post" do
       
-      post :create, comment: {name: 'New name', text: "New text",
+      post :create, comment: { text: "New text",
                               commentable_id: poster.id, commentable_type: poster.class.name, post_id: poster.id}
       
       
@@ -18,7 +18,7 @@ describe CommentsController do
 
     it "should inc comment by 1 for post" do
       expect do 
-      post :create, comment: {name: 'New name', text: "New text",
+      post :create, comment: { text: "New text",
                               commentable_id: poster.id, commentable_type: poster.class.name, post_id: poster.id}
       
       
@@ -28,7 +28,7 @@ describe CommentsController do
     it "should inc child by 1 for post" do
       
       expect do 
-      post :create, comment: {name: 'New name', text: "New text",
+      post :create, comment: { text: "New text",
                               commentable_id: poster.id, commentable_type: poster.class.name, post_id: poster.id}
       poster.reload
         # pry.binding
@@ -38,7 +38,7 @@ describe CommentsController do
 
     it "should not create new comment" do
       
-      post :create, comment: {name: 'New name', text: "New text",
+      post :create, comment: { text: "New text",
                               commentable_id: poster.id, commentable_type: poster.class.name, post: poster}
       
       
@@ -49,7 +49,7 @@ describe CommentsController do
 
     it "should  create new comment for comment" do
       
-      post :create, comment: {name: comment.name, text: comment.text, commentable_id: comment.id, commentable_type: comment.class.name, post_id: poster.id}
+      post :create, comment: { text: comment.text, commentable_id: comment.id, commentable_type: comment.class.name, post_id: poster.id}
       
       
       expected_json = {message: "Your comment saved", comment: Comment.last}.to_json
@@ -60,7 +60,7 @@ describe CommentsController do
     it "should inc comment count by 1" do
       
       expect do 
-          post :create, comment: {name: comment.name, text: comment.text, 
+          post :create, comment: { text: comment.text, 
                              commentable_id: comment.id, commentable_type: comment.class.name, 
                              post_id: poster.id}
         
@@ -82,7 +82,7 @@ describe CommentsController do
        
       expect do 
       
-      post :create, comment: {name: comment.name, text: comment.text, commentable_id: comment.id, commentable_type: comment.class.name, post_id: poster.id}
+      post :create, comment: {text: comment.text, commentable_id: comment.id, commentable_type: comment.class.name, post_id: poster.id}
         
         comment.reload
         end.to change(comment.reload, :child).by(1)
@@ -102,7 +102,7 @@ describe CommentsController do
       describe "post comment should have path eq '1'" do
         before do 
           3.times do 
-            post :create, comment: {name: @comment.name,
+            post :create, comment: {
                                     text: @comment.text,
                                     commentable_id: @comment.id,
                                     commentable_type: @comment.class.name,
@@ -131,7 +131,66 @@ describe CommentsController do
 
       end
     end
+    describe "create method with  User" do 
+      let!(:user){FactoryGirl.create(:user)}
+      let!(:comment_new){ FactoryGirl.create(:comment, post_id: poster.id, commentable: poster, user: user)}
+      before { session[:user_id] = user.id }
 
+      it "should return " do 
+        #pry.binding
+        post :create, comment: {
+                                    text: comment_new.text,
+                                    commentable_id: comment_new.id,
+                                    commentable_type: comment_new.class.name,
+                                    post_id: poster.id}
+        
+        expect(user.comments.count).to eq(2)
+      end
+
+      it "when User not anonym should return (comment + user).to_json" do
+        #pry.binding
+        post :create, comment: {
+                                    text: comment_new.text,
+                                    commentable_id: comment_new.id,
+                                    commentable_type: comment_new.class.name,
+                                    post_id: poster.id}
+        
+        c = Comment.last
+        comment_mock = {}
+        user_mock = {}
+        Comment.column_names.each do |column|
+          comment_mock[column] = c[column]
+        end
+        User.column_names.each do |column|
+          user_mock[column] = user[column]
+        end
+        comment_mock["user"] = user_mock
+          
+        
+        expected_json = {message: "Your comment saved", comment: comment_mock}.to_json
+        expect(response.body).to eq expected_json
+      end
+
+
+      it "when User anonym should return (comment).to_json" do
+        #pry.binding
+        session[:user_id] = nil
+        post :create, comment: {
+                                    text: comment_new.text,
+                                    commentable_id: comment_new.id,
+                                    commentable_type: comment_new.class.name,
+                                    post_id: poster.id}
+        
+       
+          
+        
+        expected_json = {message: "Your comment saved", comment: Comment.last}.to_json
+        expect(response.body).to eq expected_json
+      end
+
+      
+    end
+      
     describe "show method" do
       it "should return all comments for this post" do
         

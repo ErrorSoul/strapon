@@ -1,10 +1,12 @@
 class Comment < ActiveRecord::Base
   before_save :create_path
   after_save :add_child
+  belongs_to :user
   belongs_to :post
   belongs_to :commentable, polymorphic: true
   has_many :comments, as: :commentable
-  validates :name, :text, :post_id, presence: true
+  validates :text, :post_id, presence: true
+  
   default_scope -> { order('path ASC')}
 
   private

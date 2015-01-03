@@ -3,8 +3,10 @@ require "pry"
 
 describe Comment do
   before do 
-    @comment = Comment.new(name: "Anonym",
+    @user = FactoryGirl.create(:user)
+    @comment = Comment.new(
                            text: "This is my first comment!",
+                           user: @user,
                            post_id: 1,
                            path: "1.2",
                            class_num: 1,
@@ -18,7 +20,7 @@ describe Comment do
   subject{@comment}
 
   describe "comment model" do
-    %i(name text post_id path class_num child commentable).each do |i|
+    %i(user_id text post_id path class_num child commentable).each do |i|
       it {should respond_to(i)}
     end
     it {should be_valid}
@@ -26,7 +28,7 @@ describe Comment do
 
 
   describe "when attr not present" do 
-    %i(name text post_id ).each do |x|
+    %i(text post_id ).each do |x|
     describe "#{x} is nil" do
         before {@comment.send("#{x}=", nil)}
         it { should be_invalid}

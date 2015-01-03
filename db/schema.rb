@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150102194407) do
+ActiveRecord::Schema.define(version: 20150103175516) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20150102194407) do
   add_index "authors", ["remember_token"], name: "index_authors_on_remember_token"
 
   create_table "comments", force: true do |t|
-    t.string   "name"
     t.text     "text"
     t.integer  "post_id"
     t.string   "path"
@@ -36,11 +35,13 @@ ActiveRecord::Schema.define(version: 20150102194407) do
     t.datetime "updated_at"
     t.integer  "commentable_id"
     t.string   "commentable_type"
+    t.integer  "user_id"
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["path"], name: "index_comments_on_path"
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "photos", force: true do |t|
     t.string   "asset"

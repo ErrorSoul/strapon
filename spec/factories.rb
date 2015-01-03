@@ -1,7 +1,11 @@
-FactoryGirl.define do  factory :user do
+FactoryGirl.define do  
+  factory :user do
     provider "MyString"
-uid "MyString"
-name "MyString"
+    uid "MyString"
+    name "MyString"
+    nickname "Anonymus"
+    image "http://image.png"
+
   end
   
 
@@ -65,7 +69,7 @@ name "MyString"
 
 
  factory :comment do
-    name "MyString"
+    user
     text "MyText"
      post
     child 0
