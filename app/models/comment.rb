@@ -8,7 +8,12 @@ class Comment < ActiveRecord::Base
   validates :text, :post_id, presence: true
   
   default_scope -> { order('path ASC')}
+  
 
+
+  def as_json(options={})
+    super
+  end
   private
   
   def create_path

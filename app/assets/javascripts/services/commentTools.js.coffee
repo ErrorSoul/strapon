@@ -1,6 +1,6 @@
-angular.module("post").service('commentTools', ["$http","$window","commentUpload", class Tool
+angular.module("post").service('commentTools', ["$http","$window","$timeout","commentUpload", class Tool
 
-  constructor: (@http, @window, @commentUpload) ->
+  constructor: (@http, @window, @timeout, @commentUpload) ->
     @scope_id = ""
     @container = []
     @count = 0
@@ -19,7 +19,8 @@ angular.module("post").service('commentTools', ["$http","$window","commentUpload
     @p = false
     @arr = []
     @flag = true
-    cmp = (a, b) -> if a > b then 1 else if a < b then -1 else 0
+    cmp = (a, b) ->
+      if a > b then 1 else if a < b then -1 else 0
  
     Array::sortBy = (key) ->
       @sort (a, b) ->
@@ -66,6 +67,7 @@ angular.module("post").service('commentTools', ["$http","$window","commentUpload
     console.log("DICTIONARY", dict)
     if dict[n.type].flag is false or dict[n.type].flag is undefined
        @count += 1
+       #@editor = new MediumEditor('.editable')
        @arr.splice(inx , 0, {
          date: Date.now(),
          red: true,
@@ -73,10 +75,17 @@ angular.module("post").service('commentTools', ["$http","$window","commentUpload
          id: n.id,
          type: n.type,
          path: @create_path(n.path)})
+       @DF += 1
+       b = @arr[inx]
+       eee = () ->
+        editor = new MediumEditor('.editable' )
+       @timeout(eee, 0)
        console.log("ARRAY AFTER ADD", @arr )
     else
        @count -= 1
        @arr.splice(inx, 1)
+       @DF -= 1
+       editor = null
        console.log("ARRAY AFTER CUT", @arr )
     if n.type is "Post"
       @p = !@p

@@ -1,4 +1,4 @@
-angular.module( 'post',['ngResource','ngAnimate']);
+angular.module( 'post',['ngResource','ngAnimate','ngSanitize']);
 
 
 

@@ -41,7 +41,7 @@
               
           .col-xs-12.ttt
             
-            
+           
             %h1.bender.col-xs-8.col-xs-offset-2= @post.title.html_safe
             .col-xs-9.col-xs-offset-1
               %img.img-thumbnail(src="#{@post.asset.url}")
@@ -56,10 +56,7 @@
                 .media-body
                   %h4.media-heading= @post.author.name
                   %p= @post.author.bio
-                  - if current_guess
-                    %p= current_guess.name
-                    %p= current_guess.image
-                    %img{:alt => "...", :src => "#{current_guess.image}"}
+                  
          
           .col-xs-12.comments-panel
             .col-xs-11.col-xs-offset-1
@@ -68,7 +65,7 @@
                   .panel-body Комментарии
                   .panel-footer.clearfix
                     .pull-left
-                      %button.btn.btn-fresh{:type => "button"}
+                      %button.btn.btn-fresh(type ="button" ng-click="merge()" ng-show="dara")
                         Messages
                         %span.badge {{lena}}
                     .pull-right
@@ -76,25 +73,27 @@
                       %button.btn.btn-fresh(ng-click="add(0, {id: id, type: 'Post', path: '0' })") Reply
                       
                       %button.btn.btn-fresh(ng-click="twitter()") Twitter
-                      %button.btn.btn-fresh(ng-click="show()") Nothing
+                      %button.btn.btn-fresh(ng-click="tool.add_limit()") Add Comments
                       %button.btn.btn-fresh(ng-click="logout()") logout
               
               .media.animate-repeat.main-media( class="col-xs-offset-{{get_offset(num.class_num)}}" ng-repeat="num in tool.arr|limitTo: tool.DF " ng-cloak ng-class="isRedClass(num)")
                 %div(ng-if="num.red")
                   = render :partial => "form"
                 .media(ng-if="!num.red")
-                  %a.pull-left{:href => "#"}
-                    %img.media-object{:alt => "Media Object", :src => "http://placehold.it/64x64"}
+                  .pull-left
+                    %img.media-object{:alt => "Media Object", :src => "{{set_image(num.user.image)}}"}
                   .media-body
                     
                     %h4.media-heading.text-center 
-                      Media heading
+                      {{set_name(num.user.name)}}
                       %small.pull-right {{num.created_at| date:'yyyy-MM-dd HH:mm:ss Z'}}
                     
-                    .col-md-10.center-block.comment-text
-                      %p
-                        {{num.text}}
+                    .col-xs-12.center-block.comment-text
+                      %p(ng-bind-html="num.text")
+                      
+                       
                     .col-md-12
                       .btn-group
                         %button.btn.btn-fresh(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path })") Reply
+                        
              

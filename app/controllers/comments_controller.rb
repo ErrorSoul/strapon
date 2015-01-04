@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     if @comment.save
       render json: {message: "Your comment saved", comment: @comment}, :include => :user 
     else
-      render json: {message: "Fucking error!"}
+      render json: {message: @comment.errors}
     end
     
   end
@@ -19,8 +19,9 @@ class CommentsController < ApplicationController
 
   def show 
     
-    @comments = Comment.where('post_id = ?', params[:id])
-    render json: {current_user: current_guess, comments: @comments,:include => { :user => { :only => [:name, :nickname, :image] } }}
+    @comments = Comment.includes(:user).where('post_id = ?', params[:id])
+    
+    render json:   {current_user: current_guess, comments: @comments.as_json(:include => :user)}
   end
   
   private

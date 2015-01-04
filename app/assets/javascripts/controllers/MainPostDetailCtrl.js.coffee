@@ -27,7 +27,7 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
         $scope.user = data.current_user
       console.log($scope.user, "user")
       console.log($scope.tool.arr, "tool.arr")
-      $timeout($scope.checkNew, 10000)
+      #$timeout($scope.checkNew, 10000)
       console.log('data', data.comments))
   $timeout($scope.take_comments, 0)
 
@@ -49,10 +49,9 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     #$window.open("/auth/twitter", "NAME", "width=420,height=230")
     child = window.open("/auth/twitter", "Aвторизация", "width=400, height=800")
     checkChild = ->
-      console.log('checkchild')
-      console.log("child", child)
+      
       if child.closed
-        window.alert("Child window closed")
+        
         clearInterval timer
         fara  = ->
           $scope.user = $scope.my_answer
@@ -63,7 +62,8 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     
 
     console.log($scope.my_answer, "MY ANSWER")
-    
+
+  
   $scope.flag = true
   $scope.isClass = ->
     if $scope.flag is true
@@ -88,9 +88,27 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     $scope.message = data.message
     commentTools.coma = data.comment
     console.log("data", data)
-
-        
-  $scope.send = (comment, n, post_id, ind)   ->
+  $scope.set_name = (name) ->
+    if name is undefined
+      return "Anonymous"
+    else
+      return name
+  $scope.set_image = (num) ->
+    
+    if num is  undefined
+      return "http://placehold.it/64x64"
+      
+    else
+      
+      return num
+      
+    
+  $scope.doc = (id) ->
+            document.getElementById(id)       
+  $scope.send = ( n, post_id, ind)   ->
+    
+    comment = {}
+    comment.text = $scope.doc(n.date.toString()).innerHTML
     commentTools.send(comment, n, post_id, ind,
                       $scope.callbacka, $scope.tool)
     
@@ -120,8 +138,8 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.checkNew = ->
     $http.get("/photos/#{$scope.date}").success((data) ->
       $scope.lena = $scope.tool.check_helper(data.comments)
-      $scope.dara = true if $scope.lena > 0)
-      #$timeout($scope.checkNew, 10000))
+      $scope.dara =  if $scope.lena > 0 then true else false
+      $timeout($scope.checkNew, 10000))
         .error((error) ->
           console.log(error)) 
     

@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
   def show
     
     @comments = Comment.where('created_at > ?', Time.at((params[:id]).to_i/1000))
-    render json: { comments: @comments }
+    render json: { comments: @comments }, :include => {:user=> {only: [:name, :nickname, :image]}}
   end
 
 

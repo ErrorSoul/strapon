@@ -13,14 +13,16 @@
       
       
     .media-body
-      %form{"accept-charset" => "UTF-8", :role => "form", "ng-submit" => "form.$valid && send(comment, num, id, $index)", :novalidate => true, :name => "form"}    
+      %form{"accept-charset" => "UTF-8", :role => "form", "ng-submit" => "form.$valid && send( num, id, $index)", :novalidate => true, :name => "form"}    
         .form-group
+         
           %label(for="exampleInputText") Text
-          %textarea#exampleInputText.form-control{:placeholder => "Enter text", :type => "text", "ng-model" => "comment.text", "rows" => "5"}
+          .editable{:placeholder => "Enter text", :type => "text", "rows" => "5", :id => "{{num.date}}"}
 
 
-        %p {{num.path}}
-        %p {{num.id}}
-        %h1 {{message}}
+       
         %button.btn.btn-default{:type => "submit"} Submit
-        %button.btn.btn-default(ng-click="change_image()") Click
+        
+
+
+
