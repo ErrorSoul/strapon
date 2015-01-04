@@ -1,0 +1,32 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <form class='form-input col-md-11' enctype='multipart/form-data' id='form' method='PATCH' name='form' ng-submit='form.$valid &amp;&amp; update()' novalidate>
+      <!-- /%button(ng-click='showPopover()' type='button') -->
+      <h2 class='editable all-posts center-block' id='title' ng-bind-html='post.title' style='text-align:center'>
+        {{post.title}}
+      </h2>
+      <hr>
+      <label class='btn' for='asset' style='color: yellowgreen; background-color: white'>
+        <!-- /.col-md-3.glyphicon.glyphicon-cloud-download -->
+        <i class='fa fa-download fa-2x'></i>
+        ЗАГРУЗИТЬ
+      </label>
+      <input id='asset' name='post.asset' ng-model='post.asset' style='visibility: hidden' type='file'>
+      <div class='image'>
+        <img class='img-thumbnail' ng-show='asset_url' ng-src='{{post.asset.url}}'>
+      </div>
+      <div class='text'>
+        <p class='editable' id='text' ng-bind-html='post.text' placeholder='Набирай текст'>
+          {{post.text}}
+        </p>
+      </div>
+      <button class='btn btn-sunny' ng-disabled='input_check' type='submit'>
+        <i class='fa fa-floppy-o fa-2x'></i>
+        <!-- /%span.glyphicon.glyphicon-floppy-saved -->
+        SAVE
+      </button>
+      <button id='formedium' ng-click='showPopover()'></button>
+      <pop-window></pop-window>
+    </form>
+  </div>
+</div>
