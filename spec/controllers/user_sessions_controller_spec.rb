@@ -2,17 +2,13 @@ require 'spec_helper'
 
 describe UserSessionsController do
 
-  describe "GET 'create'" do
-    it "returns http success" do
-      get 'create'
-      response.should be_success
-    end
-  end
+  
 
   describe "GET 'destroy'" do
     it "returns http success" do
-      get 'destroy'
-      response.should be_success
+      delete  :destroy
+      expected_json = {message: "Exit"}.to_json
+      expect(response.body).to eq expected_json
     end
   end
 

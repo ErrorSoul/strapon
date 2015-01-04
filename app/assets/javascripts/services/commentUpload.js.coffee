@@ -3,7 +3,7 @@ angular.module('post').service('commentUpload',  ['$http','Comment', class Comme
     @fd = new FormData()
   createFormData: (comment) ->
     
-    @fd.append('comment[name]', comment.name)
+    #@fd.append('comment[name]', comment.name)
     @fd.append('comment[text]', comment.text)
     @fd.append('comment[commentable_id]', comment.commentable_id)
     @fd.append('comment[commentable_type]', comment.commentable_type)

@@ -20,12 +20,12 @@ class CommentsController < ApplicationController
   def show 
     
     @comments = Comment.where('post_id = ?', params[:id])
-    render json: {comments: @comments},:include => { :user => { :only => [:name, :nickname, :image] } }
+    render json: {current_user: current_guess, comments: @comments,:include => { :user => { :only => [:name, :nickname, :image] } }}
   end
   
   private
 
   def comment_params
-      params.require(:comment).permit(:name, :text, :commentable_id, :commentable_type, :post_id)
+      params.require(:comment).permit(:text, :commentable_id, :commentable_type, :post_id)
   end
 end

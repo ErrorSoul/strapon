@@ -1,9 +1,17 @@
 angular.module("admin").controller "DashboardCtrl", ["$scope", '$location', "sessionStorage", "Post", ($scope, $location, sessionStorage, Post) ->
-  Post.query().$promise.then((data)->
+  foo = (data) ->
     console.log("DATA !", data)
+    #$scope.r = data
     $scope.posts = data.posts
-    ).then((data) ->
-    console.log(data)
+  bar = (error) ->
+    console.log("DATA !", error)
+    #$scope.r = data
+    
+    
+  Post.query().$promise.then(foo, bar)
+    
+    .then((data) ->
+      console.log(data)
           
           
     )

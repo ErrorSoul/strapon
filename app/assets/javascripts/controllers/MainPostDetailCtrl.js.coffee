@@ -9,22 +9,41 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.add_limit = commentTools.add_limit
   $scope.binaryS = commentTools.binary_search
 
+  ##### user #######
   
+  $scope.user_init = () ->
+    
+    $scope.user = {}
+    $scope.user.image = "http://placehold.it/73X73"
+    $scope.user.name = "Anonymous"
+    console.log("$scope.user", $scope.user)
+  $scope.user_init()
   $scope.take_comments = () ->
     Comment.show({id: $scope.id}, (data) ->
       $scope.date = Date.now()
       $scope.tool.arr = data.comments
+      if data.current_user
+        console.log("data_user", data.current_user)
+        $scope.user = data.current_user
+      console.log($scope.user, "user")
       console.log($scope.tool.arr, "tool.arr")
       $timeout($scope.checkNew, 10000)
       console.log('data', data.comments))
   $timeout($scope.take_comments, 0)
 
+
+  $scope.logout = ->
+    callback = (data) ->
+      if data.message is "Exit"
+        console.log(data, "Data logout")
+        $scope.user_init()
+    $http.get('/user_sessions/destroy').success(callback)
+          .error((error) -> console.log(error))
   $scope.show  = ->
-    $timeout ->
-      $window.alert "hi!"
-      return
+    window.alert($scope.my_answer, "MY ANSWER")
     console.log($scope.my_answer, "MY ANSWER")
-  
+  $scope.change_image = () ->
+    $scope.user.image = "http://placehold.it/128X128"
   $scope.twitter = () ->
     window.$windowScope = $scope
     #$window.open("/auth/twitter", "NAME", "width=420,height=230")
@@ -35,6 +54,9 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       if child.closed
         window.alert("Child window closed")
         clearInterval timer
+        fara  = ->
+          $scope.user = $scope.my_answer
+        $timeout(fara, 0)
       return
     timer = setInterval(checkChild, 500)
 

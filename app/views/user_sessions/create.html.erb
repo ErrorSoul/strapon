@@ -2,7 +2,7 @@
 <p>Find me in app/views/user_sessions/create.html.erb</p>
 <script>
    try {
-      window.opener.$windowScope.my_answer = "ALL OK";
+      window.opener.$windowScope.my_answer = <%= @user.to_json.html_safe %>;
    } catch(err) {  window.close();}
    window.close();
 </script>

@@ -2,7 +2,7 @@ angular.module("admin").factory 'Post', ['$resource', ($resource) ->
   $resource('/posts/:id/:action', {id: '@id'},
     'query':
       method: 'GET'
-      params: {}
+      params: {format: "json"}
 
     'update':
       method: 'PATCH'

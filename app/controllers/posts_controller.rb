@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   respond_to :json
+  respond_to :html, only: [:show]
   before_action :signed_in_user, only: [:create,:index]
   
   before_action :message_dict, only: [:update, :create ]
