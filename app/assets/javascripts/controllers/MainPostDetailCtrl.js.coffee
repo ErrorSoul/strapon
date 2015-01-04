@@ -20,14 +20,17 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.user_init()
   $scope.take_comments = () ->
     Comment.show({id: $scope.id}, (data) ->
-      $scope.date = Date.now()
+      #$scope.date = Date.now()
+      now = new Date(Date.now())
+      $scope.date = now.toUTCString()
+      console.log("Date NOW", $scope.date)
       $scope.tool.arr = data.comments
       if data.current_user
         console.log("data_user", data.current_user)
         $scope.user = data.current_user
       console.log($scope.user, "user")
       console.log($scope.tool.arr, "tool.arr")
-      #$timeout($scope.checkNew, 10000)
+      $timeout($scope.checkNew, 10000)
       console.log('data', data.comments))
   $timeout($scope.take_comments, 0)
 
@@ -93,6 +96,7 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       return "Anonymous"
     else
       return name
+  
   $scope.set_image = (num) ->
     
     if num is  undefined
@@ -156,7 +160,9 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     mock_arr.sortBy("path")
     $scope.tool.arr = mock_arr
     $scope.lena = 0
-    $scope.date = Date.now()
+    #$scope.date = Date.now()
+    now = new Date(Date.now())
+    $scope.date = now.toUTCString()
   
   
 
