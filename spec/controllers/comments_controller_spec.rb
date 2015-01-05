@@ -12,7 +12,7 @@ describe CommentsController do
                               commentable_id: poster.id, commentable_type: poster.class.name, post_id: poster.id}
       
       
-      expected_json = {message: "Your comment saved", comment: Comment.last}.to_json
+      expected_json = {message: "Your comment saved", comment: Comment.last.as_json(:include => [{:commentable => {:include => {:user => {:only => :name}}}}, :user]) }.to_json
       expect(response.body).to eq expected_json
     end 
 
@@ -52,7 +52,7 @@ describe CommentsController do
       post :create, comment: { text: comment.text, commentable_id: comment.id, commentable_type: comment.class.name, post_id: poster.id}
       
       
-      expected_json = {message: "Your comment saved", comment: Comment.last}.to_json
+      expected_json = {message: "Your comment saved", comment: Comment.last.as_json(:include => [{:commentable => {:include => {:user => {:only => :name}}}}, :user]) }.to_json
       expect(response.body).to eq expected_json
     end
 
@@ -155,19 +155,19 @@ describe CommentsController do
                                     commentable_type: comment_new.class.name,
                                     post_id: poster.id}
         
-        c = Comment.last
-        comment_mock = {}
-        user_mock = {}
-        Comment.column_names.each do |column|
-          comment_mock[column] = c[column]
-        end
-        User.column_names.each do |column|
-          user_mock[column] = user[column]
-        end
-        comment_mock["user"] = user_mock
+        c = Comment.last.as_json(:include => [:user, :commentable => {:include => {:user => {:only => :name}}}]) 
+        ##comment_mock = {}
+        #user_mock = {}
+        #Comment.column_names.each do |column|
+        #  comment_mock[column] = c[column]
+        #end
+        #User.column_names.each do |column|
+        #  user_mock[column] = user[column]
+        #end
+        #comment_mock["user"] = user_mock
           
         
-        expected_json = {message: "Your comment saved", comment: comment_mock}.to_json
+        expected_json = {message: "Your comment saved", comment: c}.to_json
         expect(response.body).to eq expected_json
       end
 
@@ -184,7 +184,7 @@ describe CommentsController do
        
           
         
-        expected_json = {message: "Your comment saved", comment: Comment.last}.to_json
+        expected_json = {message: "Your comment saved", comment: Comment.last.as_json(:include => [:user, :commentable => {:include => {:user => {:only => :name}}}]) }.to_json
         expect(response.body).to eq expected_json
       end
 

@@ -7,7 +7,7 @@
      
     
       %p {{user.name}}
-    
+      %p= @post.user.name
     
     
       
@@ -17,6 +17,16 @@
         .form-group
          
           %label(for="exampleInputText") Text
+          %span(ng-if="!!num.name")
+            %i.fa.fa-arrow-circle-right.fa-2x
+            %span
+              {{num.name}}
+         
+          %span(ng-if="!num.name")
+            %i.fa.fa-arrow-circle-right.fa-2x
+            %span= @post.user.name
+              
+              
           .editable{:placeholder => "Enter text", :type => "text", "rows" => "5", :id => "{{num.date}}"}
 
 

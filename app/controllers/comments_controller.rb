@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       @comment = current_guess.comments.create(comment_params)
     end
     if @comment.save
-      render json: {message: "Your comment saved", comment: @comment}, :include => :user 
+      render json: {message: "Your comment saved", comment: @comment}, :include => [:user, :commentable => {:include => {:user => {:only => :name}}}]
     else
       render json: {message: @comment.errors}
     end
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     
     @comments = Comment.includes(:user).where('post_id = ?', params[:id])
     
-    render json:   {current_user: current_guess, comments: @comments.as_json(:include => :user)}
+    render json:   {current_user: current_guess, comments: @comments.as_json(:include => [{:commentable => {:include => {:user => {:only => :name}}}}, :user]) } 
   end
   
   private

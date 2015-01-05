@@ -9,7 +9,7 @@ describe "MainPostDetailCtrl", ->
     @service = $injector.get("Comment")
     @scope.converter = @scope.tool.converter
     @post = ({title: "Title 1", text: "Text 1", id: 1, type: "Post", path: "0"})
-    @comment = {id: 2, type: "Comment", path: "1"}
+    @comment = {id: 2, type: "Comment", path: "1", user: {name: "Arnold"}}
     ))
 
  
@@ -33,6 +33,8 @@ describe "MainPostDetailCtrl", ->
       it "should return 2 when type is Comment and ind is 1", ->
         expect(@scope.converter(1, @comment)).toEqual(2)
 
+    
+    
     describe "toggle without eval", ->
       describe "$scope.arr is empty arr", ->
         beforeEach ->

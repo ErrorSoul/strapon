@@ -34,9 +34,14 @@
              
         #content.x(ng-class="isClass()")
           #tar.col-xs-12
-            .err(data-spy="affix" data-offset-top="30")
-              %button#toggle.btn(ng-click="changeClass()" )
+            .err.btn-group-vertical(data-spy="affix" data-offset-top="30")
+              %button#toggle.btn.btn-fresh(ng-click="changeClass()" )
                 Push me!
+              %button.btn.btn-fresh(ng-click="changeClass()" )
+                Push me!
+              %button.btn.btn-fresh(type ="button" ng-click="merge()" ng-show="dara")
+                %i.fa.fa-comments.fa-2x
+                %span.badge {{lena}}
           
               
           .col-xs-12.ttt
@@ -54,8 +59,8 @@
                 %a.pull-left{:href => "#"}
                   %img{:alt => "...", :src => "http://placehold.it/128x128"}
                 .media-body
-                  %h4.media-heading= @post.author.name
-                  %p= @post.author.bio
+                  %h4.media-heading= @post.user.name
+                  %p= @post.user.bio
                   
          
           .col-xs-12.comments-panel
@@ -86,6 +91,11 @@
                     
                     %h4.media-heading.text-center 
                       {{set_name(num.user.name)}}
+                      %span
+                        %i.fa.fa-arrow-circle-right.fa-2x
+                        %span
+                          {{tool.name_to_reply(num.commentable)}}
+                        
                       %small.pull-right {{num.created_at| date:'yyyy-MM-dd HH:mm:ss Z'}}
                     
                     .col-xs-12.center-block.comment-text
@@ -94,6 +104,6 @@
                        
                     .col-md-12
                       .btn-group
-                        %button.btn.btn-fresh(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path })") Reply
+                        %button.btn.btn-fresh(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path, name: tool.name_to_reply(num) })") Reply
                         
              

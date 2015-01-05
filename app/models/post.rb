@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
-  belongs_to :author
+  belongs_to :user, class_name: "Author", foreign_key: 'author_id'
+  belongs_to :author 
   validates :author_id, presence: true
   default_scope -> { order('created_at DESC')}
   validates :title, presence: true, length: {maximum: 140}

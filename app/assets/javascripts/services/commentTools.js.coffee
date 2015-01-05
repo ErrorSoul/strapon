@@ -58,6 +58,13 @@ angular.module("post").service('commentTools', ["$http","$window","$timeout","co
     else
       return path + ".0"
 
+  
+  name_to_reply: (num) ->
+    if num.user_id is null
+      return "Anonymous"
+    else
+       return num.user.name
+      
   toggle_service: (ind, n) ->
     inx = @converter(ind, n)
     #create_path = $scope.tool.create_path
@@ -72,6 +79,7 @@ angular.module("post").service('commentTools', ["$http","$window","$timeout","co
          date: Date.now(),
          red: true,
          offset: 1,
+         name: n.name,
          id: n.id,
          type: n.type,
          path: @create_path(n.path)})
