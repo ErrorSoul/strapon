@@ -27,11 +27,12 @@
             %span= @post.user.name
               
               
-          .editable{:placeholder => "Enter text", :type => "text", "rows" => "5", :id => "{{num.date}}"}
+          .editable(placeholder="Enter text" type="text" id="{{num.date}}" class="{{num.date}} {{num.class_flag}}")
 
 
-       
-        %button.btn.btn-default{:type => "submit"} Submit
+        %p
+          {{num.message}}
+        %button.btn.btn-default(type="submit" ng-disabled="num.flag") Submit
         
 
 

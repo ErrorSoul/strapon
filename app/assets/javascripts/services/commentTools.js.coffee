@@ -82,12 +82,30 @@ angular.module("post").service('commentTools', ["$http","$window","$timeout","co
          name: n.name,
          id: n.id,
          type: n.type,
+         flag: true,
          path: @create_path(n.path)})
        @DF += 1
        b = @arr[inx]
        eee = () ->
         editor = new MediumEditor('.editable' )
        @timeout(eee, 0)
+
+       f = () ->
+        b.class_flag = "normal"
+        b.message = ""
+        b.flag = false
+        
+    
+        
+          
+          
+       foo = () =>
+        @timeout(f, 0)
+       ggg = () ->
+         @rass = angular.element("." + b.date.toString())
+         @rass.on("input",foo)
+         
+       @timeout(ggg, 0)
        console.log("ARRAY AFTER ADD", @arr )
     else
        @count -= 1

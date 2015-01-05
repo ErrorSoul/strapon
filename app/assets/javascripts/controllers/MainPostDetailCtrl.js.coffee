@@ -8,7 +8,8 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.tool = commentTools
   $scope.add_limit = commentTools.add_limit
   $scope.binaryS = commentTools.binary_search
-
+  
+  
   ##### user #######
   
   $scope.user_init = () ->
@@ -108,13 +109,25 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       
     
   $scope.doc = (id) ->
-            document.getElementById(id)       
+            document.getElementById(id)
+
+  
+  $scope.text_handler = (text, n) ->
+    if text is "" or text is "<p><br></p>" 
+      n.flag = true
+      n.class_flag = "error-message"
+      n.message = "Нафига пустой комментарий?"
+      return false 
+    else
+      return true 
+        
   $scope.send = ( n, post_id, ind)   ->
-    
     comment = {}
-    comment.text = $scope.doc(n.date.toString()).innerHTML
-    commentTools.send(comment, n, post_id, ind,
-                      $scope.callbacka, $scope.tool)
+    comment.text = $scope.doc(n.date.toString()).innerHTML    
+    result = $scope.text_handler(comment.text, n)
+    if result 
+      commentTools.send(comment, n, post_id, ind,
+                        $scope.callbacka, $scope.tool)
     
   
    #with eval
