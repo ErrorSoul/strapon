@@ -4,10 +4,10 @@
     .row.yar
       
       #wrapper.col-xs-12
-        #sidebar.cola( data-spy="affix" data-offset-top="30")
+        #sidebar.cola( data-spy="affix" data-offset-top="10")
           %ul.nav.nav-stacked
             %li.active{:role => "presentation"}
-              %a(href="#{root_path}")
+              %a(href="#{index_path}")
                 
                 = image_tag("menu/track.png",class: "img-responsive", size: "64x64" )
                   
@@ -18,12 +18,12 @@
                 = image_tag("menu/bull.png",class: "img-responsive", size: "64x64" )
                   
                 %p.inline Дальше
-            %li
-              %a{:href => "#"}
+            %li(ng-hide="user.anonym")
+              %a(ng-click="logout()" )
                 
                 = image_tag("menu/egg.png",class: "img-responsive", size: "64x64" )
                   
-                %p.inline Читать
+                %p.inline Выйти
             %li{:role => "presentation"}
               %a{:href => "#"} Profile
             %li{:role => "presentation"}
@@ -34,11 +34,13 @@
              
         #content.x(ng-class="isClass()")
           #tar.col-xs-12
-            .err.btn-group-vertical(data-spy="affix" data-offset-top="30")
-              %button#toggle.btn.btn-fresh(ng-click="changeClass()" )
-                Push me!
+            .err.btn-group-vertical(data-spy="affix" data-offset-top="0")
+             
               %button.btn.btn-fresh(ng-click="changeClass()" )
-                Push me!
+                %i.fa.fa-paperclip.fa-2x
+              %button#toggle.btn.btn-fresh(ng-click="tool.add_limit()" ng-show="check_bottom()")
+                %i.fa.fa-plus.fa-2x
+                %i.fa.fa-comment.fa-2x
               %button.btn.btn-fresh(type ="button" ng-click="merge()" ng-show="dara")
                 %i.fa.fa-comments.fa-2x
                 %span.badge {{lena}}
@@ -75,35 +77,34 @@
                         %span.badge {{lena}}
                     .pull-right
                       
-                      %button.btn.btn-fresh(ng-click="add(0, {id: id, type: 'Post', path: '0' })") Reply
+                      %button.btn.btn-fresh(ng-click="add(0, {id: id, type: 'Post', path: '0' })") 
+                        %i.fa.fa-reply.fa-2x
                       
-                      %button.btn.btn-fresh(ng-click="twitter()") Twitter
-                      %button.btn.btn-fresh(ng-click="tool.add_limit()") Add Comments
-                      %button.btn.btn-fresh(ng-click="logout()") logout
+                     
               
               .media.animate-repeat.main-media( class="col-xs-offset-{{get_offset(num.class_num)}}" ng-repeat="num in tool.arr|limitTo: tool.DF " ng-cloak ng-class="isRedClass(num)")
                 %div(ng-if="num.red")
                   = render :partial => "form"
                 .media(ng-if="!num.red")
                   .pull-left
-                    %img.media-object{:alt => "Media Object", :src => "{{set_image(num.user.image)}}"}
+                    %img.media-object{:class => "user-image", :alt => "Media Object", :src => "{{set_image(num.user.image)}}"}
                   .media-body
                     
-                    %h4.media-heading.text-center 
+                    %h4.media-heading.text-center
                       {{set_name(num.user.name)}}
                       %span
-                        %i.fa.fa-arrow-circle-right.fa-1x
+                        %i.fa.fa-arrow-right.fa-1x
                         %span
                           {{set_name(num.commentable.user.name)}}
-                        
                       %small.pull-right {{num.created_at| date:'yyyy-MM-dd HH:mm:ss Z'}}
                     
                     .col-xs-12.center-block.comment-text
-                      %p(ng-bind-html="num.text")
+                      %p(ng-bind-html="num.text ")
                       
                        
                     .col-md-12
                       .btn-group
-                        %button.btn.btn-fresh(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path, name: tool.name_to_reply(num) })") Reply
+                        %button.btn.btn-fresh(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path, name: tool.name_to_reply(num) })")
+                          %i.fa.fa-reply.fa-2x
                         
              

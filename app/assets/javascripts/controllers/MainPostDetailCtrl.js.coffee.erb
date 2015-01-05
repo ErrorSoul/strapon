@@ -1,4 +1,4 @@
-angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http", "$location", "$window", "$timeout", "Comment", "commentUpload", 'commentTools',($scope,  $log, $http, $location, $window, $timeout, Comment, commentUpload, commentTools) ->
+angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http", "$location", "$document", "$window", "$timeout", "Comment", "commentUpload", 'commentTools',($scope,  $log, $http, $location,$document, $window, $timeout, Comment, commentUpload, commentTools) ->
  
   $scope.id = $window.location.href.split("/").pop()
   ################################
@@ -8,6 +8,20 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.tool = commentTools
   $scope.add_limit = commentTools.add_limit
   $scope.binaryS = commentTools.binary_search
+ 
+  $scope.check_bottom = () ->
+    $scope.bottom and $scope.tool.DF < $scope.tool.arr.length
+  
+   
+  $scope.bottom_init = ->
+    w = angular.element($window)
+    w.bind "scroll", ->
+      if w.scrollTop()  + w.height() > $document.height() - 50
+        $scope.bottom = true
+      else
+        $scope.bottom = false
+      $scope.$apply()
+    
   
   
   ##### user #######
@@ -15,7 +29,8 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.user_init = () ->
     
     $scope.user = {}
-    $scope.user.image = "http://placehold.it/73X73"
+    $scope.user.anonym = true
+    $scope.user.image = '<%= asset_path("icons/anonym.png") %>'
     $scope.user.name = "Anonymous"
     console.log("$scope.user", $scope.user)
   $scope.user_init()
@@ -29,6 +44,7 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       if data.current_user
         console.log("data_user", data.current_user)
         $scope.user = data.current_user
+      $scope.bottom_init()
       console.log($scope.user, "user")
       console.log($scope.tool.arr, "tool.arr")
       $timeout($scope.checkNew, 10000)
@@ -101,7 +117,7 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.set_image = (num) ->
     
     if num is  undefined
-      return "http://placehold.it/64x64"
+      return '<%= asset_path("icons/anonym.png") %>'
       
     else
       

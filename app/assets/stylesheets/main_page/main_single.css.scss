@@ -1,6 +1,7 @@
 @import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 @import "font-awesome-sprockets";
 @import "font-awesome";
 //@import "component";
@@ -25,6 +26,7 @@
   -o-background-size: cover;
   background-size: cover;
   overflow-x: hidden;
+  overflow-y: hidden;
   font-family: "Bender"
   
   
@@ -386,7 +388,8 @@ figure.effect-lily:hover p {
 .animate-repeat.ng-leave.ng-leave-active
  {
   left: -1000px;
-  width: 0px;
+  //width: 0px;
+  
   webkit-transform: rotateX(-90deg) rotateZ(-90deg);
     -moz-transform: rotateX(90deg) rotateZ(90deg);
     -ms-transform: rotateX(90deg) rotateZ(90deg);
@@ -400,7 +403,8 @@ figure.effect-lily:hover p {
 
  {
   left: 0px;
-  width: 500px;
+  //width: 500px;
+  width: 70%;
   -webkit-transform: rotateX(0deg) rotateZ(0deg);
     -moz-transform: rotateX(0deg) rotateZ(0deg);
     -ms-transform: rotateX(0deg) rotateZ(0deg);
@@ -430,6 +434,7 @@ figure.effect-lily:hover p {
     -o-transform: rotateX(90deg) rotateZ(90deg);
     transform: rotateX(90deg) rotateZ(90deg);
     opacity: 0;
+    //height: 0%;
     
 }        
  
@@ -518,6 +523,12 @@ figure.effect-lily:hover p {
     background: $greenlime;
     width: 100%;
     height: auto;
+    a {
+	color: teal;
+	&:hover {
+	    text-decoration: none;
+	}
+    }
 }
 
 #wrapper {
@@ -555,9 +566,7 @@ figure.effect-lily:hover p {
     
     font-size: 18px;
     line-height: 1.4;
-    a {
-	color: teal;
-    }
+    
 }
 
 
@@ -573,6 +582,7 @@ figure.effect-lily:hover p {
     h3, h4, a {
 	color: teal;
     }
+   
 }
 
 
@@ -663,6 +673,7 @@ margin-top: 2px;
 color: #fff;
 background-color: #51bf87;
 border-bottom:2px solid #41996c;
+//min-width: 93px;
 }
 
 .btn-fresh:hover, .btn-sky.active:focus, .btn-fresh:focus, .open>.dropdown-toggle.btn-fresh {
@@ -802,7 +813,11 @@ margin-top: 2px;
 }
 
 
-
+.btn-group-vertical {
+    button {
+	min-width: 85px;
+    }
+}
 .btn-group-vertical > .btn + .btn {
     margin-left: 4px;
 }
@@ -810,4 +825,10 @@ margin-top: 2px;
 
 .error-message {
     background-color: orange;
+}
+
+.user-image {
+    height: 73px;
+    width: 73px;
+    box-shadow: 1px 1px 1px #888888;
 }

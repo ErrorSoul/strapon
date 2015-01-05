@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     
     @comments = Comment.includes(:user).where('post_id = ?', params[:id])
     
-    render json:   {current_user: current_guess, comments: @comments.as_json(:include => [{:commentable => {:include => {:user => {:only => :name}}}}, :user]) } 
+    render json:   {current_user: current_guess, comments: @comments.as_json(:include => [{:commentable => {:only => :id, :include => {:user => {:only => :name}}}}, :user]) } 
   end
   
   private
