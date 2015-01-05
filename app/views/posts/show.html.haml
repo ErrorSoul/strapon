@@ -92,9 +92,9 @@
                     %h4.media-heading.text-center 
                       {{set_name(num.user.name)}}
                       %span
-                        %i.fa.fa-arrow-circle-right.fa-2x
+                        %i.fa.fa-arrow-circle-right.fa-1x
                         %span
-                          {{tool.name_to_reply(num.commentable)}}
+                          {{set_name(num.commentable.user.name)}}
                         
                       %small.pull-right {{num.created_at| date:'yyyy-MM-dd HH:mm:ss Z'}}
                     

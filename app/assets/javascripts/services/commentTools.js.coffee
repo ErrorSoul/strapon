@@ -60,7 +60,7 @@ angular.module("post").service('commentTools', ["$http","$window","$timeout","co
 
   
   name_to_reply: (num) ->
-    if num.user_id is null
+    if (num.user_id is null) 
       return "Anonymous"
     else
        return num.user.name
