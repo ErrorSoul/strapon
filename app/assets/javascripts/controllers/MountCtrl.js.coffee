@@ -1,5 +1,17 @@
 angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$window", ($scope, $http, $timeout, $window) ->
   
+  $scope.clicked = (cls) ->
+    if cls is 'run'
+      $scope.myVar1 = cls
+    else
+      $scope.myVar2 = cls
+    changed = () ->
+      if cls is "run"
+        $scope.myVar1 = null
+      else
+        $scope.myVar2 = null
+    $timeout(changed, 1000)
+    
   $scope.tab = 1
   $scope.pusher = 0
   $scope.list_flag = false
@@ -11,6 +23,26 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
   $scope.getCat = (ind) ->
     return ".category-#{ind}"
 
+  $scope.is_asset = (asset) ->
+    
+    if not asset
+      return "foo-bar"
+
+
+  $scope.add_post = (post_id) ->
+    return $scope.myVar = "new_class"
+  
+  $scope.pop_elem = () ->
+    if $scope.flag
+      $scope.p.splice(3,0, $scope.remove_element)
+      $scope.flag = false
+    else
+      $scope.remove_element = $scope.p[3]
+      $scope.p.splice(3, 1)
+      $scope.flag = true
+    
+  $scope.add_elem = () ->
+    $scope.p.splice(3,0, $scope.remove_element)
   $scope.newIsClass = (ind) ->
     return "Cont#{ind}"
   $scope.checkHide = ->

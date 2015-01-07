@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150103175516) do
+ActiveRecord::Schema.define(version: 20150105180623) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(version: 20150103175516) do
   end
 
   add_index "authors", ["remember_token"], name: "index_authors_on_remember_token"
+
+  create_table "carts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -42,6 +47,16 @@ ActiveRecord::Schema.define(version: 20150103175516) do
   add_index "comments", ["path"], name: "index_comments_on_path"
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "line_items", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "cart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id"
+  add_index "line_items", ["post_id"], name: "index_line_items_on_post_id"
 
   create_table "photos", force: true do |t|
     t.string   "asset"

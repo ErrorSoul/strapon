@@ -1,4 +1,12 @@
 FactoryGirl.define do  
+  factory :line_item do
+    post 
+    cart 
+  end
+  factory :cart do
+    
+  end
+  
   factory :user do
     provider "MyString"
     uid "MyString"
@@ -21,6 +29,7 @@ FactoryGirl.define do
 
   sequence(:title) { |n| "Example title #{n}" }
   sequence(:text)  { |n| Faker::Lorem.sentence(4, false, 2)}
+  sequence(:login) { |n| "Login #{n}" }
   factory :author do
     name     "Michael"
     login    "michael10"

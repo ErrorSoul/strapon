@@ -26,7 +26,7 @@
   -o-background-size: cover;
   background-size: cover;
   overflow-x: hidden;
-  overflow-y: hidden;
+  //overflow-y: hidden;
   font-family: "Bender"
   
   
@@ -154,7 +154,7 @@
 }
 
 .container-main img  {
-    height: 100%;
+    //height: 100%;
     width: 100%;
    
 }
@@ -184,7 +184,7 @@
   height: auto;
   img {
     width: 50%;
-    height: auto;
+    height: 50%;
     }
   &:hover {
     background: white;
@@ -831,4 +831,252 @@ margin-top: 2px;
     height: 73px;
     width: 73px;
     box-shadow: 1px 1px 1px #888888;
+}
+
+.foo-bar {
+    opacity: 0;
+    &:hover {
+	opacity: 1;
+    }
+}
+
+.view {
+     //display: inline-block;
+     //position: relative;
+     //border: 2px yellowgreen dashed;
+     //width: 30%;
+     //height: 35%;
+     //margin: 2% 1.5%;
+     //overflow: hidden;
+     //z-index: 3;
+     
+    
+    //text-align: center;
+    //box-shadow: 1px 1px 2px #e6e6e6;
+    //cursor: default;
+    
+}
+.view .mask, .view .content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0
+}
+
+
+.view img {
+    display: block;
+     position: relative;
+	max-width: none;
+	width: -webkit-calc(100% + 50px);
+	width: calc(100% + 50px);
+	opacity: 0.7;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: translate3d(-40px,0, 0);
+	transform: translate3d(-40px,0,0);
+	min-height: 20em;
+
+	
+    
+    
+    
+    
+}
+.view h2 {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 24px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    margin: 20px 0 0 0
+}
+.view p {
+    
+    //font-style: italic;
+    font-size: 17px;
+    position: relative;
+    color: #fff;
+    padding: 1.5% 2.5% 2.5%;
+    text-align: center
+}
+.view a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 2% 5%;
+    background: rgb(168, 190, 124);
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000
+}
+.view a.info:hover {
+    box-shadow: 0 0 5px #000
+}
+
+
+.view-tenth img { 
+    transform: scaleY(1);
+    transition: all 0.7s ease-in-out;
+}
+.view-tenth .mask { 
+    background-color: rgba(255, 231, 179, 0.3); 
+    transition: all 0.5s linear;
+    opacity: 0;
+}   
+.view-tenth h2{
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+    background: transparent;
+    margin: 20px 40px 0px 40px;
+    transform: scale(0);
+    color: #333;
+    transition: all 0.5s linear;
+    opacity: 0;
+}
+.view-tenth p {
+    color: #333;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.5s linear;
+}
+.view-tenth a.info { 
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.5s linear;
+}
+
+
+.view-tenth:hover img { 
+    transform: scale(10);
+    opacity: 0;
+}
+.view-tenth:hover .mask { 
+    opacity: 1;
+}                                                                  .view-tenth figure {
+    background: yellowgreen;
+    &:hover {
+	background: yellow;
+    }
+    
+}          
+.view-tenth:hover h2,
+.view-tenth:hover p,
+.view-tenth:hover a.info{ 
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+
+
+figcaption {
+    position:absolute;
+    opacity: 0;
+}
+
+
+
+.post {
+    border: 5px solid white;
+    position: relative;
+    //float: left;
+    height: 30%;
+    overflow: hidden;
+    margin: 1%;
+    width: 31%;
+    z-index: 3;
+    display: inline-block;
+    
+     
+    
+    text-align: center;
+    box-shadow: 1px 1px 2px #e6e6e6;
+    cursor: default;
+    
+}
+    
+   
+   
+    
+
+
+figure {
+    height: 100vh;
+    img {
+	
+	min-height: 30%;}
+}
+@media (min-width: $screen-xs-min){
+
+    figure {
+	height: auto;}
+    .post {
+    width: 85%; 
+    height: auto;
+    }
+}
+@media (min-width: $screen-sm-min){
+    figure {
+	height: 100vh;}
+    .post {
+    width: 45%;
+    height: 30%;
+    
+
+    }
+}
+
+@media (min-width: $screen-md-min){
+     figure {
+	height: 100vh;}
+    .post {
+    width: 31%; }
+}
+
+
+@media (min-width: $screen-lg-min){
+     figure {
+	height: 100vh;}
+    .post {
+    width: 31%; }
+}
+
+
+@media (max-device-width: 480px){
+  .post{
+    width: 85%;
+    //height: 85%;
+  }
+}
+
+
+.base-class {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.new-class {
+  color: red;
+  font-size:3em;
+  background-color: blue;
+    opacity: 0;
+}
+
+
+.base-class {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.base-class.my-class {
+  color: orange;
+  font-size:3em;
+}
+
+.base-class.run {
+  color: yellowgreen;
+  font-size:3em;
 }

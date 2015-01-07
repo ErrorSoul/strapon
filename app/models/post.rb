@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   #has_many :subs, class_name: "Comment", as: :commentable
   #has_many :comments, class_name: "Comment",foreign_key: "post_id"
   has_many :comments, as: :commentable
+  has_many :line_items
   mount_uploader :asset, AssetUploader
   scope :perfect, -> { "Hirosima" }
 end

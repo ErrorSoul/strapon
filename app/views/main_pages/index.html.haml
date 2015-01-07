@@ -11,9 +11,9 @@
     .col-xs-12
       %label Filter:
       .col-xs-1
-        %button.btn-sky.btn.filter{"data-filter" => "all", "ng-click"=>"ad()"} All
+        %button.btn-sky.btn.filter{"data-filter" => "all", "ng-click"=>"pop_elem()"} Pop 
       %button.btn-sky.btn.filter{"data-filter" => ".category-1", "ng-click" =>"checkHide()" } Category 1
-      %button.btn-sky.btn.filter.active{"data-filter" => ".category-2"} Category 2
+      %button.btn-sky.btn.filter.active{"data-filter" => ".category-2", "ng-click" =>"add_elem()"} Add
       %button.btn-sky.btn.filter{"data-filter" => ".category-3"} Category 3
       %label Sort:
       %button.btn-sky.btn.sort{"data-sort" => "myorder:asc"} Asc
@@ -23,26 +23,32 @@
         {{tab}}
       %label Change Layout:
       %button.btn-sky.btn#ChangeLayout(ng-click="changeList()") List
-    .col-xs-12
+    .col-md-12
       .row
-        .col-xs-12      
+        .col-md-12      
           
           .container-main(class="{{isList()}}" )
            
             //.grid.mix(ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" )
             
-            .mix.grid.anima.square(  ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" ng-hide="isHide($index)")
-              %figure.effect-lily
-                
-                %img.image(ng-if="post.asset.url" src="{{post.asset.url }}")       
-                
-                %figcaption
-                  %h2
-                    Nice
-                    %span Lily
+            .view.view-tenth.post.anima.square(  ng-repeat="post in p" class="{{isClass(post)}} " data-myorder="{{post.id}}" ng-hide="isHide($index)")
+              
+              %figure(ng-class="is_asset(post.asset.url)")
+                %img(ng-if="post.asset.url" src="{{post.asset.url }}")       
+
+                %figcaption.mask
+                  %h2.base-class(ng-class="{new_class: bar}")
+                    STRA
+                    %span PON
                   %p {{post.title}}
-                  %a{:href => "/posts/{{post.id}}"} View more
-                
+                  %p
+
+                  %a.info(ng-click="clicked('run')" href="/posts/{{post.id}}")
+                    %i.fa.fa-arrow-up.fa-2x.base-class(class="{{myVar1}}")
+                  %a.info(ng-click="clicked('my-class')" data-toggle="tooltip" data-placement="bottom" title="Прочитать потом")
+                    %i.fa.fa-pause.fa-2x.base-class(class="{{myVar2}}")
+                 
+              
      
 
     
