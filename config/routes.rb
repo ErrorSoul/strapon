@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "user_sessions#create"
   resources :posts
   resources :sessions, only: [:create, :destroy]
+  resources :line_items, only: [:create, :destroy]
   
   resources :authors, only: :update 
   resources :photos, only: [:create, :show]
