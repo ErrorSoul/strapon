@@ -1,15 +1,15 @@
 angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$window", ($scope, $http, $timeout, $window) ->
   
-  $scope.clicked = (cls) ->
+  $scope.clicked = (cls, ind) ->
     if cls is 'run'
       $scope.myVar1 = cls
     else
-      $scope.myVar2 = cls
+      $scope.p[ind].myVar = cls
     changed = () ->
       if cls is "run"
         $scope.myVar1 = null
       else
-        $scope.myVar2 = null
+        $scope.p[ind].myVar = null
     $timeout(changed, 1000)
     
   $scope.tab = 0
@@ -27,12 +27,12 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
     if data.message and data.message is "OK"
       $scope.z = true
       
-  $scope.add_post = (post_id, cls) ->
+  $scope.add_post = (post_id, cls, ind) ->
     $http.post('line_items', line_item: { post_id: post_id})
       .success(success_callback).error((error) ->
         console.log("error", error))
     if $scope.z
-      $scope.clicked(cls)
+      $scope.clicked(cls, ind)
     
   
  

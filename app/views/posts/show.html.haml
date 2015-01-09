@@ -70,10 +70,13 @@
               .bs-example
                 .panel.panel-default
                   .panel-body Комментарии
+                  %p= session.inspect
                   .panel-footer.clearfix
                     .pull-left
+                      
                       %button.btn.btn-fresh(type ="button" ng-click="merge()" ng-show="dara")
                         Messages
+                         
                         %span.badge {{lena}}
                     .pull-right
                       

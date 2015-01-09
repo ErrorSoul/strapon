@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105180623) do
+ActiveRecord::Schema.define(version: 20150108185558) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -28,7 +28,10 @@ ActiveRecord::Schema.define(version: 20150105180623) do
   create_table "carts", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id"
 
   create_table "comments", force: true do |t|
     t.text     "text"

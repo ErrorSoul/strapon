@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe Cart do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @cart = Cart.create
+  end
+  
+  subject {@cart}
+  it {should respond_to(:user_id)}
+  it {should be_valid}
+
 end

@@ -10,14 +10,18 @@
    
     .col-xs-12
       .button-group.pull-right.arrow-buttons
-        %button.btn-sky.btn.sort(ng-click="subTab()") 
-          %i.fa.fa-arrow-left.fa-2x
-        %button.btn-sky.btn(ng-click="addTab()") 
-          %i.fa.fa-arrow-right.fa-2x
-        %button.btn-sky.btn(ng-click="power_off()")
-          %i.fa.fa-book.fa-2x
+       
+          
+       
         %button.btn-sky.btn(ng-click="power_off()")
           %i.fa.fa-power-off.fa-2x
+        %button.btn-sky.btn(ng-click="power_off()")
+          %i.fa.fa-book.fa-2x
+
+        %button.btn-sky.btn.sort(ng-click="subTab()") 
+          %i.fa.fa-arrow-left.fa-2x
+        %button.btn-sky.btn(ng-click="addTab()")
+          %i.fa.fa-arrow-right.fa-2x
       
     .col-md-12
       .row
@@ -42,8 +46,8 @@
 
                   %a.info(ng-click="clicked('run')" href="/posts/{{post.id}}")
                     %i.fa.fa-arrow-up.fa-2x.base-class(class="{{myVar1}}")
-                  %a.info(href="#" ng-click="add_post(post.id, 'my-class')" data-toggle="tooltip" data-placement="bottom" title="Прочитать потом")
-                    %i.fa.fa-pause.fa-2x.base-class(class="{{myVar2}}")
+                  %a.info(href="#" ng-click="add_post(post.id, 'my-class', $index)" data-toggle="tooltip" data-placement="bottom" title="Прочитать потом")
+                    %i.fa.fa-pause.fa-2x.base-class(class="{{p[$index].myVar}}")
                  
               
      
