@@ -27,11 +27,21 @@ angular.module("post").service('commentTools', ["$http","$window","$timeout","co
         [av, bv] = [a[key], b[key]]
         #[av, bv] = [av.toLowerCase(), bv.toLowerCase()] if options.lower
         cmp av, bv  
-
+  
   add_limit: () ->
     @DF += 50
     
 
+
+
+  group_by_six:  (posts) ->
+    sliceLen = 6
+    p = []
+ 
+    for i in [0...posts.length] by sliceLen
+      slice = posts[i...i+sliceLen]
+      p.push(slice)
+    return p 
   create_comment: (comment, n, post_id) ->
     #console.log("comment", comment)
     #console.log("n_id", n.id)

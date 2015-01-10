@@ -1087,3 +1087,18 @@ figure {
   top: 30px;
   right: 0;
   }
+
+
+.tooltip.bottom .tooltip-inner {
+    background-color:green;
+  }
+.tooltip.bottom .tooltip-arrow {
+          border-bottom-color: green;
+       } 
+.cart-bg {
+  background: asset-url("cart_bg/1.jpg") center center ; 
+  
+  overflow-x: hidden;
+  //overflow-y: hidden;
+  font-family: "Bender"
+}

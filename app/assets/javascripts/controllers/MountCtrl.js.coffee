@@ -1,5 +1,5 @@
-angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$window", ($scope, $http, $timeout, $window) ->
-  
+angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$window", "commentTools", ($scope, $http, $timeout, $window, commentTools) ->
+  $scope.group_by_six = commentTools.group_by_six
   $scope.clicked = (cls, ind) ->
     if cls is 'run'
       $scope.myVar1 = cls
@@ -22,7 +22,8 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
     
     if not asset
       return "foo-bar"
-
+  $scope.r = () ->
+    $scope.p.splice(3,1)
   success_callback = (data) ->
     if data.message and data.message is "OK"
       $scope.z = true
@@ -66,14 +67,7 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
   #$timeout(extra, 6000)
   #angular.element('#Container').mixItUp()
   
-  group_by_six = (posts) ->
-    sliceLen = 6
-    p = []
- 
-    for i in [0...posts.length] by sliceLen
-      slice = posts[i...i+sliceLen]
-      p.push(slice)
-    return p 
+  
  
   callback = (data)->
     console.log(data)
@@ -83,8 +77,8 @@ angular.module("post").controller "MountCtrl", ["$scope","$http",'$timeout', "$w
   $http.get("/main_posts").success((data) ->
     delay_posts =  ->
       
-      console.log("GROUP_BY_SIX", group_by_six(data.posts))
-      $scope.posts = group_by_six(data.posts)
+      console.log("GROUP_BY_SIX", $scope.group_by_six(data.posts))
+      $scope.posts = $scope.group_by_six(data.posts)
       $scope.tab_len = $scope.posts.length
       $scope.p = $scope.posts[0]
     $timeout(delay_posts, 1000)

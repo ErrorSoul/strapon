@@ -11,7 +11,9 @@ Rails.application.routes.draw do
  
   get '/admin' => 'admins#index'
   get "/auth/:provider/callback" => "user_sessions#create"
+  get '/cart' => "main_pages#cart"
   resources :posts
+  resources :carts, only: [:show, :destroy]
   resources :sessions, only: [:create, :destroy]
   resources :line_items, only: [:create, :destroy]
   

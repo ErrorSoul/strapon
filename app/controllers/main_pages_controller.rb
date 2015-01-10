@@ -5,7 +5,8 @@ class MainPagesController < ApplicationController
   
   def index
   end
-
+  def cart
+  end
   def posts
     @posts = Post.all
     render json: {posts: @posts}

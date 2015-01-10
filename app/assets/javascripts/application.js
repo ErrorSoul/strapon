@@ -26,6 +26,7 @@
 //= require ang_resourses/medium-editor
 //= require main_module
 //= require controllers/MountCtrl
+//= require controllers/CartCtrl
 //= require controllers/MainPostDetailCtrl
 
 //= require services/comment
