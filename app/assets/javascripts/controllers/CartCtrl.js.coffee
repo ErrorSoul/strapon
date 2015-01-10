@@ -8,12 +8,12 @@ angular.module("post").controller "CartCtrl", ["$scope","$http",'$timeout', 'com
     $scope.p = $scope.posts[0]
     $scope.tab = 0
     console.log("posts", $scope.posts)
-
+  error_callback =  (error) ->
+    console.log(error, "Error")
   $scope.group_by_six = commentTools.group_by_six
 
   $http.get("/carts/1").success(callback)
-    .error((error) ->
-      console.log(error, "Error"))
+    .error(error_callback)
 
   $scope.change = ->
     $scope.p = $scope.posts[$scope.tab]
@@ -26,5 +26,14 @@ angular.module("post").controller "CartCtrl", ["$scope","$http",'$timeout', 'com
   $scope.subTab = ->
     $scope.tab = (($scope.tab - 1) + $scope.tab_len) % $scope.tab_len
     $scope.change()
+
+  
+  $scope.delete_post = (post_id, ind) ->
+    destroy_callback = (data) ->
+      if data.message and data.message is "Line item deleted"
+        $scope.p.splice(ind, 1)
+        console.log("post deleted")
+    $http.delete("/line_items/#{post_id}").success(destroy_callback)
+      .error(error_callback)
 
 ]

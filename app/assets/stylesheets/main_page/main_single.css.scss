@@ -1102,3 +1102,26 @@ figure {
   //overflow-y: hidden;
   font-family: "Bender"
 }
+ 
+
+.view .destroy {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgb(168, 190, 124);
+  color: #fff;
+  background-color: #F5AEEF;
+  padding: 2% 5%;
+  transition: all 0.5s linear;
+   
+    text-decoration: none;
+   
+    
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000;
+}
+.view .destroy:hover {
+    box-shadow: 0 0 5px #000;
+    color: #fff;
+}
+  

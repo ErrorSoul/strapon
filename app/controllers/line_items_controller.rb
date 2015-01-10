@@ -12,6 +12,19 @@ class LineItemsController < ApplicationController
     end
   end
 
+
+  def destroy
+    
+    line_item = @cart.line_items.find_by(post_id: params[:id])
+    if line_item
+      line_item.destroy
+      render json: {message: "Line item deleted"}
+    else
+      render json: {message: "Something wrong"}
+    end
+  end
+
+
   private
     def line_item_params
       params.require(:line_item).permit(:post_id)
