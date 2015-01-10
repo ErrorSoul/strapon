@@ -42,6 +42,10 @@ angular.module("post").controller "CartCtrl", ["$scope","$http",'$timeout', 'com
   #
   #
 
+
+  $scope.power_flag = false
+  $scope.power_off = () ->
+    $scope.power_flag = !$scope.power_flag
   $scope.clean_cart = () ->
     success_callback = ->
       for c, ind in $scope.posts
@@ -59,6 +63,9 @@ angular.module("post").controller "CartCtrl", ["$scope","$http",'$timeout', 'com
       if data.message and data.message is "Line item deleted"
         $scope.p.splice(ind, 1)
         console.log("post deleted")
+        flat_posts = [].concat.apply([], $scope.posts)
+        if flat_posts.length is 0
+          $scope.empty_flag = true
     $http.delete("/line_items/#{post_id}").success(destroy_callback)
       .error(error_callback)
 

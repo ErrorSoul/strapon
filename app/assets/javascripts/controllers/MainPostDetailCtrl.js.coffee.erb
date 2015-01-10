@@ -167,7 +167,13 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     $scope.tool.toggle_service(ind,n)
       
     
-  
+  $scope.delete_post = () ->
+    destroy_callback = (data) ->
+      if data.message and data.message is "Line item deleted"
+        $scope.include_flag = true
+    $http.delete("/line_items/#{$scope.id}").success(destroy_callback)
+      .error((error) ->
+        console.log(error))
   $scope.checkNew = ->
     $http.get("/photos/#{$scope.date}").success((data) ->
       $scope.lena = $scope.tool.check_helper(data.comments)

@@ -10,7 +10,7 @@
        
           
         
-        %button.btn-sky.btn(ng-hide="empty_flag" ng-click="power_off()")
+        %button.btn-sky.btn(ng-hide="empty_flag" ng-if="full_flag" ng-click="power_off()")
           %i.fa.fa-power-off.fa-2x
         
         %a.btn.btn-sky(href=index_path )
@@ -25,7 +25,7 @@
       
     .col-md-12
       .row
-        .container-main
+        .container-main(ng-hide="power_flag" )
           .view.view-tenth.post.anima.square( ng-repeat="post in p" )
 
             %figure(ng-class="is_asset(post.asset.url)")

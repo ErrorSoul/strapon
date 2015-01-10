@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  include CurrentCart
+  before_action :set_cart, only: [:show]
   respond_to :json
   respond_to :html, only: [:show]
   before_action :signed_in_user, only: [:create,:index]
@@ -32,6 +34,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.includes(:user).find(params[:id])
+    @include_flag = @cart.has_post?(@post)
   end
   def new
   end
