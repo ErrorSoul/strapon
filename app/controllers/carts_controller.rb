@@ -10,4 +10,10 @@ class CartsController < ApplicationController
     
     
   end
+
+
+  def destroy
+    @cart.line_items.each(&:destroy)
+    render json: {message: "Your cart has been cleaned"}
+  end
 end

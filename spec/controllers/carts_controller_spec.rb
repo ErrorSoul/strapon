@@ -23,4 +23,30 @@ describe CartsController do
       expect(response.body).to eq expected_json
     end
   end
+
+  describe "destroy method" do 
+    it "should decr cart line items" do 
+      expect do 
+        delete :destroy, id: 1
+      end.to change(LineItem, :count).by(-2)
+    end
+
+
+    it "should clean current cart" do 
+      delete :destroy, id: 1
+      expect(cart.line_items).to eq []
+    end
+  
+  
+
+  it "should clean current cart" do 
+      delete :destroy, id: 1
+      expected_json = {message: "Your cart has been cleaned"}.to_json
+      expect(response.body).to eq expected_json
+    end
+  end
+  
+  
+  
+
 end

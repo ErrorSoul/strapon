@@ -1,15 +1,20 @@
 %body.cart-bg(ng-controller="CartCtrl")
   .container-fluid
     .col-xs-12
-      .button-group.pull-right.arrow-buttons
+
+      .button-group.pull-left.arrow-buttons-left
+        %button.btn(ng-click="clean_cart()" ng-if="full_flag" ng-hide="empty_flag")  
+          Очистить 
+          %i.fa.fa-book.fa-2x
+      .button-group.pull-right.arrow-buttons-right
        
           
-        %button.btn.btn-fresh(ng-click="r()" )
-          %i.fa.fa-paperclip.fa-2x
-        %button.btn-sky.btn(ng-click="power_off()")
+        
+        %button.btn-sky.btn(ng-hide="empty_flag" ng-click="power_off()")
           %i.fa.fa-power-off.fa-2x
-        %a.btn-sky.btn(href=index_path)
-          %i.fa.fa-book.fa-2x
+        
+        %a.btn.btn-sky(href=index_path )
+          %i.fa.fa-dashboard.fa-2x
      
         
 

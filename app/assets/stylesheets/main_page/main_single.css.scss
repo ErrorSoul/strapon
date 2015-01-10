@@ -1081,11 +1081,26 @@ figure {
   font-size:3em;
 }
 
-.arrow-buttons {
+.arrow-buttons-right {
   z-index: 3;
   position: absolute;
   top: 30px;
   right: 0;
+  }
+
+.arrow-buttons-left {
+  z-index: 3;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  button
+   {
+    background-color: $pinky;
+   
+    text-size: 15px;
+    text-transform: uppercase;
+     
+    }
   }
 
 
@@ -1110,7 +1125,7 @@ figure {
   right: 0;
   background: rgb(168, 190, 124);
   color: #fff;
-  background-color: #F5AEEF;
+  background-color: $pinky;
   padding: 2% 5%;
   transition: all 0.5s linear;
    
