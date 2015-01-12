@@ -77,7 +77,8 @@
             .col-xs-11.col-xs-offset-1
               .media
                 %a.pull-left{:href => "#"}
-                  %img{:alt => "...", :src => "http://placehold.it/128x128"}
+                  %img.author_photo{:alt => "...", :src => @post.user.asset}
+                  //%img{:alt => "...", :src => "http://placehold.it/128x128"}
                 .media-body
                   %h4.media-heading= @post.user.name
                   %p= @post.user.bio

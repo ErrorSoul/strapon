@@ -10,6 +10,7 @@ class Author < ActiveRecord::Base
   
   validates :bio, presence: true, length: {maximum: 140}
   validates :password, length: {minimum: 6}
+  mount_uploader :asset, AssetUploader
   
 
 

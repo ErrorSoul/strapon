@@ -17,7 +17,7 @@ angular.module("admin").service('sessionStorage', ["$http",'$cookieStore', class
   getUser:  ->
     @_user
 
-  setUser: (user) ->
+  setUser: (user) =>
     console.log(@$cookieStore.get('token'),  "COOOOKIE")
     if user
       @_user = {}
@@ -25,6 +25,8 @@ angular.module("admin").service('sessionStorage', ["$http",'$cookieStore', class
       @_user.name = user.name
       @_user.login = user.login
       @_user.bio = user.bio
+      @_user.asset = {}
+      @_user.asset.url = user.asset.url
     else 
       @_user = user
     @$cookieStore.put('token', @_user)

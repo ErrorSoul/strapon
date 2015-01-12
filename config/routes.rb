@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :line_items, only: [:create, :destroy]
   
-  resources :authors, only: :update 
+  resources :authors, only: [:update, :show, :create] 
   resources :photos, only: [:create, :show]
   resources :comments, only: [:create, :show]
 

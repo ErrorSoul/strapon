@@ -25,12 +25,14 @@
 //= require controllers/DashboardCtrl
 //= require controllers/PostDetailCtrl
 //= require controllers/PostNewCtrl
+//= require controllers/AuthorDetailCtrl
 
 
 
 //= require services/sessionStorage
 //= require services/post
 //= require services/fileUpload
+//= require services/AuthorUpload
 
 
 //= require TweenLite

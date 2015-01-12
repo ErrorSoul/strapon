@@ -17,6 +17,7 @@ describe Author do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:posts) }
+  it { should respond_to(:asset) }
   
   it { should be_valid }
   # name

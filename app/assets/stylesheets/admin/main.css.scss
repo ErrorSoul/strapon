@@ -400,3 +400,15 @@ color:  rgb(120, 155, 48);
   opacity:0;
   padding:0 10px;
 }
+
+
+.author-form {
+  input:hover,
+  textarea:hover{
+  border-color: white;
+    
+    }
+  .ng-valid  {
+    border-color: green;
+    }
+  }

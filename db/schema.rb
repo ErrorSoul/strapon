@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108185558) do
+ActiveRecord::Schema.define(version: 20150112014349) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150108185558) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
+    t.string   "asset"
   end
 
   add_index "authors", ["remember_token"], name: "index_authors_on_remember_token"
