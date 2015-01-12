@@ -3,6 +3,7 @@ require 'spec_helper'
 describe LineItem do
   let!(:post) {FactoryGirl.create(:post)}
   let!(:post1) {FactoryGirl.create(:post, author_id: 3)}
+  let!(:post2) {FactoryGirl.create(:post, author_id: 3)}
   let!(:cart) {FactoryGirl.create(:cart)}
   let!(:posts) {FactoryGirl.create(:author_with_posts)}
   before do 
@@ -56,8 +57,37 @@ describe LineItem do
     end
 
   end
+  describe "get_indexes" do 
+    before do 
+      @cart = Cart.create
+      @arr = (1..10).to_a
+      @one_arr = [1]
+    end
+    it "should return three nil" do
+      arr_nil = [nil, 0, nil]
+      expect(@cart.get_indexes(@arr, 11)).to eq arr_nil
+    end
+    it "should return ind, forward ind" do
+      new_arr = [0, 1, nil]
+      expect(@cart.get_indexes(@arr, 1)).to eq new_arr
+    end
+    it "should return ind, nil, back ind" do
+      new_arr = [9, nil, 8]
+      expect(@cart.get_indexes(@arr, 10)).to eq new_arr
+    end
+    it "should return ind, forward ind, back ind" do
+      new_arr = [1, 2, 0]
+      expect(@cart.get_indexes(@arr, 2)).to eq new_arr
+    end
 
-  describe "has_post?" do
+    it "should return ind, nil, nil when post in cart w one post" do
+      new_arr  = [0, nil, nil]
+      expect(@cart.get_indexes(@one_arr, 1)).to eq new_arr
+    end
+    
+  end
+
+  describe "has_post" do
     before do 
       @cart = Cart.create
       @cart.add_product(post.id)
@@ -65,12 +95,29 @@ describe LineItem do
       @cart.reload
     end
 
-    it "should return nil when post not in cart " do
-      expect(@cart.has_post?(post1)).to eq false
+    it "should return all nil when post not in cart " do
+      expect(@cart.has_post(post1)).to eq [nil, post.id, nil]
     end
 
-    it "should return true when post in cart" do 
-      expect(@cart.has_post?(post)).to eq true
+    it "should return  ind, forward ind and nil   when post in cart w one post" do 
+      expect(@cart.has_post(post)).to eq  [0, nil, nil]
+    end
+
+    it "should return ind, nil and back ind when post is last elem in cart" do
+      @cart.add_product(post1.id)
+      @cart.save
+      @cart.reload
+      expect(@cart.has_post(post1)).to eq [1, nil, post.id]
+    end
+
+
+    
+    it "should return ind, forward and back ind when post  in cart" do
+      @cart.add_product(post1.id)
+      @cart.add_product(post2.id)
+      @cart.save
+      @cart.reload
+      expect(@cart.has_post(post1)).to eq [1, post2.id, post.id]
     end
   end
       

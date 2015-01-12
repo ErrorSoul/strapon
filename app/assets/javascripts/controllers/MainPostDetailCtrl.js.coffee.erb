@@ -1,6 +1,6 @@
 angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http", "$location", "$document", "$window", "$timeout", "Comment", "commentUpload", 'commentTools',($scope,  $log, $http, $location,$document, $window, $timeout, Comment, commentUpload, commentTools) ->
  
-  $scope.id = $window.location.href.split("/").pop()
+  $scope.id = +$window.location.href.split("/").pop()
   ################################
   console.log($window.location.href, "location")
   $scope.b = 0
@@ -34,6 +34,37 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
     $scope.user.name = "Anonymous"
     console.log("$scope.user", $scope.user)
   $scope.user_init()
+  
+  $scope.flag_handler = (flag) ->
+    if flag or flag is 0
+      return true
+  $scope.take_posts = () ->
+    success_callback = (data) ->
+      $scope.cart_posts = data.posts
+      console.log('cart_posts', $scope.cart_posts)
+      console.log('cart_posts.len', $scope.cart_posts.length)
+      if $scope.cart_posts.length is 0
+        console.log("CHECK")
+        $scope.hidden_flag = true
+      else
+        $scope.index_obj = {}
+        [a, b, c] = $scope.has_post($scope.cart_posts,{id: $scope.id})
+        console.log($scope.id, "sID")
+        console.log("IiI", $scope.find_ind({id: $scope.id}, $scope.cart_posts))
+        console.log("fi", $scope.has_post($scope.cart_posts,{id: $scope.id}) )
+        console.log("fi2", [a, b, c] )
+        
+        [$scope.include_flag,
+         $scope.index_obj.f_ind,
+         $scope.index_obj.b_ind] = [$scope.flag_handler(a), b, c]
+        console.log("fi3", [$scope.include_flag,
+         $scope.index_obj.f_ind,
+         $scope.index_obj.b_ind] )
+        $scope.hidden_flag = false
+    $http.get('/carts/1').success(success_callback)
+      .error((error) ->
+        console.log("error", error))
+  $scope.take_posts()      
   $scope.take_comments = () ->
     Comment.show({id: $scope.id}, (data) ->
       #$scope.date = Date.now()
@@ -50,12 +81,56 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       $timeout($scope.checkNew, 10000)
       console.log('data', data.comments))
   $timeout($scope.take_comments, 0)
+  #####################
+  #######
+  #######
+
+  $scope.has_post = (array, element) ->
+    [flag, f_ind, b_ind] = $scope.get_indexes(array, element)
+    return [flag,
+            (if (f_ind or f_ind is 0) then array[f_ind].id else null),
+            (if (b_ind or b_ind is 0) then array[b_ind].id else null)
+           ]
+    
+  $scope.find_ind = (element, array) ->
+    for c, ind in array
+      if element.id is c.id
+        return ind
+    return -1
 
 
+  
+
+  $scope.get_indexes = (arr, elem) ->
+    #working in pair with fun, that
+    # check len arr
+    # arr len should be >= 1
+    len = arr.length
+    last = len - 1
+    n = $scope.find_ind(elem, arr)
+    switch n
+      # elem not in arr
+      # but arr not empty
+      # 0 is ind of first elem in array(cart)
+      when -1 then [null, 0, null]
+      when  0 then [0,
+                    (if arr[1] then 1 else null ),
+                    null]
+      when last then [last,
+                      null,
+                      (if arr[last - 1] then last - 1 else null)]
+      else [n, n + 1, n - 1]
+      
+        
+  #####################
+  #######
+  #######
   $scope.logout = ->
     callback = (data) ->
       if data.message is "Exit"
         console.log(data, "Data logout")
+        $scope.hidden_flag = true
+        $scope.include_flag = false
         $scope.user_init()
     $http.get('/user_sessions/destroy').success(callback)
           .error((error) -> console.log(error))
@@ -76,6 +151,7 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
         fara  = ->
           $scope.user = $scope.my_answer
         $timeout(fara, 0)
+        $scope.take_posts()
       return
     timer = setInterval(checkChild, 500)
 
@@ -170,7 +246,9 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
   $scope.delete_post = () ->
     destroy_callback = (data) ->
       if data.message and data.message is "Line item deleted"
-        $scope.include_flag = true
+        if $scope.include_flag and $scope.cart_posts.length is 1
+          $scope.hidden_flag = true
+        $scope.include_flag = false
     $http.delete("/line_items/#{$scope.id}").success(destroy_callback)
       .error((error) ->
         console.log(error))

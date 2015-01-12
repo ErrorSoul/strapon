@@ -33,8 +33,57 @@ describe "MainPostDetailCtrl", ->
       it "should return 2 when type is Comment and ind is 1", ->
         expect(@scope.converter(1, @comment)).toEqual(2)
 
-    
-    
+    describe "$scope.has_post", ->
+      beforeEach ->
+        @cart_posts = ({id: n } for n in [1..10] )
+        @one_arr = [{id: 1}]
+        @two_arr = [{id: 1}, {id: 2}]
+      it "should return null, id, null when post not in cart", ->
+        new_arr = [null, 1, null]
+        expect(@scope.has_post(@cart_posts, {id: 11})).toEqual(new_arr)
+
+
+      it "should return ind, null, back id when post is last elem", ->
+        new_arr = [1, null, 1]
+        expect(@scope.has_post(@two_arr, {id: 2})).toEqual(new_arr)
+
+      it "should return ind, id, null when post is first elem in arr with len > 1", ->
+        new_arr = [0, 2, null]
+        expect(@scope.has_post(@cart_posts, @post)).toEqual(new_arr)
+
+
+      it "should return ind, null, null when obj in [obj]", ->
+        new_arr = [0, null, null]
+        expect(@scope.has_post(@one_arr, @post)).toEqual(new_arr)
+
+      it "should return ind, f id, b id in [el1, obj, el2]", ->
+        new_arr = [1, 3, 1]
+        expect(@scope.has_post(@cart_posts, {id: 2})).toEqual(new_arr)
+        
+    describe "$scope.get_indexes", ->
+      beforeEach ->
+        @arr = ({id: num} for num in [1..10])
+        @one_arr = [{id: 1}]
+
+      it "should return nil, 0, nil when obj not in arr", ->
+        new_arr = [null, 0, null]
+        expect(@scope.get_indexes(@arr,{id: 11})).toEqual(new_arr)
+
+      it "should return 0, 1, null when obj is first elem of arr.l > 1 ", ->
+        new_arr = [0,1,null]
+        expect(@scope.get_indexes(@arr, {id: 1})).toEqual(new_arr)
+
+      it "should return 0, null, null when obj in [obj]", ->
+        new_arr = [0,null, null]
+        expect(@scope.get_indexes(@one_arr,{id: 1})).toEqual(new_arr)
+
+      it "should return last ind, null, last - 1 when obj is last elem", ->
+        new_arr = [9, null, 8]
+        expect(@scope.get_indexes(@arr, {id: 10})).toEqual(new_arr)
+      it "should return ind, forw ind, back ind when obj in [el1, obj, el2]", ->
+        new_arr = [1, 2, 0]
+        expect(@scope.get_indexes(@arr, {id: 2})).toEqual(new_arr)
+        
     describe "toggle without eval", ->
       describe "$scope.arr is empty arr", ->
         beforeEach ->

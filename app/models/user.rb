@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+ 
   has_one :cart
   has_many :comments
   def self.create_with_omniauth(auth)
@@ -14,7 +15,7 @@ class User < ActiveRecord::Base
 
   def add_line_items_from_cart(cart)
     unless cart.line_items.empty?
-      unless self.cart.line_items.empty?
+      
         
         posts_ids = self.cart.line_items.map(&:post_id)
         cart.line_items.each do |x|
@@ -24,9 +25,7 @@ class User < ActiveRecord::Base
           end
         
         end
-      else
-        self.cart = cart
-      end
+      
     end
     
   end

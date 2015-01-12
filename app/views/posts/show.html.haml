@@ -13,30 +13,30 @@
                   
                 %p.inline Главная
            
-           
+          %ul.nav.nav-stacked(ng-hide="hidden_flag")
             %li
               %a(href=cart_path)
-                
+
                 = image_tag("menu/forward.png",class: "img-responsive", size: "64x64" )
-                  
+
                 %p.inline Читаемое
 
-            
-            %li
-              %a(href=cart_path)
-              
+
+            %li(ng-show="flag_handler(index_obj.b_ind)")
+              %a(href="/posts/{{index_obj.b_ind}}")
+
                 = image_tag("menu/back.png",class: "img-responsive", size: "64x64" )
-                
+
                 %p.inline <
 
-            %li
-              %a{:href => "#{index_path}"}
-              
-                = image_tag("menu/bull.png",class: "img-responsive", size: "64x64" )
-                
-                %p.inline Дальше
-              
+            %li(ng-show="flag_handler(index_obj.f_ind)")
+              %a{:href => "/posts/{{index_obj.f_ind}}"}
 
+                = image_tag("menu/bull.png",class: "img-responsive", size: "64x64" )
+
+                %p.inline Дальше
+            
+          %ul.nav.nav-stacked 
             %li(ng-hide="user.anonym")
               %a(ng-click="logout()" href="#")
               
@@ -54,9 +54,9 @@
         #content.x(ng-class="isClass()")
           #tar.col-xs-12
             .err.btn-group-vertical(data-spy="affix" data-offset-top="0")
-              - if @include_flag
-                %button.btn.btn-sunny(ng-hide="include_flag" ng-click="delete_post()" data-toggle="tooltip" data-placement="bottom" title="Убрать из читаемого")
-                  %i.fa.fa-close.fa-2x
+              
+              %button.btn.btn-sunny(ng-show="include_flag" ng-click="delete_post()" data-toggle="tooltip" data-placement="bottom" title="Убрать из читаемого")
+                %i.fa.fa-close.fa-2x
               %button.btn.btn-fresh(ng-click="changeClass()" )
                 %i.fa.fa-paperclip.fa-2x
               %button#toggle.btn.btn-fresh(ng-click="tool.add_limit()" ng-show="check_bottom()")
@@ -91,7 +91,7 @@
               .bs-example
                 .panel.panel-default
                   .panel-body Комментарии
-                  %p= session.inspect
+                  
                   .panel-footer.clearfix
                     .pull-left
                       

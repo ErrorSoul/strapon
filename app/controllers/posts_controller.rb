@@ -34,7 +34,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.includes(:user).find(params[:id])
-    @include_flag = @cart.has_post?(@post)
+    
+    
   end
   def new
   end
