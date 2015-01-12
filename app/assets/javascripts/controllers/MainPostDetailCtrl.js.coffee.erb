@@ -253,7 +253,7 @@ angular.module("post").controller "MainPostDetailCtrl", ["$scope", '$log',"$http
       .error((error) ->
         console.log(error))
   $scope.checkNew = ->
-    $http.get("/photos/#{$scope.date}").success((data) ->
+    $http.get("/photos/#{$scope.date}/#{$scope.id}").success((data) ->
       $scope.lena = $scope.tool.check_helper(data.comments)
       $scope.dara =  if $scope.lena > 0 then true else false
       $timeout($scope.checkNew, 10000))
