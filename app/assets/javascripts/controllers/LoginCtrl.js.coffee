@@ -2,9 +2,9 @@ angular.module("admin")
   .controller('LoginCtrl', [ "$scope", "$location","sessionStorage", ($scope, $location, sessionStorage) ->
         #debug --------------------
      
-        $scope.user = {}
-        $scope.user.login = "oleg_mail"
-        $scope.user.password = "foobar"
+        #$scope.user = {}
+        #$scope.user.login = "oleg_mail"
+        #$scope.user.password = "foobar"
         # ------------------------
         
       

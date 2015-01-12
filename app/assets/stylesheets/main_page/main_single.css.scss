@@ -551,8 +551,8 @@ figure.effect-lily:hover p {
 }
 
 .backg {
-    background: asset-url("cart_bg/4.jpg") center center fixed;
-    //background: $carrot;
+    //background: asset-url("cart_bg/4.jpg") center center fixed;
+    background: $carrot;
     overflow-x: hidden;
     color: white;
     //font-size: 16px;

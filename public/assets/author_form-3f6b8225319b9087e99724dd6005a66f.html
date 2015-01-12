@@ -1,0 +1,106 @@
+<div class='col-md-8 col-md-offset-2'>
+  <form class='form-horizontal author-form' name='form' ng-submit='form.$valid &amp;&amp; update(author)' novalidate role='form'>
+    <div class='form-group'>
+      <div class='col-md-5'>
+        <img alt='140x140' class='img-thumbnail' src='{{author.asset.url}}'>
+      </div>
+      <div class='col-md-4'>
+        <label class='btn' for='asset' style='color: yellowgreen; background-color: white'>
+          <i class='fa fa-download fa-2x'></i>
+          ЗАГРУЗИТЬ
+        </label>
+        <input id='asset' name='asset' ng-model='author.asset' style='visibility: hidden' type='file'>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='col-sm-2 control-label' for='inputLogin'>Логин</label>
+      <div class='col-sm-10'>
+        <input class='form-control' id='inputLogin' name='login' ng-maxlength='12' ng-minlength='4' ng-model='author.login' placeholder='Для входа' required>
+        <div class='alert-success alert' ng-show='form.login.$dirty &amp;&amp; form.login.$error.minlength'>
+          <p class='bg-success'>
+            Слишком короткий
+          </p>
+        </div>
+        <div class='alert alert-success' ng-show='form.login.$dirty &amp;&amp; form.login.$error.maxlength'>
+          Слишком длинный
+        </div>
+        <div class='alert alert-success' ng-show='form.login.$dirty &amp;&amp; form.login.$error.required'>
+          Нужно ввести
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='col-sm-2 control-label' for='inputName'>Имя</label>
+      <div class='col-sm-10'>
+        <input class='form-control' id='inputName' name='name' ng-maxlength='24' ng-minlength='4' ng-model='author.name' placeholder='Будет на сайте' required type='login'>
+        <div class='alert-success alert' ng-show='form.name.$dirty &amp;&amp; form.name.$error.minlength'>
+          <p class='bg-success'>
+            Слишком короткое
+          </p>
+        </div>
+        <div class='alert alert-success' ng-show='form.name.$dirty &amp;&amp; form.name.$error.maxlength'>
+          Слишком длинное
+        </div>
+        <div class='alert alert-success' ng-show='form.name.$dirty &amp;&amp; form.name.$error.required'>
+          Нужно ввести
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='col-sm-2 control-label' for='inputBio'>Bio</label>
+      <div class='col-sm-10'>
+        <textarea class='form-control' id='inputBio' name='bio' ng-maxlength='140' ng-minlength='6' ng-model='author.bio' placeholder='Bio' required rows='3' type='text'></textarea>
+        <div class='alert-success alert' ng-show='form.bio.$dirty &amp;&amp; form.bio.$error.minlength'>
+          <p class='bg-success'>
+            Слишком короткое
+          </p>
+        </div>
+        <div class='alert alert-success' ng-show='form.bio.$dirty &amp;&amp; form.bio.$error.maxlength'>
+          Слишком длинное
+        </div>
+        <div class='alert alert-success' ng-show='form.bio.$dirty &amp;&amp; form.bio.$error.required'>
+          Нужно ввести
+        </div>
+      </div>
+    </div>
+    <!-- /password -->
+    <div class='form-group'>
+      <label class='col-sm-2 control-label' for='inputPassword'>Password</label>
+      <div class='col-sm-10'>
+        <input class='form-control' id='inputPassword' name='password' ng-minlength='6' ng-model='author.password' placeholder='Password' required type='password'>
+        <div class='alert-success alert' ng-show='form.password.$dirty &amp;&amp; form.password.$error.minlength'>
+          <p class='bg-success'>
+            Слишком короткий
+          </p>
+        </div>
+        <div class='alert alert-success' ng-show='form.password.$dirty &amp;&amp; form.password.$error.required'>
+          Нужно ввести
+        </div>
+      </div>
+    </div>
+    <!-- /password-confirmation -->
+    <div class='form-group'>
+      <label class='col-sm-2 control-label' for='inputPassword2'>Password2</label>
+      <div class='col-sm-10'>
+        <input class='form-control' id='inputPassword2' name='password_confirmation' ng-minlength='6' ng-model='author.password_confirmation' placeholder='Password' required type='password'>
+        <div class='alert-success alert' ng-show='form.password_confirmation.$dirty &amp;&amp; form.password_confirmation.$error.minlength'>
+          <p class='bg-success'>
+            Слишком короткий
+          </p>
+        </div>
+        <div class='alert alert-success' ng-show='form.password.$dirty &amp;&amp; form.password.$error.required'>
+          Нужно ввести
+        </div>
+        <div class='alert alert-danger' ng-show='(form.password.$dirty &amp;&amp; form.password_confirmation.$dirty) &amp;&amp; (author.password != author.password_confirmation) &amp;&amp; !form.password_confirmation.$error.minlength'>
+          Не совпадают
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <div class='col-sm-offset-2 col-sm-10'>
+        <button class='btn btn-sunny' ng-disabled='form.$invalid' type='submit'>Sign in</button>
+        <button class='btn btn-sunny' ng-click='show_file()' ng-disabled='form.$invalid'>Sign in</button>
+      </div>
+    </div>
+  </form>
+</div>
