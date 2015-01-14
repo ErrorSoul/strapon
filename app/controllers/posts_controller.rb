@@ -44,7 +44,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save 
       check_asset
-      render json: @message 
+      @message[:post_id] = @post.id
+      render json: @message
     else
       render json: {errors: @post.errors.full_messages }
     end

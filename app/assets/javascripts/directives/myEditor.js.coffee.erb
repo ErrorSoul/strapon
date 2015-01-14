@@ -1,4 +1,4 @@
-angular.module('admin').directive('myEditor',['fileUpload',"$timeout", ( fileUpload, $timeout) ->
+angular.module('admin').directive('myEditor',['$location','fileUpload',"$timeout", ($location, fileUpload, $timeout) ->
   restrict: 'E'
   templateUrl: "<%= asset_path('post_dir.html') %>"
   link:  (scope, element, attr) ->
@@ -25,10 +25,14 @@ angular.module('admin').directive('myEditor',['fileUpload',"$timeout", ( fileUpl
           scope.post.asset = scope.doc('asset').files[0]
           scope.uploadFileToUrl(scope.post, (data) ->
             console.log(data, 'DaTA')
-            scope.message = data.message or data.errors
-            if data.url
-              scope.post.asset.url = data.url
-              scope.asset_url = data.url
+            if scope.isNewPost
+              $location.path("/posts/#{data.post_id}")
+              
+            else 
+              scope.message = data.message or data.errors
+              if data.url
+                scope.post.asset.url = data.url
+                scope.asset_url = data.url
               
             )
           scope.input_check = true

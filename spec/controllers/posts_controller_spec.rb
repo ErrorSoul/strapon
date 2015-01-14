@@ -35,7 +35,7 @@ describe PostsController do
   describe 'create method' do
     it "should create new post" do
       post :create, post: {title: 'New title', text: "New text"}
-      expected_json = {message: "Your text saved"}.to_json
+      expected_json = {message: "Your text saved", post_id: 6}.to_json
       expect(response.body).to eq expected_json
     end 
 
@@ -43,7 +43,7 @@ describe PostsController do
       #pry.binding
       post :create, post: {title: "New title", text: "New text", asset: file}
       asset_url = Post.first.asset.url
-      expected_json = {message: "Your text saved", url: asset_url}.to_json
+      expected_json = {message: "Your text saved", url: asset_url,  post_id: 6}.to_json
       expect(response.body).to eq expected_json 
     end
   end

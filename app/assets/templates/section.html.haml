@@ -11,6 +11,10 @@
       %a{:href => "#/posts/new"}
         %i.fa.fa-pencil.fa-border.fa-2x
 
+    %li.list-group-item(ng-if="!isNewPost && post.id")
+      %a{:href => "/posts/{{post.id}}"}
+        %i.fa.fa-bolt.fa-border.fa-2x
+
     
         
 
