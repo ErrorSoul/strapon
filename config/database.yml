@@ -30,9 +30,9 @@ test:
 
 production:
   
-  database: strapon
-  username: admin
-  password: secret
+  database: strapon.com
+  username: strapon.com
+  
   adapter: postgresql
   encoding: unicode
 

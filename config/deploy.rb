@@ -2,7 +2,7 @@
 lock '3.3.5'
 
 set :application, 'strapon'
-set :repo_url, 'git://github.com:ErrorSoul/strapon.git'
+set :repo_url, 'git@github.com:ErrorSoul/strapon.git'
 set :deploy_to, "/var/www/#{fetch(:application)}"
 set :deploy_user, "strapon.com"
 set :rvm_type, :auto
