@@ -22,11 +22,31 @@
       .text  
         %p#text.editable{ "ng-bind-html"=>"post.text", "placeholder"=> 'Набирай текст'}
           {{post.text}}
+      %textarea.form-control.margin-bottom(ng-model="post.description" required rows="3" placeholder="Краткое описание для поисковиков. Типа, 'этот пост о хлебе. из него вы узнаете что такое хлеб и как его есть'. И в таком духе. Парочка предложений " name="description" ng-minlength='6' ng-maxlength='140')
+      .alert-success.alert( ng-show="form.description.$dirty && form.description.$error.minlength")
+        %p.bg-success 
+          Слишком коротко
+      .alert-success.alert( ng-show="form.description.$dirty && form.description.$error.maxlength")
+        %p.bg-success 
+          Слишком много
+        
+      .alert.alert-success( ng-show="form.description.$dirty && form.description.$error.required")
+        Нужно ввести
+      %textarea.form-control.margin-bottom(ng-model="post.keywords" required rows="3" placeholder="Ключевые слова для поисковиков. Через запятую. Например, 'sex, drugs, rock-n-roll'. Не больше 7-10" name="keywords" ng-minlength='6' ng-maxlength='140')
+      .alert-success.alert( ng-show="form.keywords.$dirty && form.keywords.$error.minlength")
+        %p.bg-success 
+          Слишком коротко
+      .alert-success.alert( ng-show="form.keywords.$dirty && form.keywords.$error.maxlength")
+        %p.bg-success 
+          Слишком много
+        
+      .alert.alert-success( ng-show="form.keywords.$dirty && form.keywords.$error.required")
+        Нужно ввести
 
 
 
 
-      %button.btn.btn-sunny{:type => "submit", "ng-disabled"=>"input_check" }
+      %button.btn.btn-sunny{:type => "submit", "ng-disabled"=>"input_check || form.$invalid" }
         %i.fa.fa-floppy-o.fa-2x
         //%span.glyphicon.glyphicon-floppy-saved
         SAVE 

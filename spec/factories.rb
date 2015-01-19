@@ -70,7 +70,9 @@ FactoryGirl.define do
   factory :post do |e|
      title
      text
-     author 
+     author
+     description "My description"
+     keywords "one two three"
   end
 
   factory :post_with_asset, parent: :post do |x|

@@ -401,14 +401,24 @@ color:  rgb(120, 155, 48);
   padding:0 10px;
 }
 
-
+#form,
 .author-form {
   input:hover,
-  textarea:hover{
+  textarea:hover,
+  input:focus,
+  textarea:focus{
   border-color: white;
     
     }
   .ng-valid  {
-    border-color: green;
+    border-color: $yellowgreen;
     }
   }
+
+
+.margin-bottom {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  }
+
+

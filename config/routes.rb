@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'user_sessions/destroy'
 
+
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
   root 'main_pages#intro'
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   resources :authors, only: [:update, :show, :create] 
   resources :photos, only: [:create, :show]
   resources :comments, only: [:create, :show]
+  get "robots.txt" => "main_page#robots", defaults: {format: 'txt'}, as: :robots
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

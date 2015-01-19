@@ -7,6 +7,8 @@ angular.module('admin').service('fileUpload',  ['$http','$routeParams','Post', c
     @fd.append('post[title]', post.title)
     @fd.append('post[text]', post.text)
     @fd.append('post[asset]', post.asset)
+    @fd.append('post[description]', post.description)
+    @fd.append('post[keywords]', post.keywords)
     return @fd
     
   uploadFileToUrl: (post, callback) =>

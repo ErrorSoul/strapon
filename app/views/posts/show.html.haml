@@ -1,3 +1,5 @@
+- meta title: "#{strip_tags(@post.title)}", description: "#{@post.description ? @post.description : 'Это еще одна статья о нас'}", keywords: "#{@post.keywords}"
+
 %body.backg(ng-controller="MainPostDetailCtrl")
   .container-fluid
     

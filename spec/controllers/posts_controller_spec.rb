@@ -34,14 +34,15 @@ describe PostsController do
 
   describe 'create method' do
     it "should create new post" do
-      post :create, post: {title: 'New title', text: "New text"}
+      post :create, post: {title: 'New title', text: "New text",
+                           description: "My new post", keywords: "one, two, three"}
       expected_json = {message: "Your text saved", post_id: 6}.to_json
       expect(response.body).to eq expected_json
     end 
 
     it 'should create new post with image' do
       #pry.binding
-      post :create, post: {title: "New title", text: "New text", asset: file}
+      post :create, post: {title: "New title", text: "New text", description: "My new post", keywords: "one, two, three",asset: file}
       asset_url = Post.first.asset.url
       expected_json = {message: "Your text saved", url: asset_url,  post_id: 6}.to_json
       expect(response.body).to eq expected_json 

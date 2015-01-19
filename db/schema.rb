@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112014349) do
+ActiveRecord::Schema.define(version: 20150119124540) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -75,8 +75,10 @@ ActiveRecord::Schema.define(version: 20150112014349) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "asset"
-    t.integer  "child",      default: 0
+    t.integer  "child",       default: 0
     t.string   "path"
+    t.text     "description"
+    t.text     "keywords"
   end
 
   add_index "posts", ["author_id", "created_at"], name: "index_posts_on_author_id_and_created_at"

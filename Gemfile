@@ -41,7 +41,8 @@ gem 'jquery-ui-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 gem 'faker'
-
+gem 'metamagic'
+gem "dynamic_sitemaps"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

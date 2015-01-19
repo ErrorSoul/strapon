@@ -23,6 +23,7 @@ angular.module('admin').directive('myEditor',['$location','fileUpload',"$timeout
           scope.post.title = scope.doc('title').innerHTML 
           scope.post.text = scope.doc('text').innerHTML
           scope.post.asset = scope.doc('asset').files[0]
+          console.log(scope.post, 'Post for scope')
           scope.uploadFileToUrl(scope.post, (data) ->
             console.log(data, 'DaTA')
             if scope.isNewPost

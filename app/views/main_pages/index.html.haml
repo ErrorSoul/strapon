@@ -1,3 +1,6 @@
+
+- meta title: "Игра начинается", description: "Здесь есть все, чтобы достичь ничего", keywords: %w(наркотики игры секс желания постмодерн)
+
 %body.bg
   .container-fluid(ng-controller="MountCtrl")
     = image_tag("bg/cloud1.png", class: "cloud img-responsive col-xs-1 x1")
@@ -43,7 +46,7 @@
                   %h2.base-class
                     STRA
                     %span PON
-                  %p {{post.title}}
+                  %p(ng-bind-html="post.title")
                   %p
 
                   %a.info(ng-click="clicked('run')" href="/posts/{{post.id}}")

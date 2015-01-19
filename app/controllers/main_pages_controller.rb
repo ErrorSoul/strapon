@@ -7,6 +7,10 @@ class MainPagesController < ApplicationController
   end
   def cart
   end
+
+  def robots
+  end
+
   def posts
     @posts = Post.all
     render json: {posts: @posts}
