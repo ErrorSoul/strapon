@@ -1,8 +1,0 @@
-angular.module('admin')
-  .directive('authorForm',['$location', 'sessionStorage', ($location,sessionStorage) ->
-     
-      restrict: 'E'
-      templateUrl: "<%= asset_path('author_form.html') %>"
-      link:  (scope, element, attr) ->
-        scope.z = "z"
-])
