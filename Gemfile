@@ -14,7 +14,7 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'puma'
 
 gem 'haml'
-
+gem 'unicorn', '~> 4.8.0'
 gem 'omniauth-twitter'
 gem 'carrierwave', '0.8.0'
 # Use SCSS for stylesheets
@@ -62,7 +62,10 @@ end
 
 
 group :development do
-  
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
 
   gem 'spork-rails', '4.0.0'
   gem 'guard-spork', '1.5.0'
