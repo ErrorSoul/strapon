@@ -2,16 +2,16 @@
 lock '3.3.5'
 
 set :application, 'strapon'
-set :repo_url, 'git@github.com:ErrorSoul/strapon.git'
+set :repo_url, 'git://github.com:ErrorSoul/strapon.git'
 set :deploy_to, "/var/www/#{fetch(:application)}"
 set :deploy_user, "strapon.com"
-set :rvm_type, :user
-set :rvm_ruby_version, '2.0.0-p451'
+set :rvm_type, :auto
+set :rvm_ruby_version, 'default'
 set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
 set :keep_releases, 5
-set 
+
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
