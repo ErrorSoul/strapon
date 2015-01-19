@@ -1,0 +1,14 @@
+
+.pop-window#pop-id.pop-animate.ng-hide(ng-hide="flag" ng-cloak)
+  %form.col-md-3.center-block{"ng-submit" => "pop_form.$valid", :novalidate => true, :name => "pop_form", 'enctype'=>'multipart/form-data', "method" => "PATCH", "ng-cloak" => true}
+    %label#pop-label.btn(for='photo' style="color: yellowgreen; background-color: white")
+        
+      %i.fa.fa-download.fa-2x
+      ЗАГРУЗИТЬ
+       
+
+    %input#photo{  'ng-model' => 'photo.asset','name' => 'photo.asset','type' => 'file', 'style' => "opacity: 0" }
+   
+    %button.btn.btn-sunny.center-block( type='button' ng-click='x()')
+      Добавить
+

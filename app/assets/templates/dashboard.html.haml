@@ -1,0 +1,74 @@
+
+
+
+%nav-bar
+.row
+  %section#wrapper(ng-class="{'toggled':sTab === true}")
+    %section-bar
+    #page-content-wrapper
+      .container-fluid
+        #property-listings
+          .row
+            .col-md-12
+              %h2.all-posts.center-block(style="text-align:center") All Posts
+              %hr
+          .row
+            .posts
+
+              
+              .post-listing{"ng-repeat" => "post in posts"} 
+        
+             
+              
+                .col-sm-12
+        
+                  .brdr.bgc-fff.pad-10.box-shad.btm-mrg-20.property-listing.thumbnail
+                    .media
+                      %a.pull-left(href='#/posts/{{post.id}}')
+                        //%img.img-responsive{:alt => "image", :src => "http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"}/
+                        %img.img-responsive(alt="{{post.title}}" src="{{post.asset.url}}")
+                      .clearfix.visible-sm
+                      .media-body.fnt-smaller
+                        %a(href='#/posts/{{post.id}}')
+                        %h4.media-heading
+                          %a(href='#/posts/{{post.id}}')
+                            %p(ng-bind-html ="post.title|limitTo:400")
+                          %small.pull-right(ng-really-message="Вы уверены,что хотите удалить пост {{$index}}?" ng-really-click="delete($index)") 
+                            %i.fa.fa-close.fa-3x
+                        %p.list-inline.mrg-0.btm-mrg-10.clr-535353
+                          {{post.created_at|date:'medium'}}
+                          
+                        %p.hidden-xs{"ng-bind-html" => "post.text|limitTo:400"}
+                          
+                        %span.fnt-smaller.fnt-lighter.fnt-arial
+                          Strapon
+        
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>$("#menu-toggle").click(function(e) {e.preventDefault();$("#wrapper").toggleClass("toggled");});
+</script>

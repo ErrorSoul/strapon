@@ -1,0 +1,424 @@
+// Place all the styles related to the Admins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@import "variables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import 'medium-editor';
+@import 'default';
+
+.form-signin input[type="text"] {
+        margin-bottom: 5px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .form-signin .form-control {
+        position: relative;
+        font-size: 16px;
+        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+        height: auto;
+        padding: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .vertical-offset-100 {
+        padding-top: 100px;
+    }
+    .img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    }
+    
+    .panel {
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+.cloud {
+    -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+  height: 915px;
+ 
+  margin-left: -69px;
+  margin-right: -69px;
+  width: auto;
+  /* Set up proportionate scaling */
+ 
+  
+  background-color: #444;
+        background: url(http://s18.postimg.org/l7yq0ir3t/pick8_1.jpg);
+  }
+
+@mixin border-color-top($radius) {
+  border-top: $radius solid white;
+  border-left: $radius solid white;
+  }
+/* miscellaneous */
+
+.form-control {
+  border: 0px solid;
+  @include border-color-top(5px);
+}
+
+
+
+button:focus,
+button:active,
+button:hover,
+.editable
+{
+ outline:0px !important;
+ -webkit-appearance:none;
+
+}
+
+.btn-sunny {
+color: #fff;
+background-color: #f4ad49;
+border-bottom:2px solid #c38a3a;
+font-family: "Oswald";
+
+}
+
+.btn-sunny:hover, .btn-sky.active:focus, .btn-sunny:focus {
+color: #fff;
+background-color: #f5b75f;
+border-bottom:2px solid #c4924c;
+outline: none;
+
+}
+
+
+.btn-sunny:active, .btn-sunny.active {
+color: #fff;
+background-color: #d69840;
+border-top:2px solid #ab7a33;
+margin-top: 2px;
+
+}
+
+.btn{
+    margin: 4px;
+    box-shadow: 1px 1px 5px #888888;
+}
+
+.btn-xs{
+    font-weight: 300;
+}
+   
+.btn-hot {
+color: #fff;
+background-color: #db5566;
+border-bottom:2px solid #af4451;
+}
+
+.has-success {
+    border-color: rgb(106, 205, 106);
+}
+.btn:disabled {
+  color: red;
+  box-shadow: 0 0 15px #ffffff;
+  .fa {
+    color: red;
+    }
+  }
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 100px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 100px;
+    width: 0;
+    height: 100%;
+    margin-left: -100px;
+    overflow-y: auto;
+    background: #fff;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 100px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -100px;
+}
+
+
+@media(min-width:400px){
+  section: {
+  padding-top: 70px;
+  }
+  }
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 100px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 100px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+section {
+  padding-top: 100px;
+}
+
+.fa{
+  color: $yellowgreen;
+}
+
+.fa:hover{
+  //color: darken($yellowgreen, 20%);
+    color: gold;
+}
+a {
+    color: #03a1d1;
+    text-decoration: none!important;
+}
+
+/**** LAYOUT ****/
+.list-inline>li {
+    padding: 0 10px 0 0;
+}
+.container-pad {
+    padding: 30px 15px;
+}
+
+
+/**** MODULE ****/
+.bgc-fff {
+    background-color: #fff!important;
+}
+.box-shad {
+    -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+    box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+.brdr {
+    border: 1px solid #ededed;
+}
+
+/* Font changes */
+.fnt-smaller {
+    font-size: .9em;
+}
+.fnt-lighter {
+    color: #bbb;
+}
+
+/* Padding - Margins */
+.pad-10 {
+    padding: 10px!important;
+}
+.mrg-0 {
+    margin: 0!important;
+}
+.btm-mrg-10 {
+    margin-bottom: 10px!important;
+}
+.btm-mrg-20 {
+    margin-bottom: 20px!important;
+}
+
+/* Color  */
+.clr-535353 {
+    color: #535353;
+}
+
+
+
+
+/**** MEDIA QUERIES ****/
+@media only screen and (max-width: 991px) {
+    #property-listings .property-listing {
+        padding: 5px!important;
+    }
+    #property-listings .property-listing a {
+        margin: 0;
+    }
+    #property-listings .property-listing .media-body {
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #property-listings .property-listing img {
+        max-width: 280px;
+    }
+}
+
+
+/* post animate */
+
+.post-listing.ng-enter,
+.post-listing.ng-leave,
+.post-listing.ng-move {
+  -webkit-transition:    0.8s linear all;
+  -moz-transition: 0.8s linear all;
+  -o-transition: 0.8s linear all;
+  transition: 0.8s linear all;
+}
+
+.post-listing.ng-enter,
+.post-listing.ng-move {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.post-listing.ng-move.ng-move-active,
+.post-listing.ng-enter.ng-enter-active {
+  opacity: 1;
+  height: 230px;
+}
+
+.post-listing.ng-leave {
+  opacity: 1;
+  height: auto;
+  padding-top: auto;
+  padding-bottom: auto;
+ 
+}
+
+.post-listing.ng-leave.ng-leave-active {
+  opacity: 0;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.pop-animate {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  line-height:20px;
+  opacity:1;
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.post-listing.ng-hide {
+  line-height:0;
+  opacity:0;
+  padding:0 10px;
+}
+
+.close-button{
+  
+  
+  zoom: 1;
+  }
+
+.media  a {
+color:  rgb(120, 155, 48);
+&:hover{
+  color: red;
+  }
+}
+
+.all-posts {
+  margin-top: -10px;
+  }
+
+
+.pop-window{
+ position: absolute;
+ 
+ z-index: 2;
+ height: 150px;
+ width: 300px;
+ background-color: #eaeaea;
+  }
+/* pop-animate */
+
+.pop-animate {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  line-height:20px;
+  opacity:1;
+  padding:10px;
+  border: 1px solid #dddddd;
+  background:white;
+}
+
+.pop-animate.ng-hide {
+  line-height:0;
+  opacity:0;
+  padding:0 10px;
+}
+
+#form,
+.author-form {
+  input:hover,
+  textarea:hover,
+  input:focus,
+  textarea:focus{
+  border-color: white;
+    
+    }
+  .ng-valid  {
+    border-color: $yellowgreen;
+    }
+  }
+
+
+.margin-bottom {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  }
+
+
