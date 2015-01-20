@@ -32,10 +32,9 @@
               %img(ng-if="post.asset.url" src="{{post.asset.url }}")       
 
               %figcaption.mask
-                %h2.base-class
-                  STRA
-                  %span PON
-                %p {{post.title}}
+                %h4.base-class(ng-bind-html="post.title")
+                  
+                %p(ng-bind-html="post.title")
                 %p
 
                 %a.info(ng-click="clicked('run')" href="/posts/{{post.id}}")
