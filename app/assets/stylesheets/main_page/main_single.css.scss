@@ -929,7 +929,7 @@ margin-top: 2px;
     transition: all 0.5s linear;
     opacity: 0;
 }   
-.view-tenth h2{
+.view-tenth h4{
     border-bottom: 2px solid rgba(0, 0, 0, 0.3);
     background: transparent;
     margin: 20px 40px 0px 40px;
@@ -937,6 +937,7 @@ margin-top: 2px;
     color: #333;
     transition: all 0.5s linear;
     opacity: 0;
+    font-family: "Bender-Bold";
 }
 .view-tenth p {
     color: #333;
@@ -964,7 +965,7 @@ margin-top: 2px;
     }
     
 }          
-.view-tenth:hover h2,
+.view-tenth:hover h4,
 .view-tenth:hover p,
 .view-tenth:hover a.info{ 
     transform: scale(1);
@@ -1054,6 +1055,19 @@ figure {
   }
 }
 
+@media (max-height: 700px){
+  .post{
+    height: 45%;
+    //height: 85%;
+  }
+  .container-main {
+    margin-top: 15%;
+    }
+  .view img {
+    min-height: 25em;
+    }
+}
+
 
 .base-class {
   -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
@@ -1071,8 +1085,15 @@ figure {
 .base-class {
   -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
   transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  p {
+    font-family: "Bender-Bold"
+    }
 }
-
+.base-class h4{
+ 
+    font-family: "Bender-Bold"
+    
+  }
 .base-class.my-class {
   color: orange;
   font-size:3em;
@@ -1146,3 +1167,6 @@ figure {
   height: 144px;
   width: 144px;
   }
+
+
+
