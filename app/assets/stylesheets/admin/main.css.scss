@@ -1,5 +1,5 @@
 // Place all the styles related to the Admins controller here.
-// They will automatically be included in application.css.
+// They will automatially be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
@@ -400,7 +400,23 @@ color:  rgb(120, 155, 48);
   opacity:0;
   padding:0 10px;
 }
+#form {
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga" on;
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: justify;
+  
+  }
 
+#text {
+  padding-left: 0;
+  }
 #form,
 .author-form {
   input:hover,
@@ -422,3 +438,6 @@ color:  rgb(120, 155, 48);
   }
 
 
+.image-800{
+  width: 800px;
+  }

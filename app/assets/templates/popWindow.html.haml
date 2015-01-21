@@ -1,7 +1,7 @@
 
 .pop-window#pop-id.pop-animate.ng-hide(ng-hide="flag" ng-cloak)
   %form.col-md-3.center-block{"ng-submit" => "pop_form.$valid", :novalidate => true, :name => "pop_form", 'enctype'=>'multipart/form-data', "method" => "PATCH", "ng-cloak" => true}
-    %label#pop-label.btn(for='photo' style="color: yellowgreen; background-color: white")
+    %label#pop-label(for='photo' style="color: yellowgreen; background-color: white")
         
       %i.fa.fa-download.fa-2x
       ЗАГРУЗИТЬ
