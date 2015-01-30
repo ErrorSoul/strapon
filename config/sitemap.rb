@@ -3,6 +3,10 @@
 # for examples of multiple hosts and folders.
 host "www.strapon-mag.com"
 
+sitemap :site do
+  url root_url, last_mod: Time.now, change_freq: "daily", priority: 1.0
+end
+
 [Post].each do |c| 
   sitemap_for c do |product|
     url product, last_mod: product.updated_at
