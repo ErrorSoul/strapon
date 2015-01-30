@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   resources :photos, only: [:create, :show]
   resources :comments, only: [:create, :show]
   get "robots.txt" => "main_page#robots", defaults: {format: 'txt'}, as: :robots
-
+  get "sitemap.xml" => "main_page#sitemap",  defaults: {format: :xml}, as: :sitemap
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
