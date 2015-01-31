@@ -54,8 +54,8 @@ group :test do
   gem 'libnotify', '0.8.0'
   gem "capybara", '~> 2.0.3'
   gem "pry"
-  
-  gem 'selenium-webdriver', '2.35.1'
+  gem 'poltergeist'
+  gem 'selenium-webdriver', "~> 2.38.0"
   
   
 end

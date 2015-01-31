@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Change this to your host. See the readme at https://github.com/lassebunk/dynamic_sitemaps
 # for examples of multiple hosts and folders.
-host "www.strapon-mag.com"
+host "www.strapon-mag.ru"
 
 sitemap :site do
   url root_url, last_mod: Time.now, change_freq: "daily", priority: 1.0
