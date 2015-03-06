@@ -3,7 +3,6 @@ angular.module('admin').service('fileUpload',  ['$http','$routeParams','Post', c
   constructor: (@$http, @$routeParams, @Post) ->
     @fd = new FormData()
   createFormData: (post) ->
-    
     @fd.append('post[title]', post.title)
     @fd.append('post[text]', post.text)
     @fd.append('post[asset]', post.asset)
