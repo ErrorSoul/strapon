@@ -43,6 +43,6 @@
     "commit": "2635f9ea132107ccc79f24a3f5dbaefc4e069368"
   },
   "_source": "git://github.com/daviferreira/medium-editor.git",
-  "_target": "*",
+  "_target": "~3.0.7",
   "_originalSource": "medium-editor"
 }

@@ -9,11 +9,12 @@
 //= require ang_resourses/angular-route
 //= require ang_resourses/angular-sanitize
 //= require ang_resourses/angular-resource
-//= require ang_resourses/medium-editor
+
 //= require ang_resourses/angular-cookies
 //= require ang_resourses/angular-mocks
 //= require ang_resourses/angular-animate
 
+//= require medium-editor/dist/js/medium-editor
 
 
 //= require modules

@@ -11,5 +11,6 @@
  * file per style scope.
  *
  *= require_tree ./main_page
+ *= require  medium-editor/dist/css/medium-editor
  *= require_self
  */
