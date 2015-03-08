@@ -1,4 +1,11 @@
 angular.module('admin').directive('sectionBar', ['$location', ($location) ->
      
       restrict: 'E'
-      templateUrl: "<%= asset_path('section.html') %>"  ])
+      templateUrl: "<%= asset_path('section.html') %>" 
+      link:  (scope, element, attr) ->
+        scope.reload_and_new = ->
+          window.location.reload()
+          $location.path('/posts/new')
+
+
+      ])

@@ -129,15 +129,46 @@ angular.module('admin').directive('myEditor',['$location', '$sce','fileUpload',"
           @form.style.display = 'none'
           return
 
+
+
+        Table::sorting_media = (str) ->
+          mask = 'async src="//platform.twitter.com/widgets.js"'
+          if str.indexOf("www.youtube.com") > -1
+            @css_attr = true
+          else if str.indexOf('soundcloud') > -1
+            @css_attr = true
+          else if str.indexOf('script') > -1
+            console.log('script check')
+            @css_attr = false
+            console.log('string substr' ,str.substr(mask, " ") )
+            str = str.replace(mask, "<div></div> ")
+          return str
         Table::onSave = (e) ->
+          
           e.preventDefault()
           columnCount = @columnInput.value
+          console.log(typeof(columnCount), "TTTT")
+          console.log(columnCount, "TAAAAAAAAAAaTTT")
+          
           console.log(columnCount, "asdfs")
+          
+          columnCount = @sorting_media columnCount
+          console.log(columnCount, "sorting media")
           @base.restoreSelection()
+          if @css_attr
+            columnCount = "#{columnCount}"
+          else
+            columnCount = "#{columnCount}"
+            
+          
+          #columnCount = "<div class='a'>#{columnCount}</div>"
           #columnCount = $sce.trustAsResourceUrl(columnCount)
-          columnCount = "<div>" + columnCount + "</div>"
+          #columnCount = '<div>' +  columnCount + "</div>"
           console.log("COLUMNNNNNN", columnCount)
+          
           document.execCommand "insertHTML", false,  columnCount
+          
+          
           
           return   
         
@@ -157,9 +188,16 @@ angular.module('admin').directive('myEditor',['$location', '$sce','fileUpload',"
 
         
         
-        
-        
+
+        bar = ->
+          angular.element('.a').addClass("col-md-2")
           
+          console.log(angular.element('.a'), "EEEEE")
+        scope.xar = ->
+          $timeout(bar,0)
+
+          
+        
         scope.editor = new MediumEditor('.editable',
           buttons: ['bold', 'italic', 'underline', 'anchor', 'header1', 'header2', 'quote','extension', 'table'],
           extensions:
@@ -169,7 +207,9 @@ angular.module('admin').directive('myEditor',['$location', '$sce','fileUpload',"
               defaultRows: 2
               })
   
-            extension: new Extension()) 
+
+        
+        #angular.element('.a').on('click', scope.xar)
         angular.element('.editable').on('input', foo)
         angular.element('#asset').bind('change', foo)
      ])
