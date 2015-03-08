@@ -19,7 +19,7 @@
 
       .image
         %img.img-thumbnail.image-800(ng-src="{{post.asset.url}}" ng-show="asset_url")
-      #text.text.col-xs-10.editable{ "ng-bind-html"=>"post.text", "placeholder"=> 'Набирай текст'}
+      #text.text.col-xs-10.editable{ "ng-bind-html"=>"t()", "placeholder"=> 'Набирай текст'}
         {{post.text}}  
       
       %textarea.form-control.margin-bottom(ng-model="post.description" required rows="3" placeholder="Краткое описание для поисковиков. Типа, 'этот пост о хлебе. из него вы узнаете что такое хлеб и как его есть'. И в таком духе. Парочка предложений " name="description" ng-minlength='6' ng-maxlength='140')

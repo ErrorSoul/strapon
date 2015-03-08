@@ -1,4 +1,4 @@
-angular.module('admin').directive('myEditor',['$location','fileUpload',"$timeout", ($location, fileUpload, $timeout) ->
+angular.module('admin').directive('myEditor',['$location', '$sce','fileUpload',"$timeout", ($location, $sce, fileUpload, $timeout) ->
   restrict: 'E'
   templateUrl: "<%= asset_path('post_dir.html') %>"
   link:  (scope, element, attr) ->
@@ -43,7 +43,134 @@ angular.module('admin').directive('myEditor',['$location','fileUpload',"$timeout
           
         
           
+        Table = (options) ->
+          @options = options
+          console.log('options', @options)
+          @parent = true
+          @hasForm = true
+          @createButton()
+          @createForm()
+          console.log("FORM", @form)
+          return
+
+        
+
+        Table::createButton =  ->
+          @button = document.createElement('button')
+          @button.className = 'medium-editor-action'
+          @button.contentDefault = '<i> P </i>'
+          @button.innerHTML = '<i class="fa fa-youtube fa-2x"></i>'        
+          @button.onclick = @onClick.bind(this)
+          return
+
+        Table::createForm = ->
+          @form = document.createElement('div')
+          @close = document.createElement('a')
+          @save = document.createElement('a')
+          @columnInput = document.createElement('input')
+          @form.className = 'medium-editor-toolbar-form-anchor'
+          @form.id = '12';
+          @close.setAttribute 'href', '#'
+          @close.innerHTML = '&times;'
+          @close.onclick = @onClose.bind(this)
+          @save.setAttribute 'href', '#'
+          @save.innerHTML = '&#10003;'
+          @save.onclick = @onSave.bind(this)
+          
+          # Add the input CSS class for correct styling
+          @columnInput.className = 'medium-editor-toolbar-input'
+          @columnInput.id = 'youtube'
+          @columnInput.setAttribute 'placeholder', 'Column Count'
+          
+          # Add the input CSS class for correct styling
+          
+          @form.appendChild @columnInput
+          
+          @form.appendChild @save
+          @form.appendChild @close
+          
+          return 
+          
+
+        Table::getButton = ->
+          @button
+
+        Table::getForm = ->
+          if not @form
+            @form = @createForm()
+          else
+            @form
+
+ 
+
+        Table::onClick = ->
+          #console.log(angular.element('#medium-editor-toolbar-1'), "AFF")
+          angular.element('#medium-editor-toolbar-1').append(@form)
+          input = @getForm()
+          
+          
+          @base.saveSelection()
+          console.log(@form, "FFFF")
+          @form.style.display = 'block'
+          @base.toolbarActions.style.display = 'none'
+          
+          @base.setToolbarPosition()
+          @base.keepToolbarAlive = true
+
+          
+          input.focus()
+          return
+
+        Table::onClose = (e) ->
+          e.preventDefault()
+          
+          @base.toolbarActions.style.display = 'block'
+          @base.keepToolbarAlive = false
+          @form.style.display = 'none'
+          return
+
+
+        Table::sorting_media = (str) ->
+          mask = 'async src="//platform.twitter.com/widgets.js"'
+          if str.indexOf("www.youtube.com") > -1
+            @css_attr = true
+          else if str.indexOf('soundcloud') > -1
+            @css_attr = true
+          else if str.indexOf('script') > -1
+            console.log('script check')
+            @css_attr = false
+            console.log('string substr' ,str.substr(mask, " ") )
+            str = str.replace(mask, "<div></div> ")
+          return str
+        Table::onSave = (e) ->
+          
+          e.preventDefault()
+          columnCount = @columnInput.value
+          console.log(typeof(columnCount), "TTTT")
+          console.log(columnCount, "TAAAAAAAAAAaTTT")
+          
+          console.log(columnCount, "asdfs")
+          
+          columnCount = @sorting_media columnCount
+          console.log(columnCount, "sorting media")
+          @base.restoreSelection()
+          if @css_attr
+            columnCount = "#{columnCount}"
+          else
+            columnCount = "#{columnCount}"
             
+          
+          #columnCount = "<div class='a'>#{columnCount}</div>"
+          #columnCount = $sce.trustAsResourceUrl(columnCount)
+          #columnCount = '<div>' +  columnCount + "</div>"
+          console.log("COLUMNNNNNN", columnCount)
+          
+          document.execCommand "insertHTML", false,  columnCount
+          
+          
+          
+          return   
+        
 
          Extension = ->
             @parent = true
@@ -56,20 +183,32 @@ angular.module('admin').directive('myEditor',['$location','fileUpload',"$timeout
           Extension::getButton = ->
             @button
 
-
-            
-          
+         
 
         
         
+        bar = ->
+          angular.element('.a').addClass("col-md-2")
+          
+          console.log(angular.element('.a'), "EEEEE")
+        scope.xar = ->
+          $timeout(bar,0)
+          
         
-          
-          
         scope.editor = new MediumEditor('.editable',
-          buttons: ['bold', 'italic', 'underline', 'anchor', 'header1', 'header2', 'quote','extension'],
+          buttons: ['bold', 'italic', 'underline', 'anchor', 'header1', 'header2', 'quote','extension', 'table'],
           extensions:
-          
-            extension: new Extension()) 
+            table: new Table({
+              
+              defaultColumns: 3
+              defaultRows: 2
+              })
+  
+            extension: new Extension())
+        
+        #angular.element('.a').on('click', scope.xar)
         angular.element('.editable').on('input', foo)
         angular.element('#asset').bind('change', foo)
      ])
+
+

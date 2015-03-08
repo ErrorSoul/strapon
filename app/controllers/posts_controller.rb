@@ -34,9 +34,22 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.includes(:user).find(params[:id])
-    
+    post_ids = Post.pluck(:id)
+    b = []
+    while b.length < 3
+      s  = post_ids.sample
+      unless @post.id == s
+        b << s
+      end
+    end
+    @posts = Post.find(b)
     
   end
+        
+      
+   
+    
+  
   def new
   end
 

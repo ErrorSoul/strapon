@@ -85,14 +85,32 @@
                   %h4.media-heading= @post.user.name
                   %p= @post.user.bio
                   
-         
+          #related-posts.col-xs-12.related-posts
+            .col-xs-11.col-xs-offset-1
+              .row
+                - @posts.each do |post|
+                  
+                  .col-md-4
+                    .thumbnail.hara
+                      %img.img-max{:alt => "...", :src => "#{post.asset.url}"}
+                        .caption
+                          = link_to content_tag(:h3, post.title.html_safe ), post
+                           
+                          %p= post.description
+                          %p
+                            .bottom-buttons
+                              %a.btn.btn-fresh.go-button{:href => "/posts/#{post.id}", :role => "button"} Перейти
+                              %a.btn.btn-default{:href => "#", :role => "button"} Добавить в читаемое
+            
           .col-xs-12.comments-panel
             .col-xs-11.col-xs-offset-1
               .bs-example
                 .panel.panel-default
-                  .panel-body Комментарии
+                  .panel-body Только зарегистрированные пользователи могут посылать друг друга нахуй (на самом деле нет)
                   
                   .panel-footer.clearfix
+                    .col-xs-6
+                      %p.panel-notific Нажми на стрелочку, чтобы оставить свой комментарий
                     .pull-left
                       
                       %button.btn.btn-fresh(type ="button" ng-click="merge()" ng-show="dara")
@@ -131,4 +149,4 @@
                         %button.btn.btn-fresh(ng-click="add($index, {id: num.id, type: 'Comment', path: num.path, name: tool.name_to_reply(num) })")
                           %i.fa.fa-reply.fa-2x
                         
-             
+          
