@@ -188,14 +188,7 @@ angular.module('admin').directive('myEditor',['$location', '$sce','fileUpload',"
 
         
         
-
-        bar = ->
-          angular.element('.a').addClass("col-md-2")
-                    console.log(angular.element('.a'), "EEEEE")
-        scope.xar = ->
-          $timeout(bar,0)
-
-          
+       
         
         scope.editor = new MediumEditor('.editable',
           buttons: ['bold', 'italic', 'underline', 'anchor', 'header1', 'header2', 'quote','extension', 'table'],
