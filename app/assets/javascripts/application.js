@@ -23,6 +23,7 @@
 //= require ang_resourses/angular-resource
 //= require ang_resourses/angular-mocks
 //= require ang_resourses/angular-sanitize
+//= require ang_resourses/medium-editor
 
 //= require main_module
 //= require controllers/MountCtrl

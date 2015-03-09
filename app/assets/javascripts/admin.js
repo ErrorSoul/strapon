@@ -13,6 +13,7 @@
 //= require ang_resourses/angular-cookies
 //= require ang_resourses/angular-mocks
 //= require ang_resourses/angular-animate
+//= require ang_resourses/medium-editor
 
 
 
