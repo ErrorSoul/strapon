@@ -173,7 +173,7 @@ angular.module('admin').directive('myEditor',['$location', '$sce','fileUpload',"
           return   
         
 
-         Extension = ->
+        Extension = ->
             @parent = true
             @button = document.getElementById("formedium")
             @button.className = "medium-editor-action"
@@ -181,7 +181,7 @@ angular.module('admin').directive('myEditor',['$location', '$sce','fileUpload',"
             return
 
             #this.button.onclick = this.onClick.bind(this);
-          Extension::getButton = ->
+        Extension::getButton = ->
             @button
 
          
