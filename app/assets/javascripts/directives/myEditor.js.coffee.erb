@@ -191,8 +191,7 @@ angular.module('admin').directive('myEditor',['$location', '$sce','fileUpload',"
 
         bar = ->
           angular.element('.a').addClass("col-md-2")
-          
-          console.log(angular.element('.a'), "EEEEE")
+                    console.log(angular.element('.a'), "EEEEE")
         scope.xar = ->
           $timeout(bar,0)
 
@@ -205,7 +204,9 @@ angular.module('admin').directive('myEditor',['$location', '$sce','fileUpload',"
               
               defaultColumns: 3
               defaultRows: 2
-            })
+										})
+	    extension: new Extension()
+            
   
 
         
