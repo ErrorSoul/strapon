@@ -21,7 +21,7 @@ class MainPagesController < ApplicationController
   end
 
   def posts
-    @posts = Post.all
+    @posts = Post.all_public
     render json: {posts: @posts}
   end
 end

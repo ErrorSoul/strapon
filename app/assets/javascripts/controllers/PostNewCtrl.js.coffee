@@ -7,7 +7,7 @@ angular.module("admin").controller "PostNewCtrl", ["$scope",'$timeout', "session
   $scope.r = ->
     $scope.editor.deactivate()
     $scope.editor.activate()
-  $timeout($scope.r, 1000)
+  #$timeout($scope.r, 1000)
   $scope.showPopover = () ->
     rect = document.getElementById('title').getBoundingClientRect()
     document.getElementById('pop-id').style.right = rect.right

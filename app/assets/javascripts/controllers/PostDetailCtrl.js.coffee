@@ -8,5 +8,7 @@ angular.module('admin').controller("PostDetailCtrl", ["$scope","$sce", "$timeout
       $scope.asset_url = data.post.asset.url )
   
   $scope.t =  ->
-    $sce.trustAsHtml $scope.post.text if $scope.post.text
+    if $scope.post
+      $sce.trustAsHtml $scope.post.text if $scope.post.text
   $scope.uploadFileToUrl = fileUpload.uploadFileToUrl])
+ 

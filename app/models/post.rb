@@ -30,4 +30,22 @@ class Post < ActiveRecord::Base
   has_many :line_items
   mount_uploader :asset, AssetUploader
   scope :perfect, -> { "Hirosima" }
+  scope :all_public, -> { where(state: 'public') }
+  after_save :to_draft 
+
+  state_machine :state, initial: :new do
+    event :public do 
+      transition new: :public
+    end
+
+    event :new do
+      transition public: :new
+    end
+  end
+
+  private
+
+  def to_draft
+    new
+  end
 end

@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.includes(:user).find(params[:id])
-    post_ids = Post.pluck(:id)
+    post_ids = Post.all_public.pluck(:id)
     b = []
     while b.length < 3
       s  = post_ids.sample
@@ -68,7 +68,9 @@ class PostsController < ApplicationController
     @post.destroy
     render json: {message: "Your post deleted"}
   end
+
   private
+
   def signed_and_set_post
     signed_in_user
     set_post if current_user 

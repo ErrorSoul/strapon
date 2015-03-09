@@ -48,7 +48,7 @@
                   %p(ng-bind-html="post.description")
                   
                   
-                  %a.info(ng-click="clicked('run')" href="/posts/{{post.id}}")
+                  %a.info( href="/posts/{{post.id}}")
                     %i.fa.fa-arrow-up.fa-2x.base-class(class="{{myVar1}}")
                   %a.info(href="#" ng-click="add_post(post.id, 'my-class', $index)" data-toggle="tooltip" data-placement="bottom" title="Прочитать потом")
                     %i.fa.fa-pause.fa-2x.base-class(class="{{p[$index].myVar}}")

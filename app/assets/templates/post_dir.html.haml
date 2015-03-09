@@ -52,7 +52,12 @@
         %button.btn.btn-sunny{:type => "submit", "ng-disabled"=>"input_check || form.$invalid" }
           %i.fa.fa-floppy-o.fa-2x
           //%span.glyphicon.glyphicon-floppy-saved
-          SAVE 
+          SAVE
+        %button.btn.btn-sunny(ng-if='notNew' type='button' ng-disabled='!input_check')
+          %i.fa.fa-floppy-o.fa-2x
+          //%span.glyphicon.glyphicon-floppy-saved
+          {{post_state()}}
+          {{notNew}}
 
     
 
