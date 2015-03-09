@@ -11,7 +11,7 @@ angular.module("admin").service('sessionStorage', ["$http",'$cookieStore', class
       
  
 
-  setAuth: (status) ->
+  setAuth: (status) =>
     @_authorized = status
     
 

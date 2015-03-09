@@ -1,10 +1,12 @@
-angular.module('admin').directive('sectionBar', ['$location', ($location) ->
+angular.module('admin').directive('sectionBar', ['$location', 'sessionStorage', ($location, sessionStorage) ->
      
       restrict: 'E'
       templateUrl: "<%= asset_path('section.html') %>" 
       link:  (scope, element, attr) ->
         scope.reload_and_new = ->
-          window.location.reload()
+          #window.location.reload()
+	  #console.log(sessionStorage.setAuth)
+	  
           $location.path('/posts/new')
 
 
