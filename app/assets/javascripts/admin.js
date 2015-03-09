@@ -14,7 +14,7 @@
 //= require ang_resourses/angular-mocks
 //= require ang_resourses/angular-animate
 
-//= require medium-editor/dist/js/medium-editor
+
 
 
 //= require modules

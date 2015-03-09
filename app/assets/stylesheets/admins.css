@@ -12,7 +12,7 @@
  *
  *= require font-awesome
  *= require_tree ./admin
- *= require  medium-editor/dist/css/medium-editor
+ 
  *= require_self
  
  
