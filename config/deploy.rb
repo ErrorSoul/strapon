@@ -41,7 +41,7 @@ set :scm, :git
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
-
+set :branch, ENV['BRANCH'] || "master"
 namespace :deploy do
 
   after :restart, :clear_cache do
