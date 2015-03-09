@@ -197,20 +197,16 @@ angular.module('admin').directive('myEditor',['$location', '$sce','fileUpload',"
 
           
         
-        scope.editor = new MediumEditor('.editable',
+         scope.editor = new MediumEditor('.editable',
           buttons: ['bold', 'italic', 'underline', 'anchor', 'header1', 'header2', 'quote','extension', 'table'],
           extensions:
             table: new Table({
               
               defaultColumns: 3
-              defaultRows: 2 
-            })
-	    extension: new Extension()
-            
+              defaultRows: 2
+              })
   
-
-        
-       	)
+            extension: new Extension())
         angular.element('.editable').on('input', foo)
         angular.element('#asset').bind('change', foo)
      ])
