@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer          not null, primary key
+#  text             :text
+#  post_id          :integer
+#  path             :string(255)
+#  child            :integer          default(0)
+#  class_num        :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#  commentable_id   :integer
+#  commentable_type :string(255)
+#  user_id          :integer
+#
+
 require 'spec_helper'
 require "pry"
 

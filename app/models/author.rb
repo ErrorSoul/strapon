@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: authors
+#
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  login           :string(255)
+#  password_digest :string(255)
+#  bio             :text
+#  created_at      :datetime
+#  updated_at      :datetime
+#  remember_token  :string(255)
+#  asset           :string(255)
+#
+
 class Author < ActiveRecord::Base
   before_create :create_remember_token
   has_many :posts

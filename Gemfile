@@ -20,6 +20,8 @@ gem 'carrierwave', '0.8.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 
+gem 'state_machines-activerecord'
+gem 'annotate'
 #suka suka suka
 gem 'bootstrap-sass', '3.2.0.2'
 gem 'font-awesome-sass', '~> 4.2.0'

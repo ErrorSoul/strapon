@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: carts
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime
+#  updated_at :datetime
+#  user_id    :integer
+#
+
 require 'spec_helper'
 
 describe Cart do

@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  text        :text
+#  author_id   :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  asset       :string(255)
+#  child       :integer          default(0)
+#  path        :string(255)
+#  description :text
+#  keywords    :text
+#
+
 class Post < ActiveRecord::Base
   belongs_to :user, class_name: "Author", foreign_key: 'author_id'
   belongs_to :author 

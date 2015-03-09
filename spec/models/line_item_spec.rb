@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: line_items
+#
+#  id         :integer          not null, primary key
+#  post_id    :integer
+#  cart_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe LineItem do

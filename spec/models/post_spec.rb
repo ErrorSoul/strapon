@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  text        :text
+#  author_id   :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  asset       :string(255)
+#  child       :integer          default(0)
+#  path        :string(255)
+#  description :text
+#  keywords    :text
+#
+
 require 'spec_helper'
 
 describe Post do
