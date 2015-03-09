@@ -1,5 +1,5 @@
 angular.module("admin").controller "AuthorDetailCtrl", ["$scope", '$http', '$location', "sessionStorage", "$cookieStore", 'AuthorUpload',  ($scope, $http,  $location, sessionStorage, $cookieStore, AuthorUpload) ->
-  $scope.author  = $cookieStore.get('token')
+  #$scope.author  = $cookieStore.get('token')
   $scope.setUser = sessionStorage.setUser
   $scope.update_author = AuthorUpload.uploadAuthor
 

@@ -5,8 +5,8 @@ angular.module("admin").service('sessionStorage', ["$http",'$cookieStore', class
     @_authorized = false
 
   authorized: ->
-    console.log(@$cookieStore.get('token'),  "COOOOKIE")
-    @_authorized is "true" or (!!@$cookieStore.get('token'))
+    #console.log(@$cookieStore.get('token'),  "COOOOKIE")
+    @_authorized is "true"  #or (!!@$cookieStore.get('token'))
       
  
 
@@ -14,11 +14,10 @@ angular.module("admin").service('sessionStorage', ["$http",'$cookieStore', class
     @_authorized = status
     
 
-  getUser:  ->
-    @_user
+  getUser:  ->    @_user
 
   setUser: (user) =>
-    console.log(@$cookieStore.get('token'),  "COOOOKIE")
+    #console.log(@$cookieStore.get('token'),  "COOOOKIE")
     if user
       @_user = {}
       @_user.id = user.id
