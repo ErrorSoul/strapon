@@ -4,6 +4,7 @@ angular.module("admin").controller "AuthorDetailCtrl", ["$scope", '$http', '$loc
   $scope.update_author = AuthorUpload.uploadAuthor
   console.log(sessionStorage.authorized(), 'dfddf')
   console.log("FFFarr", $cookieStore.get('token'))
+  $scope.author  = $cookieStore.get('token')
 
     
   $scope.update = (author) ->
