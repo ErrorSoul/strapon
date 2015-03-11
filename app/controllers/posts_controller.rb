@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     @post = Post.includes(:user).find(params[:id])
     post_ids = Post.all_public.pluck(:id)
     b = []
-    while b.length <= 3
+    while b.length < 4
       s  = post_ids.sample
       unless @post.id == s
         b << s
